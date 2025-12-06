@@ -3,30 +3,27 @@ const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
 // https://spoonacular.com/food-api/docs
 type SearchOptions = {
-  number?: number; // The number of expected results
+  number?: number; // Number of expected results
   query?: string;
-  intolerances?: string; // e.g. "gluten"
-  diet?: string; // e.g. "vegetarian"
-  includeIngredients?: string; // A comma-separated list of ingredients that should/must be used in the recipes
-  excludeIngredients?: string; // A comma-separated list of ingredients or ingredient types that the recipes must not contain.
+  intolerances?: string;
+  diet?: string;
   type?: string; // e.g. "main course"
-  instructionsRequired?: boolean; // Whether the recipes must have instructions.
+  includeIngredients?: string; // Comma-separated list of ingredients
+  excludeIngredients?: string; // Comma-separated list of ingredients
+  instructionsRequired?: boolean;
   fillIngredients?: boolean; // Add information about the ingredients and whether they are used or missing in relation to the query
-  addRecipeInformation?: boolean; // More information about the recipes returned.
-  addRecipeInstuctions?: boolean; // Get analyzed instructions for each recipe returned
+  addRecipeInformation?: boolean;
+  addRecipeInstuctions?: boolean;
 };
 
-const searchSpoonacular = async (
-  ingredients: string[],
-  options: SearchOptions = {}
-) => {
+const searchSpoonacular = async (options: SearchOptions = {}) => {
   const url = new URL(BASE_URL);
 
   const params = {
     apiKey: API_KEY,
-    includeIngredients: ingredients.join(","),
-    ignorePantry: "true",
-    number: "5",
+    // includeIngredients: ingredients.join(","),
+    // ignorePantry: "true",
+    number: "3",
     ...options,
   };
 
