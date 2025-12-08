@@ -4,10 +4,10 @@ import { useFavoritesStore } from "../store/favoritesStore";
 
 function RecipeCards() {
   const meals = useMealdb();
- const favorites = useFavoritesStore((state) => state.favorites);
-const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
+  const favorites = useFavoritesStore((state) => state.favorites);
+  const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
-const isFavorite = (id: string) => favorites.includes(id);
+  const isFavorite = (id: string) => favorites.includes(id);
 
   return (
     <div className="recipe-grid">
@@ -20,9 +20,10 @@ const isFavorite = (id: string) => favorites.includes(id);
           <div className="recipe-content">
             <h2 className="recipe-title">{meal.strMeal}</h2>
 
-            
             <button
-              className={`favorite-btn ${isFavorite(meal.idMeal) ? "active" : ""}`}
+              className={`favorite-btn ${
+                isFavorite(meal.idMeal) ? "active" : ""
+              }`}
               onClick={() => toggleFavorite(meal.idMeal)}
             >
               {isFavorite(meal.idMeal) ? "❤︎" : "♡"}

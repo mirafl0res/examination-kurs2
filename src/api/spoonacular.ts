@@ -1,7 +1,6 @@
 const BASE_URL = "https://api.spoonacular.com/recipes/complexSearch";
 const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
-<<<<<<< HEAD
 // https://spoonacular.com/food-api/docs
 type SearchOptions = {
   number?: number; // Number of expected results
@@ -38,19 +37,3 @@ const searchSpoonacular = async (options: SearchOptions = {}) => {
 };
 
 export { searchSpoonacular };
-=======
-export const fetchFromSpoonacular = async (ingredients) => {
-  const params = new URLSearchParams({
-    apiKey: API_KEY,
-    includeIngredients: ingredients.join(","),
-    ignorePantry: true,
-    number: 10,
-  });
-
-  const response = await fetch(
-    `${BASE_URL}?${params.toString()}`
-  );
-  const data = await response.json();
-  return data;
-};
->>>>>>> 4705309 (add Spoonacular search helper (work in progress) and TestSearch component)
