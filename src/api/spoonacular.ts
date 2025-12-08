@@ -1,38 +1,38 @@
+import {
+  DEFAULT_RECIPE_COUNT,
+  type SearchOptions,
+  type SearchResponse,
+} from "../types/api";
+
 const BASE_URL = "https://api.spoonacular.com/recipes/complexSearch";
 const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
-// https://spoonacular.com/food-api/docs
-type SearchOptions = {
-  number?: number; // Number of expected results
-  query?: string;
-  intolerances?: string;
-  diet?: string;
-  type?: string; // e.g. "main course"
-  includeIngredients?: string; // Comma-separated list of ingredients
-  excludeIngredients?: string; // Comma-separated list of ingredients
-  instructionsRequired?: boolean;
-  fillIngredients?: boolean; // Add information about the ingredients and whether they are used or missing in relation to the query
-  addRecipeInformation?: boolean;
-  addRecipeInstuctions?: boolean;
+const addParamsToUrl = (url: URL, params: Record<string, unknown>): void => {
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      url.searchParams.set(key, String(value));
+    }
+  });
 };
 
-const searchSpoonacular = async (options: SearchOptions = {}) => {
+const searchSpoonacular = async (
+  options: SearchOptions
+): Promise<SearchResponse> => {
   const url = new URL(BASE_URL);
 
-  const params = {
+  const params: Record<string, unknown> = {
     apiKey: API_KEY,
-    // includeIngredients: ingredients.join(","),
-    // ignorePantry: "true",
-    number: "3",
+    number: options.number ?? DEFAULT_RECIPE_COUNT,
     ...options,
   };
 
-  Object.entries(params).forEach(([key, value]) => {
-    url.searchParams.set(key, value);
-  });
+  addParamsToUrl(url, params);
 
   const response = await fetch(url);
-  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(`API error: ${response.statusText}`);
+  }
+  const data: SearchResponse = await response.json();
   return data;
 };
 

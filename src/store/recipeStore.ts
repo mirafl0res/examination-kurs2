@@ -1,33 +1,27 @@
 import { create } from "zustand";
 import { searchSpoonacular } from "../api/spoonacular";
-
-type Recipe = unknown;
-
-type SearchParams = {
-  query: string;
-  number?: number;
-};
+import { type SearchOptions, type Recipe, DEFAULT_RECIPE_COUNT } from "../types/api";
 
 type RecipeState = {
   recipes: Recipe[];
   loading: boolean;
   error: Error | null;
-  search: (params: SearchParams) => Promise<void>;
+  search: (params: SearchOptions) => Promise<void>;
 };
 
 export const useRecipeStore = create<RecipeState>((set) => ({
   recipes: [],
   loading: false,
   error: null,
-  async search(params: SearchParams) {
+  async search(params) {
     const trimmed = params.query.trim();
     if (!trimmed) return;
     set({ loading: true, error: null });
 
     try {
-      const options = {
+      const options: SearchOptions = {
         query: trimmed,
-        number: 2,
+        number: params.number ?? DEFAULT_RECIPE_COUNT,
       };
       const data = await searchSpoonacular(options);
       set({ recipes: data?.results ?? [] });
