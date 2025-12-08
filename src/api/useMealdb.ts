@@ -10,7 +10,7 @@ export function useMealdb() {
         "https://www.themealdb.com/api/json/v1/1/filter.php?i=carrots"
       );
       const parsed = await response.json();
-      setMeals(parsed.meals || []);
+      setMeals(parsed.meals.slice(0, 6) || []);
     };
 
     getMeals();
