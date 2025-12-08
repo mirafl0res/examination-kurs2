@@ -1,7 +1,9 @@
+export const DEFAULT_RECIPE_COUNT = 2;
+
 // https://spoonacular.com/food-api/docs
 export type SearchOptions = {
+  query: string;
   number?: number; // Number of expected results
-  query?: string;
 
   addRecipeInformation?: boolean;
   addRecipeInstuctions?: boolean;
@@ -22,9 +24,10 @@ export type SearchResponse = {
     id: number;
     title: string;
     image: string;
-    readyInMinutes: number;
     [key: string]: unknown;
   }>;
   number: number;
   [key: string]: unknown;
 };
+
+export type Recipe = SearchResponse["results"][number];
