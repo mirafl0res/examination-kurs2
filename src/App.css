@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+    font-family: "Montserrat";
+}
+
 
  .recipe-grid {
   display: grid;
@@ -63,20 +69,21 @@ transform: translateY(-2px);
 .favorite-btn {
   background: none;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   cursor: pointer;
   color: #bbb;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.15s ease;
 }
 
-.favorite-btn:hover {
-  color: #ff5a5a;
+.favorite-btn.active {
+  color: #ff4d4d;
 }
 
-/* TABLET */
+
+/* tablet */
 @media (min-width: 600px) {
   .recipe-grid {
-    grid-template-columns: repeat(2, 1fr);   /* 2 kolumner */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 1.2rem;
   }
 
@@ -85,7 +92,7 @@ transform: translateY(-2px);
   }
 }
 
-/*  DESKTOP  */
+/*  desktop  */
 @media (min-width: 900px) {
   .recipe-grid {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
