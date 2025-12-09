@@ -5,17 +5,17 @@ const BASE_URL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=vegetaria
 
 
 export function useMealdb() {
-  const [meals, setMeals] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    const getMeals = async () => {
+    const getData = async () => {
       const response = await fetch(BASE_URL);
       const parsed = await response.json();
-      setMeals(parsed.meals.slice(0, 6) || []);
+      setData(parsed.data.slice(0, 6) || []);
     };
 
-    getMeals();
+    getData();
   }, []);
 
-  return meals;
+  return data;
 }
