@@ -13,11 +13,11 @@ export const useFavoritesStore = create<FavoritesStore>()(
       favorites: [],
 
       toggleFavorite: (id) => {
-        const list = get().favorites;
+        const favoriteList = get().favorites;
 
-        const updated = list.includes(id)
-          ? list.filter((fav) => fav !== id)        // ta bort
-          : [...list, id];                          // lägg till
+        const updated = favoriteList.includes(id)
+          ? favoriteList.filter((fav) => fav !== id)        // ta bort
+          : [...favoriteList, id];                          // lägg till
 
         set({ favorites: updated });
       },
@@ -27,7 +27,7 @@ export const useFavoritesStore = create<FavoritesStore>()(
       }
     }),
     {
-      name: "favoriteMeals", // key i localStorage
+      name: "favoriteRecipes", // key i localStorage
     }
   )
 );

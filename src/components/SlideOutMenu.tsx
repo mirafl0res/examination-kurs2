@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useMenuStore } from "../store/menuStore";
 
 function SlideOutMenu() {
@@ -11,9 +12,9 @@ function SlideOutMenu() {
                 >✕</button>
 
         <h3>Meny</h3>
-        <a href="/">Hem</a>
-        
-        <a href="/favorites">Favoriter</a>
+     <Link to="/" onClick={close}>Hem</Link>
+        <Link to="/recipes" onClick={close}>Recept</Link>
+        <Link to="/favorites" onClick={close}>Favoriter</Link>
       </div>
     </div>
   )
