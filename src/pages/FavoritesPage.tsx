@@ -2,15 +2,18 @@ import { useFavoritesStore } from "../store/favoritesStore";
 import RecipeCards from "../components/RecipeCards";
 
 function FavoritesPage() {
-  const favorites = useFavoritesStore((state) => state.favorites);
+  const favoriteRecipes = useFavoritesStore((state) => state.favorites);
+
+  const hasFavorites = favoriteRecipes.length > 0;
 
   return (
-    <div>
+    <div className="favorites-page">
       <h1>My favorite recipes</h1>
-      {favorites.length === 0 ? (
-        <p>No favorites yet</p>
+
+      {hasFavorites ? (
+        <RecipeCards filterIds={favoriteRecipes} />
       ) : (
-        <RecipeCards filterIds={favorites} />
+        <p>No favorites yet</p>
       )}
     </div>
   );
