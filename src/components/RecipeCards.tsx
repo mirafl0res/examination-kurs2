@@ -7,7 +7,7 @@ type RecipeCardsProps = {
   filterIds?: string[];
 };
 
-function RecipeCards({ recipes = [], filterIds }: RecipeCardsProps) {
+function RecipeCards({ recipes, filterIds }: RecipeCardsProps) {
   const favorites = useFavoritesStore((state) => state.favorites);
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
