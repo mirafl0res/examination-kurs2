@@ -3,13 +3,13 @@ import Navbar from "./components/Navbar";
 import SlideOutMenu from "./components/SlideOutMenu";
 import RecipeCards from "./components/RecipeCards";
 import FavoritesPage from "./pages/FavoritesPage";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/search/SearchContainer";
 
 function App() {
   return (
     <>
-      <Navbar />
       <SearchBar />
+      <Navbar />
       <SlideOutMenu />
 
       <Routes>
