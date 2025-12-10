@@ -3,12 +3,11 @@ import AdvancedFilters from "./AdvancedFilters";
 import SearchForm from "./SearchForm";
 import SearchModeToggle from "./SearchModeToggle";
 import { useState } from "react";
-import { DEFAULT_RECIPE_COUNT, type Recipe } from "../../types/api";
-import RecipeCards from "../RecipeCards";
+import { DEFAULT_RECIPE_COUNT } from "../../types/api";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const { search, recipes, loading, error } = useRecipeStore();
+  const { search } = useRecipeStore();
 
   const handleSearch = (query: string): void => {
     search({ query, number: DEFAULT_RECIPE_COUNT });
@@ -22,8 +21,6 @@ function SearchContainer() {
         onSearch={handleSearch}
         value={searchValue}
       />
-      {loading && <p>Loading...</p>}
-      {error && <p>{error.message}</p>}
       <AdvancedFilters />
     </>
   );
