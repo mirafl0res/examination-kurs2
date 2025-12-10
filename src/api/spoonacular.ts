@@ -2,10 +2,16 @@ import {
   DEFAULT_RECIPE_COUNT,
   type SearchOptions,
   type SearchResponse,
+  type Recipe,
 } from "../types/api";
 
-const BASE_URL = "https://api.spoonacular.com/recipes/complexSearch";
+const BASE_URL = "https://api.spoonacular.com";
 const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
+
+const ensureApiKey = () => {
+  if (!API_KEY)
+    throw new Error("Missing Spoonacular API key (VITE_SPOONACULAR_API_KEY)");
+};
 
 const addParamsToUrl = (url: URL, params: Record<string, unknown>): void => {
   Object.entries(params).forEach(([key, value]) => {
@@ -15,25 +21,40 @@ const addParamsToUrl = (url: URL, params: Record<string, unknown>): void => {
   });
 };
 
+const fetchSpoonacular = async <T>(
+  endpoint: string,
+  params?: Record<string, unknown>
+): Promise<T> => {
+  ensureApiKey();
+  const url = new URL(`${BASE_URL}${endpoint}`);
+  url.searchParams.set("apiKey", API_KEY);
+  if (params) {
+    addParamsToUrl(url, params);
+  }
+
+  const response = await fetch(url.toString());
+  if (!response.ok) {
+    throw new Error(`Spoonacular API error: ${response.statusText}`);
+  }
+  return await response.json();
+};
+
 const searchSpoonacular = async (
   options: SearchOptions
 ): Promise<SearchResponse> => {
-  const url = new URL(BASE_URL);
-
-  const params: Record<string, unknown> = {
-    apiKey: API_KEY,
+  const params = {
     number: options.number ?? DEFAULT_RECIPE_COUNT,
     ...options,
   };
+  const endpoint = "/recipes/complexSearch";
 
-  addParamsToUrl(url, params);
-
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`API error: ${response.statusText}`);
-  }
-  const data: SearchResponse = await response.json();
-  return data;
+  return fetchSpoonacular<SearchResponse>(endpoint, params);
 };
 
-export { searchSpoonacular };
+const getRecipeById = async (id: number): Promise<Recipe> => {
+  const endpoint = `/recipes/${id}/information`;
+
+  return fetchSpoonacular<Recipe>(endpoint);
+};
+
+export { searchSpoonacular, getRecipeById };
