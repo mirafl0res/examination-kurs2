@@ -4,6 +4,7 @@ import SlideOutMenu from "./components/SlideOutMenu";
 import FavoritesPage from "./pages/FavoritesPage";
 import SearchBar from "./components/search/SearchContainer";
 import RecipeResults from "./components/RecipeResults";
+import RecipeDetailPage from "./pages/RecipeDetailPage";
 
 function App() {
   return (
@@ -12,10 +13,11 @@ function App() {
       <Navbar />
       <SlideOutMenu />
       
+  
       <Routes>
         <Route path="/" element={<RecipeResults />} />
         <Route path="/favorites" element={<FavoritesPage />} />
-
+        <Route path="/recipe/:id" element={<RecipeDetailPage />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
     </>

@@ -30,4 +30,20 @@ export type SearchResponse = {
   [key: string]: unknown;
 };
 
-export type Recipe = SearchResponse["results"][number];
+export type InstructionStep = {
+  number: number;
+  step: string;
+};
+
+export type AnalyzedInstruction = {
+  name: string;
+  steps: InstructionStep[];
+};
+
+export type Recipe = SearchResponse["results"][number] & {
+  analyzedInstructions?: AnalyzedInstruction[];
+  extendedIngredients?: Array<{ id: number; original: string }>;
+  servings?: number;
+  readyInMinutes?: number;
+  diets?: string[];
+};
