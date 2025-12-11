@@ -16,8 +16,12 @@ import { searchSpoonacular, getRecipeById } from "./spoonacular";
 import { filterMockRecipes, getMockRecipeById } from "../data/mockRecipes";
 import { DEFAULT_RECIPE_COUNT } from "../types/api";
 
-// Toggle between mock and real API based on environment
-const USE_MOCK_DATA = import.meta.env.DEV;
+// Toggle mock/real API using localStorage
+// Toggle in console: localStorage.setItem("useMock", "false")
+// Defaults to mock data in development
+const USE_MOCK_DATA = 
+  (localStorage.getItem("useMock") ?? "true") === "true" &&
+  import.meta.env.DEV;
 
 /**
  * Search for recipes with filters
