@@ -1,5 +1,5 @@
 import { useRecipeStore } from "../store/recipeStore";
-import RecipeCards from "./RecipeCards";
+import RecipeCards from "./recipe/RecipeList";
 
 function RecipeResults() {
   const { recipes, loading, error } = useRecipeStore();
