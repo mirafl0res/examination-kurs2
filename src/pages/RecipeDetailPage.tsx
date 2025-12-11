@@ -1,36 +1,83 @@
-import { useParams, Link } from "react-router-dom";
-import { useRecipeStore } from "../store/recipeStore";
-import "../App.css";
-import FavoriteButton from "../components/recipe/FavoriteButton";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getRecipe } from "../api/recipes";
+import type { Recipe } from "../types/api";
 
 function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Get recipe from the store (already fetched via search)
-  const recipes = useRecipeStore((s) => s.recipes);
-  const recipe = recipes.find((r) => String(r.id) === id);
+  useEffect(() => {
+    const fetchRecipeDetails = async () => {
+      if (!id) return;
+      
+      setLoading(true);
+      setError(null);
 
-  if (!recipe) {
-    return (
-      <div className="recipe-detail-page">
-        <Link to="/" className="back-link">← Back to search</Link>
-        <p>Recipe not found. Try searching for recipes first.</p>
-      </div>
-    );
-  }
+      try {
+        // Automatically uses mock data in dev, real API in production
+        const data = await getRecipe(Number(id));
+        setRecipe(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load recipe");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecipeDetails();
+  }, [id]);
+
+  if (loading) return <div>Loading recipe...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!recipe) return <div>Recipe not found</div>;
+
+  const instructionSteps = String(recipe.instructions ?? '')
+  .split(/[\.\n]\s*/)  // delar texten vid punkt eller radbrytning 
+  .map(step => step.trim())
+  .filter(step => step.length > 0);
 
   return (
-    <div className="recipe-detail-page">
-      <Link to="/" className="back-link">← Back to recipes</Link>
+    <article>
+      <h1>{recipe.title}</h1>
+      <img src={recipe.image} alt={recipe.title} />
+      
+      <section>
+        <h2>Details</h2>
+        <p>Servings: {Number(recipe.servings)}</p>
+        <p>Ready in: {Number(recipe.readyInMinutes)} minutes</p>
+      </section>
 
-      <div className="recipe-detail-header">
-        <img src={recipe.image} alt={recipe.title} className="recipe-detail-img" />
-        <div className="recipe-detail-info">
-          <h1>{recipe.title} <FavoriteButton id={recipe.id} title={recipe.title} image={recipe.image} /></h1>
-          
-        </div>
-      </div>
-    </div>
+      <section>
+        <h2>Ingredients</h2>
+        <ul>
+          {(recipe.extendedIngredients as Array<{ id: number; original: string }>)?.map((ingredient) => (
+            <li key={ingredient.id}>{ingredient.original}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+  <h2>Instructions</h2>
+
+  {instructionSteps.length > 0 ? (
+    <ul>
+      {instructionSteps.map((step, i) => (
+          <li key={i}>
+            <label>
+              <input type="checkbox" />
+              {step}
+            </label>
+          </li>
+        ))}
+    </ul>
+  ) : (
+    <p>No instructions available.</p>
+  )}
+</section>
+    </article>
   );
 }
 
