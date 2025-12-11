@@ -1,4 +1,4 @@
-import { useRecipeStore } from "../../store/recipeStore";
+import { useSearchResultsStore } from "../../store/searchResultsStore";
 import AdvancedFilters from "./AdvancedFilters";
 import SearchForm from "./SearchForm";
 import SearchModeToggle from "./SearchModeToggle";
@@ -8,7 +8,7 @@ import MockRecipesQuickList from "./MockRecipesQuickList";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const { search } = useRecipeStore();
+  const { search } = useSearchResultsStore();
 
   const handleSearch = (query: string): void => {
     search({ query, number: DEFAULT_RECIPE_COUNT });

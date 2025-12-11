@@ -1,8 +1,8 @@
-import { useRecipeStore } from "../store/recipeStore";
+import { useSearchResultsStore } from "../store/searchResultsStore";
 import RecipeCards from "./recipe/RecipeList";
 
 function RecipeResults() {
-  const { recipes, loading, error } = useRecipeStore();
+  const { recipes, loading, error } = useSearchResultsStore();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error.message}</p>;
