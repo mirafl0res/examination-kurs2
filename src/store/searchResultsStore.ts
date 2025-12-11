@@ -14,7 +14,7 @@ type RecipeState = {
   search: (params: SearchOptions) => Promise<void>;
 };
 
-export const useRecipeStore = create<RecipeState>((set) => ({
+export const useSearchResultsStore = create<RecipeState>((set) => ({
   recipes: [],
   loading: false,
   error: null,
