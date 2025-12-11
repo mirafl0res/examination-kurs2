@@ -1,6 +1,11 @@
 import { create } from "zustand";
-import { searchSpoonacular } from "../api/spoonacular";
-import { type SearchOptions, type Recipe, DEFAULT_RECIPE_COUNT } from "../types/api";
+import { searchRecipes } from "../api/recipes";
+// import { searchSpoonacular } from "../api/spoonacular";
+import {
+  type SearchOptions,
+  type Recipe,
+  DEFAULT_RECIPE_COUNT,
+} from "../types/api";
 
 type RecipeState = {
   recipes: Recipe[];
@@ -23,7 +28,8 @@ export const useRecipeStore = create<RecipeState>((set) => ({
         query: trimmed,
         number: params.number ?? DEFAULT_RECIPE_COUNT,
       };
-      const data = await searchSpoonacular(options);
+      // searchRecipes automatically uses mocks in dev, real API in production
+      const data = await searchRecipes(options);
       set({ recipes: data?.results ?? [] });
     } catch (err) {
       set({ error: err instanceof Error ? err : new Error("Search failed") });

@@ -4,6 +4,7 @@ import SearchForm from "./SearchForm";
 import SearchModeToggle from "./SearchModeToggle";
 import { useState } from "react";
 import { DEFAULT_RECIPE_COUNT } from "../../types/api";
+import MockRecipesQuickList from "./MockRecipesQuickList";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -22,6 +23,7 @@ function SearchContainer() {
         value={searchValue}
       />
       <AdvancedFilters />
+      <MockRecipesQuickList onRecipeClick={handleSearch} />
     </>
   );
 }
