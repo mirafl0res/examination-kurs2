@@ -2,16 +2,15 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export type FavoriteRecipe = {
-  id: string;
+  id: number;
   title: string;
   image: string;
 };
 
-
 type FavoriteState = {
   favorites: FavoriteRecipe[];
   toggleFavorite: (recipe: FavoriteRecipe) => void;
-  isFavorite: (id: string) => boolean;
+  isFavorite: (id: number) => boolean;
 }
 
 export const useFavoritesStore = create<FavoriteState>()(

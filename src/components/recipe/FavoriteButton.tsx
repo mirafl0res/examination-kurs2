@@ -1,7 +1,7 @@
 import { useFavoritesStore } from "../../store/favoritesStore";
 
 type FavoriteButtonProps = {
-  id: string | number;
+  id: number;
   title: string;
   image: string;
 };
@@ -10,18 +10,20 @@ export default function FavoriteButton({ id, title, image }: FavoriteButtonProps
   const favorites = useFavoritesStore((state) => state.favorites);
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
-  const isFavorite = favorites.some((fav) => fav.id === String(id));
+  const isFavorite = favorites.some((fav) => fav.id === id);
 
   return (
     <button
       className={`favorite-btn ${isFavorite ? "active" : ""}`}
-      onClick={() =>
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
         toggleFavorite({
-          id: String(id),
+          id,
           title,
           image,
-        })
-      }
+        });
+      }}
     >
       {isFavorite ? "❤︎" : "♡"}
     </button>

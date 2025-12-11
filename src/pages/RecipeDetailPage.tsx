@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types/api";
+import FavoriteButton from "../components/recipe/FavoriteButton";
 
 function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -34,20 +35,25 @@ function RecipeDetailPage() {
   if (error) return <div>Error: {error}</div>;
   if (!recipe) return <div>Recipe not found</div>;
 
-  const instructionSteps = String(recipe.instructions ?? '')
-  .split(/[\.\n]\s*/)  // delar texten vid punkt eller radbrytning 
-  .map(step => step.trim())
-  .filter(step => step.length > 0);
+function getInstructionSteps(recipe: Recipe) {
+  const blocks = recipe.analyzedInstructions;
+  if (!blocks || blocks.length === 0) return [];
+
+  return blocks[0].steps.map(s => s.step.trim());
+}
+const instructionSteps = getInstructionSteps(recipe);
 
   return (
     <article>
-      <h1>{recipe.title}</h1>
+      <h1>{recipe.title} <FavoriteButton id={recipe.id} title={recipe.title} image={recipe.image} /> </h1>
       <img src={recipe.image} alt={recipe.title} />
       
       <section>
         <h2>Details</h2>
         <p>Servings: {Number(recipe.servings)}</p>
         <p>Ready in: {Number(recipe.readyInMinutes)} minutes</p>
+        <p>Diet info: {String(recipe.diets)}</p>
+    
       </section>
 
       <section>
@@ -59,19 +65,20 @@ function RecipeDetailPage() {
         </ul>
       </section>
 
-      <section>
+   
+<section>
   <h2>Instructions</h2>
 
   {instructionSteps.length > 0 ? (
     <ul>
       {instructionSteps.map((step, i) => (
-          <li key={i}>
-            <label>
-              <input type="checkbox" />
-              {step}
-            </label>
-          </li>
-        ))}
+        <li key={i}>
+          <label>
+            <input type="checkbox" />
+            {step}
+          </label>
+        </li>
+      ))}
     </ul>
   ) : (
     <p>No instructions available.</p>
