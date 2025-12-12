@@ -25,6 +25,7 @@ export const useSearchResultsStore = create<RecipeState>((set) => ({
 
     try {
       const options: SearchOptions = {
+        ...params,
         query: trimmed,
         number: params.number ?? DEFAULT_RECIPE_COUNT,
       };
