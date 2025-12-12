@@ -1,12 +1,12 @@
 /**
  * Unified recipe API wrapper
- * 
+ *
  * In development, USE_MOCK_DATA automatically uses mockRecipes.ts
  * This avoids consuming API quota during development
- * 
+ *
  * This module abstracts the choice between mock data (development) and real API calls (production).
  * It provides a consistent interface for recipe search and detail fetching regardless of the data source.
- * 
+ *
  * @see spoonacular.ts for real API implementation
  * @see mockRecipes.ts for mock data
  */
@@ -16,8 +16,11 @@ import { searchSpoonacular, getRecipeById } from "./spoonacular";
 import { filterMockRecipes, getMockRecipeById } from "../data/mockRecipes";
 import { DEFAULT_RECIPE_COUNT } from "../types/api";
 
-// Toggle between mock and real API based on environment
-const USE_MOCK_DATA = import.meta.env.DEV;
+// Toggle mock/real API using localStorage
+// Toggle in console: localStorage.setItem("useMock", "false")
+// Defaults to mock data in development
+export const USE_MOCK_DATA =
+  (localStorage.getItem("useMock") ?? "true") === "true" && import.meta.env.DEV;
 
 /**
  * Search for recipes with filters

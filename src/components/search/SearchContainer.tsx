@@ -4,8 +4,10 @@ import SearchForm from "./SearchForm";
 import SearchModeToggle from "./SearchModeToggle";
 import { useState } from "react";
 import { DEFAULT_RECIPE_COUNT } from "../../types/api";
-import MockRecipesQuickList from "./MockRecipesQuickList";
 import { type Intolerance } from "../../constants/intolerances";
+import MockRecipesQuickList from "./MockRecipesQuickList";
+import MockSearchToggle from "./MockSearchToggle";
+import { USE_MOCK_DATA } from "../../api/recipes";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -28,8 +30,17 @@ function SearchContainer() {
     setIntolerances(intolerances);
   };
 
+  const handleMockSearchToggle = (checked: boolean) => {
+    localStorage.setItem("useMock", checked ? "true" : "false");
+    window.location.reload();
+  };
+
   return (
     <>
+      {import.meta.env.DEV && (
+        <MockSearchToggle value={USE_MOCK_DATA} onChange={handleMockSearchToggle} />
+      )}
+        {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
       <SearchModeToggle />
       <SearchForm
         onChange={setSearchValue}
@@ -37,7 +48,6 @@ function SearchContainer() {
         value={searchValue}
       />
       <AdvancedFilters onChange={handleIntolerancesChange} />
-      <MockRecipesQuickList onRecipeClick={handleSearch} />
     </>
   );
 }
