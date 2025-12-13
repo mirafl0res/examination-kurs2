@@ -32,11 +32,13 @@ function AdvancedFilters({ onChange }: AdvancedFiltersProps) {
 
   return (
     <>
+      <h4>Intolerances</h4>
       <PillGroup
         options={INTOLERANCES}
         selected={selectedIntolerances}
         onToggle={handleToggleIntolerance}
       />
+      <h4>Diets</h4>
       <PillGroup
         options={DIETS}
         selected={selectedDiets}
