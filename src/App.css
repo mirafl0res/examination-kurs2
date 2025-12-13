@@ -1,21 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
-    font-family: "Montserrat";
+  font-family: "Montserrat";
+}
+
+/* AdvancedFilters – Pill Buttons */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+.pill {
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 0.5em 1.2em;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  margin: 0.2em 0;
+  font-size: 1em;
+}
+
+.pill.selected {
+  background: #4c78af;
+  color: #fff;
+  border-color: #4c78af;
 }
 
 /* Navbar menu och burger */
 
 .navbar {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   padding: 1rem 1.2rem;
   background: white;
   border-bottom: 1px solid #e4e4e4;
   position: sticky;
   top: 0;
-  
 }
 
 .logo {
@@ -33,7 +58,7 @@
 .menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
@@ -50,11 +75,11 @@
   right: 0;
   top: 0;
   height: 100vh;
-  width: 40%;      /* mobil */
+  width: 40%; /* mobil */
   max-width: 250px; /* desktop */
   background: white;
   padding: 2rem;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
   transform: translateX(100%);
   transition: transform 0.3s ease;
 }
@@ -63,13 +88,11 @@
   transform: translateX(0);
 }
 
-
-
 /* Recipe cards CSS */
 
- .recipe-grid {
+.recipe-grid {
   display: grid;
-  grid-template-columns: 1fr;       
+  grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1rem;
 }
@@ -78,21 +101,21 @@
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .recipe-card:hover {
-transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 .recipe-img-wrapper {
-   position: relative;
-   width: 100%;
-  height: 160px;                     /* FAST höjd på mobil */
+  position: relative;
+  width: 100%;
+  height: 160px; /* FAST höjd på mobil */
   overflow: hidden;
   background: #f2f2f2;
 }
@@ -141,7 +164,7 @@ transform: translateY(-2px);
 }
 
 .recipe-title {
-   font-size: 0.95rem;
+  font-size: 0.95rem;
   font-weight: 600;
   margin: 0;
   color: #333;
@@ -161,11 +184,10 @@ transform: translateY(-2px);
   color: #ff4d4d;
 }
 
-
 /* tablet */
 @media (min-width: 600px) {
   .recipe-grid {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.2rem;
   }
 
