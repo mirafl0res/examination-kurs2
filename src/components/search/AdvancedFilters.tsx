@@ -17,7 +17,7 @@ function AdvancedFilters({
     onChange(newSelected);
   };
 
-  const createCheckboxes = () => {
+  const renderIntoleranceCheckboxes = () => {
     return INTOLERANCES.map((intolerance) => {
       const slug = intolerance.toLowerCase().replace(/\s+/g, "-");
 
@@ -35,7 +35,7 @@ function AdvancedFilters({
     });
   };
 
-  return <>{createCheckboxes()}</>;
+  return <>{renderIntoleranceCheckboxes()}</>;
 }
 
 export default AdvancedFilters;
