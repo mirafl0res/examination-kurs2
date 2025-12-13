@@ -1,41 +1,49 @@
 import { useState } from "react";
 import { INTOLERANCES, type Intolerance } from "../../constants/intolerances";
+import { DIETS, type Diet } from "../../constants/diets";
+import { PillGroup } from "./PillGroup";
 
-function AdvancedFilters({
-  onChange,
-}: {
-  onChange: (intolerances: Intolerance[]) => void;
-}) {
-  const [selected, setSelected] = useState<Intolerance[]>([]);
+interface AdvancedFiltersProps {
+  onChange: (filters: { intolerances: Intolerance[]; diets: Diet[] }) => void;
+}
 
-  const toggle = (value: Intolerance) => {
-    const newSelected = selected.includes(value)
-      ? selected.filter((v) => v !== value)
-      : [...selected, value];
+function AdvancedFilters({ onChange }: AdvancedFiltersProps) {
+  const [selectedIntolerances, setSelectedIntolerances] = useState<
+    Intolerance[]
+  >([]);
+  const [selectedDiets, setSelectedDiets] = useState<Diet[]>([]);
 
-    setSelected(newSelected);
-    onChange(newSelected);
+  const toggleValue = <T,>(array: readonly T[], value: T): T[] =>
+    array.includes(value)
+      ? array.filter((v) => v !== value)
+      : [...array, value];
+
+  const handleToggleIntolerance = (value: Intolerance) => {
+    const newSelected = toggleValue(selectedIntolerances, value);
+    setSelectedIntolerances(newSelected);
+    onChange({ intolerances: newSelected, diets: selectedDiets });
   };
 
-  const renderIntoleranceCheckboxes = () => {
-    return INTOLERANCES.map((intolerance) => {
-      const slug = intolerance.toLowerCase().replace(/\s+/g, "-");
-
-      return (
-        <div key={intolerance}>
-          <label htmlFor={`intolerance-${slug}`}>{intolerance}</label>
-          <input
-            type="checkbox"
-            id={`intolerance-${slug}`}
-            checked={selected.includes(intolerance)}
-            onChange={() => toggle(intolerance)}
-          />
-        </div>
-      );
-    });
+  const handleToggleDiet = (value: Diet) => {
+    const newSelected = toggleValue(selectedDiets, value);
+    setSelectedDiets(newSelected);
+    onChange({ intolerances: selectedIntolerances, diets: newSelected });
   };
 
-  return <>{renderIntoleranceCheckboxes()}</>;
+  return (
+    <>
+      <PillGroup
+        options={INTOLERANCES}
+        selected={selectedIntolerances}
+        onToggle={handleToggleIntolerance}
+      />
+      <PillGroup
+        options={DIETS}
+        selected={selectedDiets}
+        onToggle={handleToggleDiet}
+      />
+    </>
+  );
 }
 
 export default AdvancedFilters;
