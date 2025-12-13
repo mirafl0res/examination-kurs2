@@ -17,7 +17,9 @@ export function PillGroup<T extends string>({
           type="button"
           className={selected.includes(option) ? "pill selected" : "pill"}
           onClick={() => onToggle(option)}
-        ></button>
+        >
+          {option}
+        </button>
       ))}
     </div>
   );
