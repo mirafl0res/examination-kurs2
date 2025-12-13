@@ -6,16 +6,18 @@ export type SearchOptions = {
   number?: number; // Number of expected results
 
   addRecipeInformation?: boolean;
-  addRecipeInstuctions?: boolean;
+  addRecipeInstructions?: boolean;
   instructionsRequired?: boolean;
 
   includeIngredients?: string; // Comma-separated list of ingredients
   excludeIngredients?: string; // Comma-separated list of ingredients
   fillIngredients?: boolean; // Add information about the ingredients and whether they are used or missing in relation to the query
+  sort?: string;
 
   intolerances?: string;
   diet?: string;
   type?: string; // e.g. "main course"
+  cuisine?: string;
   maxReadyTime?: number;
 };
 

@@ -13,4 +13,4 @@ export const INTOLERANCES = [
   "Wheat",
 ] as const;
 
-export type Intolerance = typeof INTOLERANCES[number];
+export type Intolerance = (typeof INTOLERANCES)[number];
