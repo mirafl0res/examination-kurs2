@@ -6,7 +6,7 @@ export function togglePrimitiveInArray<T>(array: readonly T[], value: T): T[] {
 }
 
 // Toggle objects based on 'id' property
-export function toggleObjectInArray<T extends { id: string }>(
+export function toggleObjectInArray<T extends { id: string | number }>(
   array: readonly T[],
   item: T
 ): T[] {

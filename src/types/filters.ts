@@ -10,7 +10,7 @@ export type FavoriteFilter = {
   filters: Filters;
 };
 
-export type SearchFiltersStore = {
+export type SearchFiltersState = {
   filters: Filters;
   favoriteFilters: FavoriteFilter[];
   setFilters: (filters: Filters) => void;

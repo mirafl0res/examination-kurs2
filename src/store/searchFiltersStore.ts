@@ -4,10 +4,10 @@ import { toggleObjectInArray } from "../utils/toggleHelpers";
 import {
   type Filters,
   type FavoriteFilter,
-  type SearchFiltersStore,
+  type SearchFiltersState,
 } from "../types/filters";
 
-export const useSearchFiltersStore = create<SearchFiltersStore>()(
+export const useSearchFiltersStore = create<SearchFiltersState>()(
   persist(
     (set) => ({
       filters: {
