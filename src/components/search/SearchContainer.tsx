@@ -8,26 +8,35 @@ import { type Intolerance } from "../../constants/intolerances";
 import MockRecipesQuickList from "./MockRecipesQuickList";
 import MockSearchToggle from "./MockSearchToggle";
 import { USE_MOCK_DATA } from "../../api/recipes";
+import { type Diet } from "../../constants/diets";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [intolerances, setIntolerances] = useState<Intolerance[]>([]);
+  const [filters, setFilters] = useState<{
+    intolerances: Intolerance[];
+    diets: Diet[];
+  }>({
+    intolerances: [],
+    diets: [],
+  });
   const { search } = useSearchResultsStore();
 
   const handleSearch = (query: string): void => {
-    // console.log("Current intolerances state:", intolerances);
     const searchOptions = {
       query,
       number: DEFAULT_RECIPE_COUNT,
-      intolerances: intolerances.join(",") || undefined,
+      intolerances: filters.intolerances.join(",") || undefined,
+      diet: filters.diets.length > 0 ? filters.diets.join(",") : undefined, // AND logic
+      // diet: filters.diets.length > 0 ? filters.diets.join("|") : undefined, // OR logic
     };
-    // console.log("SearchOptions about to send:", searchOptions);
     search(searchOptions);
   };
 
-  const handleIntolerancesChange = (intolerances: Intolerance[]) => {
-    // console.log("Intolerances updated:", intolerances);
-    setIntolerances(intolerances);
+  const handleFiltersChange = (newFilters: {
+    intolerances: Intolerance[];
+    diets: Diet[];
+  }) => {
+    setFilters(newFilters);
   };
 
   const handleMockSearchToggle = (checked: boolean) => {
@@ -38,16 +47,19 @@ function SearchContainer() {
   return (
     <>
       {import.meta.env.DEV && (
-        <MockSearchToggle value={USE_MOCK_DATA} onChange={handleMockSearchToggle} />
+        <MockSearchToggle
+          value={USE_MOCK_DATA}
+          onChange={handleMockSearchToggle}
+        />
       )}
-        {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
+      {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
       <SearchModeToggle />
       <SearchForm
         onChange={setSearchValue}
         onSearch={handleSearch}
         value={searchValue}
       />
-      <AdvancedFilters onChange={handleIntolerancesChange} />
+      <AdvancedFilters onChange={handleFiltersChange} />
     </>
   );
 }
