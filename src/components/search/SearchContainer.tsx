@@ -20,17 +20,20 @@ function SearchContainer() {
     intolerances: [],
     diets: [],
   });
+  const [searchMode, setSearchMode] = useState("defaultSearch");
   const { search } = useSearchResultsStore();
 
-  const handleSearch = (query: string): void => {
-    const searchOptions: SearchOptions = {
-      query,
-      number: DEFAULT_RECIPE_COUNT,
-      intolerances: filters.intolerances.join(",") || undefined,
-      diet: filters.diets.length > 0 ? filters.diets.join(",") : undefined, // AND logic
-      // diet: filters.diets.length > 0 ? filters.diets.join("|") : undefined, // OR logic
-    };
-    search(searchOptions);
+  const handleSearch = (searchQuery: string): void => {
+    if (searchMode === "defaultSearch") {
+      const searchOptions: SearchOptions = {
+        query: searchQuery,
+        number: DEFAULT_RECIPE_COUNT,
+        intolerances: filters.intolerances.join(",") || undefined,
+        diet: filters.diets.length > 0 ? filters.diets.join(",") : undefined, // AND logic
+        // diet: filters.diets.length > 0 ? filters.diets.join("|") : undefined, // OR logic
+      };
+      search(searchOptions);
+    }
   };
 
   const handleFiltersChange = (newFilters: {
