@@ -6,8 +6,8 @@ import SearchModeToggle from "./SearchModeToggle";
 import MockRecipesQuickList from "./MockRecipesQuickList";
 import MockSearchToggle from "./MockSearchToggle";
 import { USE_MOCK_DATA } from "../../api/recipes";
-import type { Filters } from "../../types/filters";
 import { searchModeBuilders } from "../../utils/searchOptionBuilders";
+import type { Filters } from "../../types/filters";
 import type { SearchMode } from "../../types/search";
 
 function SearchContainer() {
@@ -41,7 +41,7 @@ function SearchContainer() {
     <>
       {import.meta.env.DEV && <MockSearchToggle value={USE_MOCK_DATA} onChange={handleMockSearchToggle} />}
       {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
-      <SearchModeToggle onModeChange={setSearchMode} />
+      <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
       <SearchForm onChange={setSearchValue} onSearch={handleSearch} value={searchValue} />
       <AdvancedFilters onChange={handleFiltersChange} />
     </>
