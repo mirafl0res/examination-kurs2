@@ -53,7 +53,7 @@ const instructionSteps = getInstructionSteps(recipe);
         <p>Servings: {Number(recipe.servings)}</p>
         <p>Ready in: {Number(recipe.readyInMinutes)} minutes</p>
         <p>Diet info: {String(recipe.diets)}</p>
-    
+       
       </section>
 
       <section>

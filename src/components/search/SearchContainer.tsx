@@ -25,6 +25,7 @@ function SearchContainer() {
     const searchOptions = {
       query,
       number: DEFAULT_RECIPE_COUNT,
+      addRecipeInformation: true,
       intolerances: filters.intolerances.join(",") || undefined,
       diet: filters.diets.length > 0 ? filters.diets.join(",") : undefined, // AND logic
       // diet: filters.diets.length > 0 ? filters.diets.join("|") : undefined, // OR logic
