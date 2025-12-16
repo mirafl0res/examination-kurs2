@@ -1,41 +1,34 @@
+import { useState } from "react";
 import { useSearchResultsStore } from "../../store/searchResultsStore";
 import AdvancedFilters from "./AdvancedFilters";
 import SearchForm from "./SearchForm";
 import SearchModeToggle from "./SearchModeToggle";
-import { useState } from "react";
-import { DEFAULT_RECIPE_COUNT } from "../../types/api";
-import { type Intolerance } from "../../constants/intolerances";
 import MockRecipesQuickList from "./MockRecipesQuickList";
 import MockSearchToggle from "./MockSearchToggle";
 import { USE_MOCK_DATA } from "../../api/recipes";
-import { type Diet } from "../../constants/diets";
+import { searchModeBuilders } from "../../utils/searchOptionBuilders";
+import type { Filters } from "../../types/filters";
+import type { SearchMode } from "../../types/search";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filters, setFilters] = useState<{
-    intolerances: Intolerance[];
-    diets: Diet[];
-  }>({
+  const [filters, setFilters] = useState<Filters>({
     intolerances: [],
     diets: [],
+    maxReadyTime: null,
   });
+
+  const [searchMode, setSearchMode] = useState<SearchMode>("default");
   const { search } = useSearchResultsStore();
 
-  const handleSearch = (query: string): void => {
-    const searchOptions = {
-      query,
-      number: DEFAULT_RECIPE_COUNT,
-      intolerances: filters.intolerances.join(",") || undefined,
-      diet: filters.diets.length > 0 ? filters.diets.join(",") : undefined, // AND logic
-      // diet: filters.diets.length > 0 ? filters.diets.join("|") : undefined, // OR logic
-    };
+  const handleSearch = (searchQuery: string): void => {
+    const searchBuilder = searchModeBuilders[searchMode];
+    if (!searchBuilder) return;
+    const searchOptions = searchBuilder(searchQuery, filters);
     search(searchOptions);
   };
 
-  const handleFiltersChange = (newFilters: {
-    intolerances: Intolerance[];
-    diets: Diet[];
-  }) => {
+  const handleFiltersChange = (newFilters: Filters) => {
     setFilters(newFilters);
   };
 
@@ -46,19 +39,10 @@ function SearchContainer() {
 
   return (
     <>
-      {import.meta.env.DEV && (
-        <MockSearchToggle
-          value={USE_MOCK_DATA}
-          onChange={handleMockSearchToggle}
-        />
-      )}
+      {import.meta.env.DEV && <MockSearchToggle value={USE_MOCK_DATA} onChange={handleMockSearchToggle} />}
       {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
-      <SearchModeToggle />
-      <SearchForm
-        onChange={setSearchValue}
-        onSearch={handleSearch}
-        value={searchValue}
-      />
+      <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
+      <SearchForm onChange={setSearchValue} onSearch={handleSearch} value={searchValue} />
       <AdvancedFilters onChange={handleFiltersChange} />
     </>
   );
