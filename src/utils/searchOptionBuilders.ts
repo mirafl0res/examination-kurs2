@@ -1,21 +1,27 @@
-import type { Filters } from "../types/filters";
 import { DEFAULT_RECIPE_COUNT } from "../types/api";
-import type { SearchOptions } from "../types/api";
-import type { SearchMode } from "../types/search";
+import type { Filters, SearchOptions, SearchMode } from "../types";
 
 export const formatFilters = (filters: Filters) => ({
   ...(filters.diets.length && { diet: filters.diets.join(",") }),
-  ...(filters.intolerances.length && { intolerances: filters.intolerances.join(",") }),
+  ...(filters.intolerances.length && {
+    intolerances: filters.intolerances.join(","),
+  }),
 });
 
-export const buildDefaultOptions = (query: string, filters: Filters): SearchOptions => ({
+export const buildDefaultOptions = (
+  query: string,
+  filters: Filters
+): SearchOptions => ({
   query,
   addRecipeInformation: true,
   number: DEFAULT_RECIPE_COUNT,
   ...formatFilters(filters),
 });
 
-export const buildIngredientsOptions = (includeIngredients: string, filters: Filters): SearchOptions => ({
+export const buildIngredientsOptions = (
+  includeIngredients: string,
+  filters: Filters
+): SearchOptions => ({
   includeIngredients,
   addRecipeInformation: true,
   number: DEFAULT_RECIPE_COUNT,
@@ -24,7 +30,10 @@ export const buildIngredientsOptions = (includeIngredients: string, filters: Fil
   ...formatFilters(filters),
 });
 
-export const searchModeBuilders: Record<SearchMode, (query: string, filters: Filters) => SearchOptions> = {
+export const searchModeBuilders: Record<
+  SearchMode,
+  (query: string, filters: Filters) => SearchOptions
+> = {
   default: buildDefaultOptions,
   ingredients: buildIngredientsOptions,
 };

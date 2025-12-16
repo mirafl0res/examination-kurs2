@@ -1,4 +1,4 @@
-import SearchContainer from "./search/SearchContainer";
+import { SearchContainer } from "./search";
 
 function SearchBar() {
   return (

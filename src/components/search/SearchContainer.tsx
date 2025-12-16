@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { useSearchResultsStore } from "../../store/searchResultsStore";
-import AdvancedFilters from "./AdvancedFilters";
-import SearchForm from "./SearchForm";
-import SearchModeToggle from "./SearchModeToggle";
-import MockRecipesQuickList from "./MockRecipesQuickList";
-import MockSearchToggle from "./MockSearchToggle";
 import { USE_MOCK_DATA } from "../../api/recipes";
 import { searchModeBuilders } from "../../utils/searchOptionBuilders";
-import type { Filters } from "../../types/filters";
-import type { SearchMode } from "../../types/search";
+import type { Filters, SearchMode } from "../../types";
+import {
+  AdvancedFilters,
+  SearchForm,
+  SearchModeToggle,
+  MockRecipesQuickList,
+  MockSearchToggle,
+} from ".";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -39,10 +40,19 @@ function SearchContainer() {
 
   return (
     <>
-      {import.meta.env.DEV && <MockSearchToggle value={USE_MOCK_DATA} onChange={handleMockSearchToggle} />}
+      {import.meta.env.DEV && (
+        <MockSearchToggle
+          value={USE_MOCK_DATA}
+          onChange={handleMockSearchToggle}
+        />
+      )}
       {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-      <SearchForm onChange={setSearchValue} onSearch={handleSearch} value={searchValue} />
+      <SearchForm
+        onChange={setSearchValue}
+        onSearch={handleSearch}
+        value={searchValue}
+      />
       <AdvancedFilters onChange={handleFiltersChange} />
     </>
   );
