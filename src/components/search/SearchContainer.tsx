@@ -9,6 +9,7 @@ import MockRecipesQuickList from "./MockRecipesQuickList";
 import MockSearchToggle from "./MockSearchToggle";
 import { USE_MOCK_DATA } from "../../api/recipes";
 import { type Diet } from "../../constants/diets";
+import type { SearchOptions } from "../../types/api";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -22,7 +23,7 @@ function SearchContainer() {
   const { search } = useSearchResultsStore();
 
   const handleSearch = (query: string): void => {
-    const searchOptions = {
+    const searchOptions: SearchOptions = {
       query,
       number: DEFAULT_RECIPE_COUNT,
       intolerances: filters.intolerances.join(",") || undefined,

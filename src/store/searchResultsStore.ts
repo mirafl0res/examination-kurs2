@@ -19,7 +19,7 @@ export const useSearchResultsStore = create<RecipeState>((set) => ({
   loading: false,
   error: null,
   async search(params) {
-    const trimmed = params.query.trim();
+    const trimmed = params.query?.trim() ?? "";
     if (!trimmed) return;
     set({ loading: true, error: null });
 
