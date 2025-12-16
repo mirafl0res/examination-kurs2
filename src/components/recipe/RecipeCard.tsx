@@ -22,7 +22,13 @@ function RecipeCard({ recipe }: RecipeCardProps) {
     <Link to={`/recipe/${id}`}>
       <div className="recipe-card">
         <div className="recipe-img-wrapper">
-          <FavoriteButton id={id} title={title} image={image} />
+          <FavoriteButton
+            id={id}
+            title={title}
+            image={image}
+            servings={servings ?? 0}
+            readyInMinutes={readyInMinutes ?? 0}
+          />
           <img src={image} alt={title} />
         </div>
         <div className="recipe-content">

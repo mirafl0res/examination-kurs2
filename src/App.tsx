@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar";
 import SlideOutMenu from "./components/SlideOutMenu";
 import FavoritesPage from "./pages/FavoritesPage";
 import SearchBar from "./components/search/SearchContainer";
-import RecipeResults from "./components/RecipeResults";
 import RecipeDetailPage from "./pages/RecipeDetailPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       
   
       <Routes>
-        <Route path="/" element={<RecipeResults />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/recipe/:id" element={<RecipeDetailPage />} />
         <Route path="*" element={<div>Not Found</div>} />
