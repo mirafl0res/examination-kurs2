@@ -1,4 +1,5 @@
-type SearchMode = "default" | "ingredients";
+import type { SearchMode } from "../../types/search";
+
 type SearchModeToggleProps = {
   onModeChange: (mode: SearchMode) => void;
 };
