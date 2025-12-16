@@ -9,8 +9,8 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <>
-      <SearchBar />
       <Navbar />
+      <SearchBar />
       <SlideOutMenu />
       
   
