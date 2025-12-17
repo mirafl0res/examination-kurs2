@@ -9,6 +9,7 @@ import {
   SearchModeToggle,
   MockRecipesQuickList,
   MockSearchToggle,
+  IngredientInput,
 } from ".";
 
 function SearchContainer() {
@@ -48,11 +49,15 @@ function SearchContainer() {
       )}
       {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-      <SearchForm
-        onChange={setSearchValue}
-        onSearch={handleSearch}
-        value={searchValue}
-      />
+      {searchMode === "default" ? (
+        <SearchForm
+          onChange={setSearchValue}
+          onSearch={handleSearch}
+          value={searchValue}
+        />
+      ) : (
+        <IngredientInput />
+      )}
       <AdvancedFilters onChange={handleFiltersChange} />
     </>
   );
