@@ -2,12 +2,13 @@ import FavoriteButton from "./FavoriteButton";
 import type { Recipe } from "../../types/api";
 import { Link } from "react-router-dom";
 import { Clock, Users } from "lucide-react";
-import IconInfo from "./IconInfo";
+import IconInfo from "./IconInfo"
 import type { LucideProps } from "lucide-react";
 
 
 type RecipeCardProps = {
   recipe: Recipe;
+  variant?: "grid" | "list";
 };
 
 function RecipeCard({ recipe }: RecipeCardProps) {

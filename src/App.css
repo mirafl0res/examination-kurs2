@@ -6,7 +6,35 @@
 
 }
 
+.recipe-grid.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
+/* NOLLSTÄLL GRID-KOLUMNER I LIST-LÄGE */
+.recipe-grid.list {
+  grid-template-columns: none;
+}
+
+.recipe-grid.list .recipe-card {
+  flex-direction: row;
+  height: 90px;              /* listkort = låg höjd */
+  align-items: stretch;
+  
+}
+
+.recipe-grid.list .recipe-img-wrapper {
+  width: 90px;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.recipe-grid.list .recipe-content {
+  padding: 0.6rem 0.8rem;
+  flex: 1;
+  justify-content: center;
+}
 
 /* IconInfo component styles */
 .icon-info {
@@ -233,6 +261,10 @@ transform: translateY(-2px);
   .recipe-img-wrapper {
     height: 180px;
   }
+  .recipe-grid.list .recipe-card {
+    width: 450px;
+  }
+
 }
 
 /*  desktop  */
@@ -251,6 +283,10 @@ transform: translateY(-2px);
   .recipe-card {
     height: 300px;
   }
+  .recipe-grid.list .recipe-card {
+    width: 450px;
+  }
+
 }
 
 /* Recipe card link */
