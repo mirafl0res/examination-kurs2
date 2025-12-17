@@ -1,7 +1,10 @@
+import type { Diet } from "../constants/diets";
+import type { Intolerance } from "../constants/intolerances";
+
 export type Filters = {
-  intolerances: string[];
-  diets: string[];
-  maxReadyTime: number | null;
+  intolerances: Intolerance[];
+  diets: Diet[];
+  maxReadyTime?: number | null;
 };
 
 export type FavoriteFilter = {

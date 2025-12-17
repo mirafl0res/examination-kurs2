@@ -19,14 +19,14 @@ export const useSearchResultsStore = create<RecipeState>((set) => ({
   loading: false,
   error: null,
   async search(params) {
-    const trimmed = params.query.trim();
-    if (!trimmed) return;
+    const trimmed = params.query?.trim();
+    if (!trimmed && !params.includeIngredients) return;
     set({ loading: true, error: null });
 
     try {
       const options: SearchOptions = {
         ...params,
-        query: trimmed,
+        ...(trimmed ? { query: trimmed } : {}),
         number: params.number ?? DEFAULT_RECIPE_COUNT,
       };
       // searchRecipes automatically uses mocks in dev, real API in production
