@@ -4,9 +4,11 @@ type FavoriteButtonProps = {
   id: number;
   title: string;
   image: string;
+  servings: number;
+  readyInMinutes: number;
 };
 
-export default function FavoriteButton({ id, title, image }: FavoriteButtonProps) {
+export default function FavoriteButton({ id, title, image, servings, readyInMinutes}: FavoriteButtonProps) {
   const favorites = useFavoritesStore((state) => state.favorites);
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
@@ -22,6 +24,8 @@ export default function FavoriteButton({ id, title, image }: FavoriteButtonProps
           id,
           title,
           image,
+          servings,
+          readyInMinutes,
         });
       }}
     >

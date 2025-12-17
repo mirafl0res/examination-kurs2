@@ -1,30 +1,46 @@
 import FavoriteButton from "./FavoriteButton";
 import type { Recipe } from "../../types/api";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { Clock, Users } from "lucide-react";
+import IconInfo from "../../utils/IconInfo";
+import type { LucideProps } from "lucide-react";
+
 
 type RecipeCardProps = {
   recipe: Recipe;
 };
 
 function RecipeCard({ recipe }: RecipeCardProps) {
+  const { id, title, image, readyInMinutes, servings } = recipe;
+
+  const meta = [
+    readyInMinutes && { icon: Clock, text: `${readyInMinutes} min` },
+    servings && { icon: Users, text: `${servings} servings` },
+].filter(Boolean) as { icon: React.ElementType<LucideProps>; text: string }[];
+
   return (
-    <Link to={`/recipe/${recipe.id}`}>
-    <div className="recipe-card">
-      <div className="recipe-img-wrapper">
-        <FavoriteButton
-          id={recipe.id}
-          title={recipe.title}
-          image={recipe.image}
-        />
-        <img src={recipe.image} alt={recipe.title} />
+    <Link to={`/recipe/${id}`}>
+      <div className="recipe-card">
+        <div className="recipe-img-wrapper">
+          <FavoriteButton
+            id={id}
+            title={title}
+            image={image}
+            servings={servings ?? 0}
+            readyInMinutes={readyInMinutes ?? 0}
+          />
+          <img src={image} alt={title} />
+        </div>
+        <div className="recipe-content">
+          <h2 className="recipe-title">{title}</h2>
+          <div className="recipe-meta">
+            {meta.map((item, i) => (
+              <IconInfo key={i} icon={item.icon} text={item.text} />
+            ))}
+          </div>
+        </div>
       </div>
-
-      <div className="recipe-content">
-        <h2 className="recipe-title">{recipe.title}</h2>
-
-      </div>
-    </div>
     </Link>
   );
 }
-export default RecipeCard
+export default RecipeCard;

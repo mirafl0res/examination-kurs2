@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types/api";
 import FavoriteButton from "../components/recipe/FavoriteButton";
+import { Clock, Users } from "lucide-react";
+import IconInfo from "../utils/IconInfo";
+
 
 function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -35,6 +38,11 @@ function RecipeDetailPage() {
   if (error) return <div>Error: {error}</div>;
   if (!recipe) return <div>Recipe not found</div>;
 
+  const meta = [
+  { icon: Clock, text: `${recipe.readyInMinutes} min` },
+  { icon: Users, text: `${recipe.servings} servings` },
+];
+
 function getInstructionSteps(recipe: Recipe) {
   const blocks = recipe.analyzedInstructions;
   if (!blocks || blocks.length === 0) return [];
@@ -45,16 +53,30 @@ const instructionSteps = getInstructionSteps(recipe);
 
   return (
     <article>
-      <h1>{recipe.title} <FavoriteButton id={recipe.id} title={recipe.title} image={recipe.image} /> </h1>
+      <h1>{recipe.title} 
+        <FavoriteButton 
+        id={recipe.id}
+        title={recipe.title}
+        image={recipe.image}
+        servings={recipe.servings?? 0} 
+        readyInMinutes={recipe.readyInMinutes ?? 0}
+        /> </h1>
+
+      <div className="recipe-meta">
+      {meta.map((item, i) => (
+        <IconInfo key={i} icon={item.icon} text={item.text} />
+        ))}
+      </div>
+
       <img src={recipe.image} alt={recipe.title} />
       
-      <section>
+{/*       <section>
         <h2>Details</h2>
         <p>Servings: {Number(recipe.servings)}</p>
         <p>Ready in: {Number(recipe.readyInMinutes)} minutes</p>
         <p>Diet info: {String(recipe.diets)}</p>
-    
-      </section>
+       
+      </section> */}
 
       <section>
         <h2>Ingredients</h2>
