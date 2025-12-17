@@ -8,6 +8,7 @@ import type { LucideProps } from "lucide-react";
 
 type RecipeCardProps = {
   recipe: Recipe;
+  variant?: "grid" | "list";
 };
 
 function RecipeCard({ recipe }: RecipeCardProps) {

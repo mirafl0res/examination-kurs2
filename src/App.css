@@ -21,6 +21,7 @@
   flex-direction: row;
   height: 90px;              /* listkort = låg höjd */
   align-items: stretch;
+  
 }
 
 .recipe-grid.list .recipe-img-wrapper {
@@ -260,6 +261,10 @@ transform: translateY(-2px);
   .recipe-img-wrapper {
     height: 180px;
   }
+  .recipe-grid.list .recipe-card {
+    width: 450px;
+  }
+
 }
 
 /*  desktop  */
@@ -278,6 +283,10 @@ transform: translateY(-2px);
   .recipe-card {
     height: 300px;
   }
+  .recipe-grid.list .recipe-card {
+    width: 450px;
+  }
+
 }
 
 /* Recipe card link */
