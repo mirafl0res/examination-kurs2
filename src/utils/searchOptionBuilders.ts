@@ -1,5 +1,6 @@
-import { DEFAULT_RECIPE_COUNT } from "../types/api";
+import { DEFAULT_RECIPE_COUNT } from "../constants";
 import type { Filters, SearchOptions, SearchMode } from "../types";
+import type { RecipeSortOption } from "../constants";
 
 export const formatFilters = (filters: Filters) => ({
   ...(filters.diets.length && { diet: filters.diets.join(",") }),
@@ -26,7 +27,8 @@ export const buildIngredientsOptions = (
   addRecipeInformation: true,
   number: DEFAULT_RECIPE_COUNT,
   fillIngredients: true,
-  sort: "min-missing-ingredients",
+  sort: "max-used-ingredients" as RecipeSortOption,
+  ignorePantry: true,
   ...formatFilters(filters),
 });
 

@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { INTOLERANCES, type Intolerance } from "../../constants/intolerances";
-import { DIETS, type Diet } from "../../constants/diets";
+import { INTOLERANCES, type Intolerance, DIETS, type Diet } from "../../constants/";
+import type { Filters } from "../../types/";
 import { PillGroup } from "./PillGroup";
 import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
-import type { Filters } from "../../types/filters";
 
 interface AdvancedFiltersProps {
   onChange: (filters: Filters) => void;
