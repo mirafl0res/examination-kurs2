@@ -1,4 +1,4 @@
-import type { SearchMode } from "../../types/search";
+import type { SearchMode } from "../../types";
 
 type SearchModeToggleProps = {
   onModeChange: (mode: SearchMode) => void;

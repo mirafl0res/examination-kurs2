@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRecipe } from "../api/recipes";
-import type { Recipe } from "../types/api";
+import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import { Clock, Users } from "lucide-react";
 import IconInfo from "../components/recipe/IconInfo";
@@ -16,7 +16,7 @@ function RecipeDetailPage() {
   useEffect(() => {
     const fetchRecipeDetails = async () => {
       if (!id) return;
-      
+
       setLoading(true);
       setError(null);
 
@@ -47,9 +47,9 @@ function getInstructionSteps(recipe: Recipe) {
   const blocks = recipe.analyzedInstructions;
   if (!blocks || blocks.length === 0) return [];
 
-  return blocks[0].steps.map(s => s.step.trim());
-}
-const instructionSteps = getInstructionSteps(recipe);
+    return blocks[0].steps.map((s) => s.step.trim());
+  }
+  const instructionSteps = getInstructionSteps(recipe);
 
   return (
     <article>
@@ -81,31 +81,35 @@ const instructionSteps = getInstructionSteps(recipe);
       <section>
         <h2>Ingredients</h2>
         <ul>
-          {(recipe.extendedIngredients as Array<{ id: number; original: string }>)?.map((ingredient) => (
+          {(
+            recipe.extendedIngredients as Array<{
+              id: number;
+              original: string;
+            }>
+          )?.map((ingredient) => (
             <li key={ingredient.id}>{ingredient.original}</li>
           ))}
         </ul>
       </section>
 
-   
-<section>
-  <h2>Instructions</h2>
+      <section>
+        <h2>Instructions</h2>
 
-  {instructionSteps.length > 0 ? (
-    <ul>
-      {instructionSteps.map((step, i) => (
-        <li key={i}>
-          <label>
-            <input type="checkbox" />
-            {step}
-          </label>
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p>No instructions available.</p>
-  )}
-</section>
+        {instructionSteps.length > 0 ? (
+          <ul>
+            {instructionSteps.map((step, i) => (
+              <li key={i}>
+                <label>
+                  <input type="checkbox" />
+                  {step}
+                </label>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No instructions available.</p>
+        )}
+      </section>
     </article>
   );
 }
