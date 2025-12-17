@@ -4,7 +4,7 @@ import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types/api";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import { Clock, Users } from "lucide-react";
-import IconInfo from "../utils/IconInfo";
+import IconInfo from "../components/recipe/IconInfo";
 
 
 function RecipeDetailPage() {
