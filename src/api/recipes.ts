@@ -14,7 +14,7 @@
 import type { SearchOptions, SearchResponse, Recipe } from "../types/api";
 import { searchSpoonacular, getRecipeById } from "./spoonacular";
 import { filterMockRecipes, getMockRecipeById } from "../data/mockRecipes";
-import { DEFAULT_RECIPE_COUNT } from "../types/api";
+import { DEFAULT_RECIPE_COUNT } from "../constants";
 
 // Toggle mock/real API using localStorage
 // Toggle in console: localStorage.setItem("useMock", "false")

@@ -1,9 +1,9 @@
 import {
-  DEFAULT_RECIPE_COUNT,
   type SearchOptions,
   type SearchResponse,
   type Recipe,
 } from "../types/api";
+import { DEFAULT_RECIPE_COUNT } from "../constants";
 
 const BASE_URL = "https://api.spoonacular.com";
 const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
