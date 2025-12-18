@@ -1,25 +1,27 @@
+import { Link } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
 import type { Recipe } from "../../types/api";
-import { Link } from "react-router-dom";
-import { Clock, Users } from "lucide-react";
-import IconInfo from "./IconInfo"
-import type { LucideProps } from "lucide-react";
-
+import IconInfo from "../ui/IconInfo";
+import { Icons } from "../ui/icons";
 
 type RecipeCardProps = {
   recipe: Recipe;
   variant?: "grid" | "list";
   missedIngredientCount?: number;
-  missedIngredients?: Array<{ id: number; name: string }>;
 };
 
 function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
   const { id, title, image, readyInMinutes, servings } = recipe;
 
-  const meta = [
-    readyInMinutes && { icon: Clock, text: `${readyInMinutes} min` },
-    servings && { icon: Users, text: `${servings} servings` },
-    ].filter(Boolean) as { icon: React.ElementType<LucideProps>; text: string }[];
+  const meta = [];
+
+  if (readyInMinutes) {
+    meta.push({ icon: Icons.time, text: `${readyInMinutes} min` });
+  }
+
+  if (servings) {
+    meta.push({ icon: Icons.users, text: `${servings} servings` });
+  }
 
   return (
     <Link to={`/recipe/${id}`}>
@@ -34,11 +36,16 @@ function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
           />
           <img src={image} alt={title} />
         </div>
+
         <div className="recipe-content">
           <h2 className="recipe-title">{title}</h2>
+
           {missedIngredientCount !== undefined && (
-            <p className="missing-ingredients">Missing ingredients: {missedIngredientCount}</p>
+            <p className="missing-ingredients">
+              Missing ingredients: {missedIngredientCount}
+            </p>
           )}
+
           <div className="recipe-meta">
             {meta.map((item, i) => (
               <IconInfo key={i} icon={item.icon} text={item.text} />
@@ -49,4 +56,5 @@ function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
     </Link>
   );
 }
+
 export default RecipeCard;

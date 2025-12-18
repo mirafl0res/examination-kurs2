@@ -1,14 +1,16 @@
 import { useFavoritesStore } from "../../store/favoritesStore";
+import { Icon } from "../ui/icon";
+import { Icons } from "../ui/icons";
 
-type FavoriteButtonProps = {
-  id: number;
-  title: string;
-  image: string;
-  servings: number;
-  readyInMinutes: number;
-};
+type FavoriteButtonProps = { 
+  id: number; 
+  title: string; 
+  image: string; 
+  servings: number; 
+  readyInMinutes: number; };
 
 export default function FavoriteButton({ id, title, image, servings, readyInMinutes}: FavoriteButtonProps) {
+ 
   const favorites = useFavoritesStore((state) => state.favorites);
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
@@ -17,6 +19,8 @@ export default function FavoriteButton({ id, title, image, servings, readyInMinu
   return (
     <button
       className={`favorite-btn ${isFavorite ? "active" : ""}`}
+      aria-pressed={isFavorite}
+      aria-label="Toggle favorite"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -29,7 +33,10 @@ export default function FavoriteButton({ id, title, image, servings, readyInMinu
         });
       }}
     >
-      {isFavorite ? "❤︎" : "♡"}
+      <Icon
+        icon={Icons.heart}
+        className={`heart-icon ${isFavorite ? "active" : ""}`}
+      />
     </button>
   );
 }
