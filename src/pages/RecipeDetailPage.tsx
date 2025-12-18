@@ -6,15 +6,18 @@ import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import { Clock, Users } from "lucide-react";
 import IconInfo from "../components/recipe/IconInfo";
+import { useNavigateBack } from "../hooks/useNavigateBack";
 
 
 function RecipeDetailPage() {
+  const goBack = useNavigateBack({ fallbackTo: "/" });
+
   const { id } = useParams<{ id: string }>();
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // subscribe to search results store early to keep hook order stable
+
   const searchResults = useSearchResultsStore((s) => s.recipes);
   const searchItem = id ? searchResults.find((r) => String(r.id) === String(id)) : undefined;
 
@@ -70,6 +73,9 @@ function getInstructionSteps(recipe: Recipe) {
 
   return (
     <article>
+             <button onClick={goBack} className="back-button">
+    ← Back
+  </button>
       <h1>{recipe.title} 
         <FavoriteButton 
         id={recipe.id}
@@ -90,7 +96,7 @@ function getInstructionSteps(recipe: Recipe) {
           {typeof missingCount === "number" && <p>Missing ingredients: {missingCount}</p>}
           {missingItems && missingItems.length > 0 && (
             <ul className="missing-list">
-              {missingItems.map((mi) => (
+              {missingItems.map((mi) => ( 
                 <li key={mi.id}>{mi.name}</li>
               ))}
             </ul>

@@ -1,8 +1,12 @@
-import { useMenuStore } from "../store/menuStore";
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
-    const toggleMenu = useMenuStore((state) => state.toggle);
+type NavbarProps = {
+  onMenuOpen: () => void;
+};
+
+
+function Navbar({ onMenuOpen }: NavbarProps) {
+    
   return (
     <nav className="navbar">
      
@@ -10,10 +14,7 @@ function Navbar() {
       <div className="logo">Recipe finder</div> 
       </NavLink>
 
-
-      <button className="burgermenu" onClick={toggleMenu}>
-        ☰
-      </button>
+    <button onClick={onMenuOpen}>☰</button>
     </nav>
   );
 }
