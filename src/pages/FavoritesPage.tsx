@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { useNavigateBack } from "../hooks/useNavigateBack"
 import { useFavoritesStore } from "../store/favoritesStore";
 import RecipeCard from "../components/recipe/RecipeCard"
-import { List, LayoutGrid } from "lucide-react";
-import { useNavigateBack } from "../hooks/useNavigateBack";
+import { Icon } from "../components/ui/icon";
+import { Icons } from "../components/ui/icons";
 
 
 export default function FavoritesPage() {
   const [view, setView] = useState<"grid" | "list">("grid");
   const favorites = useFavoritesStore((state) => state.favorites);
-  
+
   const goBack = useNavigateBack({ fallbackTo: "/" });
 
   return (
@@ -18,8 +19,8 @@ export default function FavoritesPage() {
   </button>
       <h1>My favorite recipes </h1>
         <div className="view-toggle">
-        <button onClick={() => setView("grid")}><LayoutGrid /></button>
-        <button onClick={() => setView("list")}><List /></button>
+        <button onClick={() => setView("grid")}>< Icon icon={Icons.grid}/></button>
+        <button onClick={() => setView("list")}><Icon icon={Icons.list}/></button>
       </div>
        
 

@@ -1,3 +1,6 @@
+import { Icon } from "../ui/icon";
+import { Icons } from "../ui/icons";
+
 interface SearchFormProps {
   onChange: (value: string) => void;
   onSearch: (query: string) => void;
@@ -28,7 +31,7 @@ function SearchForm({ onChange, onSearch, value, placeholder = "Search..." }: Se
           onChange={handleChange}
           placeholder={placeholder}
         />
-        <button>Search</button>
+        <button><Icon icon={Icons.search}/></button>
       </form>
     </>
   );

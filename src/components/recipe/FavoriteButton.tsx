@@ -34,7 +34,7 @@ export default function FavoriteButton({ id, title, image, servings, readyInMinu
       }}
     >
       <Icon
-        icon={Icons.heart}
+        icon={Icons.favorite}
         className={`heart-icon ${isFavorite ? "active" : ""}`}
       />
     </button>

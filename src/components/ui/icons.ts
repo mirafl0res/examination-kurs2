@@ -1,3 +1,5 @@
+/* här samlas alla lucide-ikoner och får semantiska
+ namn så hela appen använder samma symboler för samma saker. */
 import {
   ArrowLeft,
   Menu,
@@ -7,6 +9,10 @@ import {
   Clock,
   Users,
   Heart,
+  Search,
+  Funnel,
+  FunnelX,
+  Utensils,
 } from "lucide-react";
 
 export const Icons = {
@@ -17,5 +23,10 @@ export const Icons = {
   list: List,
   time: Clock,
   users: Users,
-  heart: Heart,
+  favorite: Heart,
+  search: Search,
+  filter: Funnel,
+  closeFilter: FunnelX,
+  utensils: Utensils,
+
 };
