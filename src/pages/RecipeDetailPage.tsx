@@ -5,7 +5,7 @@ import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import { Clock, Users } from "lucide-react";
-import IconInfo from "../components/recipe/IconInfo";
+import IconInfo from "../components/ui/IconInfo";
 import { useNavigateBack } from "../hooks/useNavigateBack";
 
 
