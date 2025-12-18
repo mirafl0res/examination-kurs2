@@ -106,13 +106,6 @@
   cursor: pointer;
 }
 
-.burger-btn {
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
 .menu-overlay {
   position: fixed;
   inset: 0;

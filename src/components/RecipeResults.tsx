@@ -9,6 +9,7 @@ function RecipeResults() {
   if (recipes.length === 0) return null;
 
   return <RecipeCards recipes={recipes} />;
+  
 }
 
 export default RecipeResults;
