@@ -14,7 +14,7 @@ function Navbar({ onMenuOpen }: NavbarProps) {
       <div className="logo">Recipe finder</div> 
       </NavLink>
 
-    <button onClick={onMenuOpen}>☰</button>
+    <button className="menu-button" onClick={onMenuOpen}>☰</button>
     </nav>
   );
 }
