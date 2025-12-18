@@ -13,21 +13,16 @@ type RecipeCardProps = {
   missedIngredients?: Array<{ id: number; name: string }>;
 };
 
-function RecipeCard({ recipe, missedIngredientCount, missedIngredients }: RecipeCardProps) {
+function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
   const { id, title, image, readyInMinutes, servings } = recipe;
-
-  
 
   const meta = [
     readyInMinutes && { icon: Clock, text: `${readyInMinutes} min` },
     servings && { icon: Users, text: `${servings} servings` },
-].filter(Boolean) as { icon: React.ElementType<LucideProps>; text: string }[];
+    ].filter(Boolean) as { icon: React.ElementType<LucideProps>; text: string }[];
 
   return (
-    <Link
-      to={`/recipe/${id}`}
-      state={{ missedIngredientCount, missedIngredients }}
-    >
+    <Link to={`/recipe/${id}`}>
       <div className="recipe-card">
         <div className="recipe-img-wrapper">
           <FavoriteButton

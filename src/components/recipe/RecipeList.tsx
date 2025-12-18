@@ -10,7 +10,7 @@ export default function RecipeList({ recipes, filterIds }: RecipeListProps) {
   const filtered = filterIds
     ? recipes.filter((r) => filterIds.includes(String(r.id)))
     : recipes;
-console.log(recipes)
+
   return (
     <div className="recipe-grid">
       {filtered.map((recipe) => (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSearchResultsStore } from "../store/searchResultsStore";
 import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
@@ -12,6 +13,10 @@ function RecipeDetailPage() {
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // subscribe to search results store early to keep hook order stable
+  const searchResults = useSearchResultsStore((s) => s.recipes);
+  const searchItem = id ? searchResults.find((r) => String(r.id) === String(id)) : undefined;
 
   useEffect(() => {
     const fetchRecipeDetails = async () => {
@@ -38,13 +43,17 @@ function RecipeDetailPage() {
   if (error) return <div>Error: {error}</div>;
   if (!recipe) return <div>Recipe not found</div>;
 
-  const location = useLocation();
-  const state = (location.state as
-    | {
-        missedIngredientCount?: number;
-        missedIngredients?: Array<{ id: number; name: string }>;
-      }
-    | undefined);
+  const missingCount =
+    searchItem?.missedIngredientCount ??
+    ((recipe as unknown) as Record<string, unknown>).missedIngredientCount as
+      | number
+      | undefined;
+
+  const missingItems =
+    searchItem?.missedIngredients ??
+    ((recipe as unknown) as Record<string, unknown>).missedIngredients as
+      | Array<{ id: number; name: string }>
+      | undefined;
 
   const meta = [
   { icon: Clock, text: `${recipe.readyInMinutes} min` },
@@ -76,12 +85,12 @@ function getInstructionSteps(recipe: Recipe) {
         ))}
       </div>
 
-      {state?.missedIngredientCount !== undefined && (
+      {(typeof missingCount === "number" || (missingItems && missingItems.length > 0)) && (
         <div className="missing-info">
-          <p>Missing ingredients: {state.missedIngredientCount}</p>
-          {state.missedIngredients && state.missedIngredients.length > 0 && (
+          {typeof missingCount === "number" && <p>Missing ingredients: {missingCount}</p>}
+          {missingItems && missingItems.length > 0 && (
             <ul className="missing-list">
-              {state.missedIngredients.map((mi) => (
+              {missingItems.map((mi) => (
                 <li key={mi.id}>{mi.name}</li>
               ))}
             </ul>
@@ -91,14 +100,6 @@ function getInstructionSteps(recipe: Recipe) {
 
       <img src={recipe.image} alt={recipe.title} />
       
-{/*       <section>
-        <h2>Details</h2>
-        <p>Servings: {Number(recipe.servings)}</p>
-        <p>Ready in: {Number(recipe.readyInMinutes)} minutes</p>
-        <p>Diet info: {String(recipe.diets)}</p>
-       
-      </section> */}
-
       <section>
         <h2>Ingredients</h2>
         <ul>
