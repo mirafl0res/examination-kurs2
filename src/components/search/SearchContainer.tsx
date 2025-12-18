@@ -39,25 +39,40 @@ function SearchContainer() {
     window.location.reload();
   };
 
-  return (
-    <>
-      {import.meta.env.DEV && (
-        <MockSearchToggle
-          value={USE_MOCK_DATA}
-          onChange={handleMockSearchToggle}
-        />
-      )}
-      {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
-      <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-      {searchMode === "default" ? (
+  const renderSearchInput = () => {
+    if (searchMode === "default") {
+      return (
         <SearchForm
           onChange={setSearchValue}
           onSearch={handleSearch}
           value={searchValue}
         />
-      ) : (
-        <IngredientInput />
-      )}
+      );
+    }
+    return <IngredientInput onSearch={handleSearch} />;
+  };
+
+  const renderMockOptions = () => {
+    if (import.meta.env.DEV) {
+      return (
+        <>
+          <MockSearchToggle
+            value={USE_MOCK_DATA}
+            onChange={handleMockSearchToggle}
+          />
+          {USE_MOCK_DATA && (
+            <MockRecipesQuickList onRecipeClick={handleSearch} />
+          )}
+        </>
+      );
+    }
+    return null;
+  };
+  return (
+    <>
+      {renderMockOptions()}
+      <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
+      {renderSearchInput()}
       <AdvancedFilters onChange={handleFiltersChange} />
     </>
   );

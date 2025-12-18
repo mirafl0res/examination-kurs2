@@ -3,9 +3,16 @@ interface SearchFormProps {
   onSearch: (query: string) => void;
   value: string;
   placeholder?: string;
+  buttonText?: string;
 }
 
-function SearchForm({ onChange, onSearch, value, placeholder = "Search..." }: SearchFormProps) {
+function SearchForm({
+  onChange,
+  onSearch,
+  value,
+  placeholder = "Search...",
+  buttonText = "Search",
+}: SearchFormProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
@@ -28,7 +35,7 @@ function SearchForm({ onChange, onSearch, value, placeholder = "Search..." }: Se
           onChange={handleChange}
           placeholder={placeholder}
         />
-        <button>Search</button>
+        <button className="pill selected">{buttonText}</button>
       </form>
     </>
   );

@@ -39,3 +39,5 @@ export const searchModeBuilders: Record<
   default: buildDefaultOptions,
   ingredients: buildIngredientsOptions,
 };
+
+

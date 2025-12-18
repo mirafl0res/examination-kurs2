@@ -1,48 +1,52 @@
 import { useState } from "react";
-import { PillGroup } from ".";
+import { PillGroup, SearchForm } from ".";
 import { useIngredientsStore } from "../../store/ingredientsStore";
 
-function IngredientInput() {
+function IngredientInput({ onSearch }) {
   const [value, setValue] = useState("");
+  const placeholder = "Enter ingredients";
 
-  const {
-    ingredients,
-    addIngredient,
-    removeIngredient,
-    setIngredients,
-    clearIngredients,
-  } = useIngredientsStore();
+  const { ingredients, addIngredient, removeIngredient, clearIngredients } =
+    useIngredientsStore();
 
-  const handleAddIngredient = (e) => {
-    e.preventDefault();
-    const ingredient = (value ?? "").trim();
-    if (!ingredient) return;
-    addIngredient(ingredient)
+  const handleAddIngredient = (ingredient) => {
+    addIngredient(ingredient);
     setValue("");
   };
 
   const handleRemoveIngredient = (ingredient) => {
-    removeIngredient(ingredient)
+    removeIngredient(ingredient);
+  };
+
+  const handleClearIngredients = () => {
+    clearIngredients(ingredients);
+  };
+
+  const handleSearch = () => {
+    if (!ingredients.length) return;
+    onSearch(ingredients.join(","));
+    setValue("");
   };
 
   return (
     <>
-      <h3>IngredientInput</h3>
+      <SearchForm
+        onSearch={handleAddIngredient}
+        onChange={setValue}
+        value={value}
+        placeholder={placeholder}
+        buttonText="Add"
+      />
 
-      <form onSubmit={handleAddIngredient}>
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="Enter ingredients"
-        />
-        <button type="submit">Add</button>
-      </form>
       <PillGroup
         options={ingredients}
         selected={[]}
         onToggle={handleRemoveIngredient}
+        onClear={handleClearIngredients}
       />
+      <button disabled={!ingredients} className="pill" onClick={handleSearch}>
+        Search
+      </button>
     </>
   );
 }
