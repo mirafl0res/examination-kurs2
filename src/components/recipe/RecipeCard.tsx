@@ -9,15 +9,17 @@ import type { LucideProps } from "lucide-react";
 type RecipeCardProps = {
   recipe: Recipe;
   variant?: "grid" | "list";
+  missedIngredientCount?: number;
+  missedIngredients?: Array<{ id: number; name: string }>;
 };
 
-function RecipeCard({ recipe }: RecipeCardProps) {
+function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
   const { id, title, image, readyInMinutes, servings } = recipe;
 
   const meta = [
     readyInMinutes && { icon: Clock, text: `${readyInMinutes} min` },
     servings && { icon: Users, text: `${servings} servings` },
-].filter(Boolean) as { icon: React.ElementType<LucideProps>; text: string }[];
+    ].filter(Boolean) as { icon: React.ElementType<LucideProps>; text: string }[];
 
   return (
     <Link to={`/recipe/${id}`}>
@@ -34,6 +36,9 @@ function RecipeCard({ recipe }: RecipeCardProps) {
         </div>
         <div className="recipe-content">
           <h2 className="recipe-title">{title}</h2>
+          {missedIngredientCount !== undefined && (
+            <p className="missing-ingredients">Missing ingredients: {missedIngredientCount}</p>
+          )}
           <div className="recipe-meta">
             {meta.map((item, i) => (
               <IconInfo key={i} icon={item.icon} text={item.text} />
