@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { togglePrimitiveInArray } from "../utils/toggleHelpers";
+import { type IngredientsState } from "../types";
 
-export const useIngredientsStore = create((set) => ({
+export const useIngredientsStore = create<IngredientsState>((set) => ({
   ingredients: [],
   setIngredients: (ingredients) => set({ ingredients }),
   addIngredient: (ingredient) =>

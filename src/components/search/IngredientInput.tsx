@@ -2,29 +2,34 @@ import { useState } from "react";
 import { PillGroup, SearchForm } from ".";
 import { useIngredientsStore } from "../../store/ingredientsStore";
 
-function IngredientInput({ onSearch }) {
+interface IngredientInputProps {
+  onSearch: (ingredientsString: string) => void;
+}
+
+function IngredientInput({ onSearch }: IngredientInputProps) {
   const [value, setValue] = useState("");
   const placeholder = "Enter ingredients";
 
   const { ingredients, addIngredient, removeIngredient, clearIngredients } =
     useIngredientsStore();
 
-  const handleAddIngredient = (ingredient) => {
+  const handleAddIngredient = (ingredient: string) => {
     addIngredient(ingredient);
     setValue("");
   };
 
-  const handleRemoveIngredient = (ingredient) => {
+  const handleRemoveIngredient = (ingredient: string) => {
     removeIngredient(ingredient);
   };
 
   const handleClearIngredients = () => {
-    clearIngredients(ingredients);
+    clearIngredients();
   };
 
   const handleSearch = () => {
     if (!ingredients.length) return;
-    onSearch(ingredients.join(","));
+    const ingredientsString = ingredients.join(",");
+    onSearch(ingredientsString);
     setValue("");
   };
 
@@ -52,14 +57,3 @@ function IngredientInput({ onSearch }) {
 }
 
 export default IngredientInput;
-
-/**
-|--------------------------------------------------
-1. State management
-2. Input & Add Logic
-3. Display pills
-4. Search Trigger
-5. Props
- * 
-|--------------------------------------------------
-*/

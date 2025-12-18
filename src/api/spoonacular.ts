@@ -1,8 +1,4 @@
-import {
-  type SearchOptions,
-  type SearchResponse,
-  type Recipe,
-} from "../types/api";
+import type { SearchOptions, SearchResponse, Recipe } from "../types/api";
 import { DEFAULT_RECIPE_COUNT } from "../constants";
 
 const BASE_URL = "https://api.spoonacular.com";
