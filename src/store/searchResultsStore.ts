@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { searchRecipes } from "../api/recipes";
+import { DEFAULT_RECIPE_COUNT } from "../constants";
 // import { searchSpoonacular } from "../api/spoonacular";
 import {
   type SearchOptions,
   type Recipe,
-  DEFAULT_RECIPE_COUNT,
 } from "../types/api";
 
 type RecipeState = {
