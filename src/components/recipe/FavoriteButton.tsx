@@ -1,5 +1,4 @@
 import { useFavoritesStore } from "../../store/favoritesStore";
-import { Icon } from "../ui/icon";
 import { Icons } from "../ui/icons";
 
 type FavoriteButtonProps = { 
@@ -33,8 +32,7 @@ export default function FavoriteButton({ id, title, image, servings, readyInMinu
         });
       }}
     >
-      <Icon
-        icon={Icons.favorite}
+      <Icons.favorite
         className={`heart-icon ${isFavorite ? "active" : ""}`}
       />
     </button>
