@@ -13,6 +13,7 @@ import {
   Funnel,
   FunnelX,
   Utensils,
+  ChefHat,
 } from "lucide-react";
 
 export const Icons = {
@@ -28,5 +29,6 @@ export const Icons = {
   filter: Funnel,
   closeFilter: FunnelX,
   utensils: Utensils,
+  chefHat: ChefHat,
 
 };

@@ -16,8 +16,7 @@ function Navbar({ onMenuOpen }: NavbarProps) {
       </div> 
       </NavLink>
 
-      <button className="menu-button" onClick={onMenuOpen}><Icon icon={Icons.menu}/>
-      </button>
+      <button className="burgermenu" onClick={onMenuOpen}><Icon icon={Icons.menu}/></button>
     </nav>
   );
 }
