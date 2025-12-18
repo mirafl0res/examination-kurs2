@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { Icon } from "./ui/icon";
 import { Icons } from "./ui/icons";
 
 type NavbarProps = {
@@ -12,11 +11,11 @@ function Navbar({ onMenuOpen }: NavbarProps) {
     <nav className="navbar">
      
       <NavLink to="/"> 
-      <div className="logo">Recipe finder <Icon icon={Icons.utensils}/>
+      <div className="logo">Recipe finder <Icons.utensils/>
       </div> 
       </NavLink>
 
-      <button className="burgermenu" onClick={onMenuOpen}><Icon icon={Icons.menu}/></button>
+      <button className="burgermenu" onClick={onMenuOpen}><Icons.menu/></button>
     </nav>
   );
 }

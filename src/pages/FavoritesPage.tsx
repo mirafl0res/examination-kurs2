@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigateBack } from "../hooks/useNavigateBack"
 import { useFavoritesStore } from "../store/favoritesStore";
 import RecipeCard from "../components/recipe/RecipeCard"
-import { Icon } from "../components/ui/icon";
 import { Icons } from "../components/ui/icons";
 
 
@@ -15,12 +14,12 @@ export default function FavoritesPage() {
   return (
     <div className="favorites-page">
         <button onClick={goBack} className="back-button">
-    ← Back
-  </button>
+        <Icons.back /> Back
+        </button>
       <h1>My favorite recipes </h1>
         <div className="view-toggle">
-        <button onClick={() => setView("grid")}>< Icon icon={Icons.grid}/></button>
-        <button onClick={() => setView("list")}><Icon icon={Icons.list}/></button>
+        <button onClick={() => setView("grid")}>< Icons.grid/></button>
+        <button onClick={() => setView("list")}><Icons.list/></button>
       </div>
        
 
