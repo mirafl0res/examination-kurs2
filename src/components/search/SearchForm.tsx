@@ -1,3 +1,6 @@
+import { Icon } from "../ui/icon";
+import { Icons } from "../ui/icons";
+
 interface SearchFormProps {
   onChange: (value: string) => void;
   onSearch: (query: string) => void;

@@ -1,3 +1,6 @@
+/* Renderar en ikon på ett enhetligt sätt 
+(storlek, klass, stil) oavsett var den 
+används i appen. */
 import type { LucideIcon } from "lucide-react";
 
 type IconProps = {
