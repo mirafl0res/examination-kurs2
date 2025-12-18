@@ -10,14 +10,14 @@ import SettingsPage from "./pages/SettingsPage";
 
 function App() {
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   
   return (
     <>
-       <Navbar onMenuOpen={() => setIsMenuOpen(true)} />
+       <Navbar onMenuOpen={() => setMenuOpen(true)} />
       <SlideOutMenu
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
       />
 
 
