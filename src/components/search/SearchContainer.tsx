@@ -9,6 +9,7 @@ import {
   SearchModeToggle,
   MockRecipesQuickList,
   MockSearchToggle,
+  IngredientInput,
 } from ".";
 
 function SearchContainer() {
@@ -38,21 +39,40 @@ function SearchContainer() {
     window.location.reload();
   };
 
+  const renderSearchInput = () => {
+    if (searchMode === "default") {
+      return (
+        <SearchForm
+          onChange={setSearchValue}
+          onSearch={handleSearch}
+          value={searchValue}
+        />
+      );
+    }
+    return <IngredientInput onSearch={handleSearch} />;
+  };
+
+  const renderMockOptions = () => {
+    if (import.meta.env.DEV) {
+      return (
+        <>
+          <MockSearchToggle
+            value={USE_MOCK_DATA}
+            onChange={handleMockSearchToggle}
+          />
+          {USE_MOCK_DATA && (
+            <MockRecipesQuickList onRecipeClick={handleSearch} />
+          )}
+        </>
+      );
+    }
+    return null;
+  };
   return (
     <>
-      {import.meta.env.DEV && (
-        <MockSearchToggle
-          value={USE_MOCK_DATA}
-          onChange={handleMockSearchToggle}
-        />
-      )}
-      {USE_MOCK_DATA && <MockRecipesQuickList onRecipeClick={handleSearch} />}
+      {renderMockOptions()}
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-      <SearchForm
-        onChange={setSearchValue}
-        onSearch={handleSearch}
-        value={searchValue}
-      />
+      {renderSearchInput()}
       <AdvancedFilters onChange={handleFiltersChange} />
     </>
   );
