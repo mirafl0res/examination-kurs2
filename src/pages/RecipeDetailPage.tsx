@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
@@ -38,6 +38,14 @@ function RecipeDetailPage() {
   if (error) return <div>Error: {error}</div>;
   if (!recipe) return <div>Recipe not found</div>;
 
+  const location = useLocation();
+  const state = (location.state as
+    | {
+        missedIngredientCount?: number;
+        missedIngredients?: Array<{ id: number; name: string }>;
+      }
+    | undefined);
+
   const meta = [
   { icon: Clock, text: `${recipe.readyInMinutes} min` },
   { icon: Users, text: `${recipe.servings} servings` },
@@ -67,6 +75,19 @@ function getInstructionSteps(recipe: Recipe) {
         <IconInfo key={i} icon={item.icon} text={item.text} />
         ))}
       </div>
+
+      {state?.missedIngredientCount !== undefined && (
+        <div className="missing-info">
+          <p>Missing ingredients: {state.missedIngredientCount}</p>
+          {state.missedIngredients && state.missedIngredients.length > 0 && (
+            <ul className="missing-list">
+              {state.missedIngredients.map((mi) => (
+                <li key={mi.id}>{mi.name}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
 
       <img src={recipe.image} alt={recipe.title} />
       

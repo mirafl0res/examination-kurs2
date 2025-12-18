@@ -27,6 +27,13 @@ export type SearchResponse = {
     id: number;
     title: string;
     image: string;
+    missedIngredientCount?: number;
+    /** List of missing ingredients when searching by ingredients */
+    missedIngredients?: Array<{
+      id: number;
+      name: string;
+      [key: string]: unknown;
+    }>;
     [key: string]: unknown;
   }>;
   number: number;
