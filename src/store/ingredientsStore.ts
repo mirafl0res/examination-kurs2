@@ -1,0 +1,18 @@
+import { create } from "zustand";
+import { togglePrimitiveInArray } from "../utils/toggleHelpers";
+
+export const useIngredientsStore = create((set) => ({
+  ingredients: [],
+  setIngredients: (ingredients) => set({ ingredients }),
+  addIngredient: (ingredient) =>
+    set((state) => ({
+      ingredients: state.ingredients.includes(ingredient)
+        ? state.ingredients
+        : [...state.ingredients, ingredient],
+    })),
+  removeIngredient: (ingredient) =>
+    set((state) => ({
+      ingredients: togglePrimitiveInArray(state.ingredients, ingredient),
+    })),
+  clearIngredients: () => set({ ingredients: [] }),
+}));

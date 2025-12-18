@@ -1,23 +1,29 @@
 import { useState } from "react";
-import { PillGroup } from "./PillGroup";
-import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
+import { PillGroup } from ".";
+import { useIngredientsStore } from "../../store/ingredientsStore";
 
 function IngredientInput() {
   const [value, setValue] = useState("");
-  const [ingredients, setIngredients] = useState<string[]>([]);
+
+  const {
+    ingredients,
+    addIngredient,
+    removeIngredient,
+    setIngredients,
+    clearIngredients,
+  } = useIngredientsStore();
 
   const handleAddIngredient = (e) => {
     e.preventDefault();
     const ingredient = (value ?? "").trim();
     if (!ingredient) return;
-    if (ingredients.includes(ingredient)) return;
-    setIngredients((prev) => [...prev, ingredient]);
+    addIngredient(ingredient)
     setValue("");
   };
 
   const handleRemoveIngredient = (ingredient) => {
-    setIngredients(prev => togglePrimitiveInArray(prev, ingredient))   
-  }
+    removeIngredient(ingredient)
+  };
 
   return (
     <>
@@ -32,7 +38,11 @@ function IngredientInput() {
         />
         <button type="submit">Add</button>
       </form>
-      <PillGroup options={ingredients} selected={[]} onToggle={handleRemoveIngredient}/>
+      <PillGroup
+        options={ingredients}
+        selected={[]}
+        onToggle={handleRemoveIngredient}
+      />
     </>
   );
 }
