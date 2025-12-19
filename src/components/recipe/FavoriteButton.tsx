@@ -1,4 +1,5 @@
 import { useFavoritesStore } from "../../store/favoritesStore";
+import "./FavoriteButton.css"
 
 type FavoriteButtonProps = {
   id: number;

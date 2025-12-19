@@ -1,3 +1,5 @@
+import "./PillGroup.css"
+
 type PillGroupProps<T extends string> = {
   options: readonly T[];
   selected: T[];

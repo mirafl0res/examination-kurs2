@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "./Navbar.css" 
 
 type NavbarProps = {
   onMenuOpen: () => void;

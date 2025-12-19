@@ -1,5 +1,6 @@
 import type { LucideProps } from "lucide-react";
 import type React from "react";
+import "./RecipeIconInfo.css"
 
 type IconInfoProps = {
   icon: React.ElementType<LucideProps>;

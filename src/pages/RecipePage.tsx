@@ -5,8 +5,11 @@ import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import { Clock, Users } from "lucide-react";
-import IconInfo from "../components/recipe/IconInfo";
+import IconInfo from "../components/recipe/RecipeIconInfo";
 import { useNavigateBack } from "../hooks/useNavigateBack";
+import "./RecipePage.css"
+
+
 
 
 function RecipeDetailPage() {
