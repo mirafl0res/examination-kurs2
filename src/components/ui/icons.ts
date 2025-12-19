@@ -14,6 +14,8 @@ import {
   FunnelX,
   Utensils,
   ChefHat,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 
 export const Icons = {
@@ -30,5 +32,6 @@ export const Icons = {
   closeFilter: FunnelX,
   utensils: Utensils,
   chefHat: ChefHat,
-
+  chevronUp: ChevronUp,
+  chevronDown: ChevronDown,
 };
