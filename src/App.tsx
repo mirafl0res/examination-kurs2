@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import SlideOutMenu from "./components/SlideOutMenu";
 import FavoritesPage from "./pages/FavoritesPage";
 import SearchBar from "./components/search/SearchContainer";
-import RecipeDetailPage from "./pages/RecipeDetailPage";
+import RecipeDetailPage from "./pages/RecipePage";
 import HomePage from "./pages/HomePage";
 import SettingsPage from "./pages/SettingsPage";
 

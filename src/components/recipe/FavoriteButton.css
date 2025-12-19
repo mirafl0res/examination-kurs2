@@ -1,0 +1,16 @@
+.favorite-btn {
+  background: #fff;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.favorite-btn.active {
+  color: #ff4d4d;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+}

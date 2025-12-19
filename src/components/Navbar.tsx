@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "./Navbar.css" 
 import { Icons } from "./ui/icons";
 
 type NavbarProps = {
