@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Icons } from "./ui/icons";
 
 type SlideOutMenuProps = {
   isOpen: boolean;
@@ -15,14 +16,9 @@ function SlideOutMenu({ isOpen, onClose }: SlideOutMenuProps) {
   ];
 
   return (
-    <div
-      className={`menu-overlay ${isOpen ? "open" : ""}`}
-      onClick={onClose}
-    >
-      <div className="menu-panel" onClick={stop}>
-        <button className="close-menu-btn" onClick={onClose}>
-          ✕
-        </button>
+        <div className={`menu-overlay ${isOpen ? "open" : ""}`} onClick={close}>
+          <div className="menu-panel" onClick={stop}>
+            <button className="close-menu-btn" onClick={close}><Icons.close/></button>
 
         <h3>Menu</h3>
 

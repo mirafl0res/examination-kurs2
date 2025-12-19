@@ -4,9 +4,9 @@ import { useSearchResultsStore } from "../store/searchResultsStore";
 import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
-import { Clock, Users } from "lucide-react";
-import IconInfo from "../components/recipe/IconInfo";
+import IconInfo from "../components/ui/IconInfo";
 import { useNavigateBack } from "../hooks/useNavigateBack";
+import { Icons } from "../components/ui/icons";
 
 
 function RecipeDetailPage() {
@@ -59,9 +59,9 @@ function RecipeDetailPage() {
       | undefined;
 
   const meta = [
-  { icon: Clock, text: `${recipe.readyInMinutes} min` },
-  { icon: Users, text: `${recipe.servings} servings` },
-];
+    { icon: Icons.time, text: `${recipe.readyInMinutes} min` },
+    { icon: Icons.users, text: `${recipe.servings} servings` },
+  ];
 
 function getInstructionSteps(recipe: Recipe) {
   const blocks = recipe.analyzedInstructions;
@@ -74,11 +74,12 @@ function getInstructionSteps(recipe: Recipe) {
   return (
     <article>
              <button onClick={goBack} className="back-button">
-    ← Back
+    <Icons.back /> Back
   </button>
       <h1>{recipe.title} 
         <FavoriteButton 
         id={recipe.id}
+
         title={recipe.title}
         image={recipe.image}
         servings={recipe.servings?? 0} 

@@ -1,3 +1,4 @@
+
 interface SearchFormProps {
   onChange: (value: string) => void;
   onSearch: (query: string) => void;

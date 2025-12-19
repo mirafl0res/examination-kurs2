@@ -239,8 +239,19 @@ transform: translateY(-2px);
   transition: color 0.2s ease, transform 0.15s ease;
 }
 
-.favorite-btn.active {
-  color: #ff4d4d;
+.heart-icon {
+  fill: none;
+  stroke: currentColor;
+  transition: transform 0.15s ease, fill 0.15s ease;
+}
+
+.favorite-btn.active .heart-icon {
+  fill: #ff4d4d;
+  stroke: #ff4d4d;
+}
+
+.favorite-btn:hover .heart-icon {
+  transform: scale(1.1);
 }
 
 
