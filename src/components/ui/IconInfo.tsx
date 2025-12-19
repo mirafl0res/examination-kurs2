@@ -1,17 +1,19 @@
-import type { LucideIcon } from "lucide-react";
-import { Icon } from "./icon";
+import type { LucideProps } from "lucide-react";
+import type React from "react";
+import "./IconInfo.css"
 
 type IconInfoProps = {
-  icon: LucideIcon;
+  icon: React.ElementType<LucideProps>;
   text: string;
   className?: string;
+  iconProps?: LucideProps;
 };
 
-function IconInfo({ icon, text, className = "" }: IconInfoProps) {
+function IconInfo({ icon: Icon, text, className = "", iconProps }: IconInfoProps) {
   return (
     <span className={`icon-info ${className}`}>
       <span className="icon-info__icon">
-        <Icon icon={icon} />
+        <Icon size={16} strokeWidth={1.7} {...iconProps} />
       </span>
       <span className="icon-info__text">{text}</span>
     </span>
