@@ -11,6 +11,8 @@ import {
   MockSearchToggle,
   IngredientInput,
 } from ".";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Icon } from "../ui/icon";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -22,6 +24,7 @@ function SearchContainer() {
 
   const [searchMode, setSearchMode] = useState<SearchMode>("default");
   const { search } = useSearchResultsStore();
+  const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (searchQuery: string): void => {
     const searchBuilder = searchModeBuilders[searchMode];
@@ -68,12 +71,20 @@ function SearchContainer() {
     }
     return null;
   };
+
   return (
     <>
       {renderMockOptions()}
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
       {renderSearchInput()}
-      <AdvancedFilters onChange={handleFiltersChange} />
+
+      <button
+        onClick={() => setShowFilters(!showFilters)}
+        title={showFilters ? "Hide advanced filters" : "Show advanced filters"}
+      >
+        <Icon icon={showFilters ? ChevronUp : ChevronDown} />
+      </button>
+      {showFilters && <AdvancedFilters onChange={handleFiltersChange} />}
     </>
   );
 }
