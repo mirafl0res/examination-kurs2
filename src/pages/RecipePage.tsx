@@ -125,8 +125,8 @@ function getInstructionSteps(recipe: Recipe) {
       </section>
 
       <section>
+        <div className="instructions-list">
         <h2>Instructions</h2>
-
         {instructionSteps.length > 0 ? (
           <ul>
             {instructionSteps.map((step, i) => (
@@ -141,6 +141,7 @@ function getInstructionSteps(recipe: Recipe) {
         ) : (
           <p>No instructions available.</p>
         )}
+        </div>
       </section>
     </article>
   );
