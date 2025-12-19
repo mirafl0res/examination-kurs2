@@ -18,7 +18,7 @@ function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [filters, setFilters] = useState<Filters>({
     intolerances: [],
-    diets: [],
+    diet: [],
     maxReadyTime: null,
   });
 

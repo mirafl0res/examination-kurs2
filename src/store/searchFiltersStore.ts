@@ -7,16 +7,28 @@ import {
   type SearchFiltersState,
 } from "../types/filters";
 
+const initialFilters: Filters = {
+  intolerances: [],
+  diet: [],
+  type: null,
+  cuisine: [],
+  maxReadyTime: null,
+  sort: null,
+  sortDirection: null,
+};
+
 export const useSearchFiltersStore = create<SearchFiltersState>()(
   persist(
     (set) => ({
-      filters: {
-        intolerances: [],
-        diets: [],
-        maxReadyTime: null,
-      },
+      filters: initialFilters,
       favoriteFilters: [],
-      setFilters: (filters: Filters) => set({ filters }),
+      setFilters: (filters) => set({ filters }),
+      setFilter: (key, value) =>
+        set((state) => ({
+          filters: { ...state.filters, [key]: value },
+        })),
+      clearFilters: () => set({ filters: initialFilters }),
+
       toggleFavoriteFilter: (favorite: FavoriteFilter) => {
         set((state) => ({
           favoriteFilters: toggleObjectInArray(state.favoriteFilters, favorite),
@@ -30,14 +42,6 @@ export const useSearchFiltersStore = create<SearchFiltersState>()(
           ],
         })),
       loadFavorite: (favorite: Filters) => set({ filters: favorite }),
-      clearFilters: () =>
-        set({
-          filters: {
-            intolerances: [],
-            diets: [],
-            maxReadyTime: null,
-          },
-        }),
     }),
     { name: "searchFilters" }
   )

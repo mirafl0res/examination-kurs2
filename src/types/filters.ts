@@ -1,10 +1,19 @@
-import type { Diet } from "../constants/diets";
-import type { Intolerance } from "../constants/intolerances";
+import type {
+  Diet,
+  Intolerance,
+  Cuisine,
+  MealType,
+  RecipeSortOption,
+} from "../constants";
 
 export type Filters = {
   intolerances: Intolerance[];
-  diets: Diet[];
-  maxReadyTime?: number | null;
+  diet: Diet[];
+  type: MealType | null;
+  cuisine: Cuisine[];
+  maxReadyTime: number | null;
+  sort: RecipeSortOption | null;
+  sortDirection: "asc" | "desc" | null;
 };
 
 export type FavoriteFilter = {
@@ -16,6 +25,7 @@ export type FavoriteFilter = {
 export type SearchFiltersState = {
   filters: Filters;
   favoriteFilters: FavoriteFilter[];
+  setFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   setFilters: (filters: Filters) => void;
   toggleFavoriteFilter: (favorite: FavoriteFilter) => void;
   saveFavorite: (name: string) => void;

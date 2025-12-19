@@ -15,13 +15,13 @@ function AdvancedFilters({ onChange }: AdvancedFiltersProps) {
   const handleToggleIntolerance = (value: Intolerance) => {
     const updatedIntolerances = togglePrimitiveInArray(selectedIntolerances, value);
     setSelectedIntolerances(updatedIntolerances);
-    onChange({ intolerances: updatedIntolerances, diets: selectedDiets });
+    onChange({ intolerances: updatedIntolerances, diet: selectedDiets });
   };
 
   const handleToggleDiet = (value: Diet) => {
     const updatedDiets = togglePrimitiveInArray(selectedDiets, value);
     setSelectedDiets(updatedDiets);
-    onChange({ intolerances: selectedIntolerances, diets: updatedDiets });
+    onChange({ intolerances: selectedIntolerances, diet: updatedDiets });
   };
 
   return (
