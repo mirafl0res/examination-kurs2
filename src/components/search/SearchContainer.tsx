@@ -11,6 +11,8 @@ import {
   MockSearchToggle,
   IngredientInput,
 } from ".";
+import IconInfo from "../ui/IconInfo";
+import { Icons } from "../ui/icons";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -22,6 +24,7 @@ function SearchContainer() {
 
   const [searchMode, setSearchMode] = useState<SearchMode>("default");
   const { search } = useSearchResultsStore();
+  const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (searchQuery: string): void => {
     const searchBuilder = searchModeBuilders[searchMode];
@@ -68,12 +71,31 @@ function SearchContainer() {
     }
     return null;
   };
+
   return (
     <>
       {renderMockOptions()}
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
       {renderSearchInput()}
-      <AdvancedFilters onChange={handleFiltersChange} />
+          <button
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={() => setShowFilters(!showFilters)}
+            title={
+              showFilters ? "Hide advanced filters" : "Show advanced filters"
+            }
+          >
+            <IconInfo
+              icon={showFilters ? Icons.chevronUp : Icons.chevronDown}
+              text={
+                showFilters ? "Hide Advanced Filters" : "Show Advanced Filters"
+              }
+            />
+          </button>
+      {showFilters && <AdvancedFilters onChange={handleFiltersChange} />}
     </>
   );
 }
