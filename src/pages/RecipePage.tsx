@@ -4,7 +4,7 @@ import { useSearchResultsStore } from "../store/searchResultsStore";
 import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
-import IconInfo from "../components/ui/RecipeIconInfo";
+import IconInfo from "../components/ui/IconInfo";
 import { useNavigateBack } from "../hooks/useNavigateBack";
 import "./RecipePage.css"
 
