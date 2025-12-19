@@ -21,3 +21,16 @@ body {
   text-decoration: none;
 
 }
+/* ===== Back button ===== */
+.back-button {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+
+.back-button:hover {
+  text-decoration: none;
+}

@@ -5,19 +5,7 @@ article {
   padding: 1rem 1rem 3rem;
 }
 
-/* ===== Back button ===== */
-.back-button {
-  background: none;
-  border: none;
-  color: #555;
-  font-size: 0.9rem;
-  cursor: pointer;
-  margin-bottom: 0.75rem;
-}
 
-.back-button:hover {
-  text-decoration: underline;
-}
 
 /* ===== Title + favorite ===== */
 h1 {
@@ -87,6 +75,10 @@ section label {
   gap: 0.6rem;
   align-items: flex-start;
   cursor: pointer;
+
+}
+section ul li {
+  list-style: none;
 }
 
 section input[type="checkbox"] {
