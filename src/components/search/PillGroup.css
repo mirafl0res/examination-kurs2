@@ -1,0 +1,28 @@
+
+/* AdvancedFilters – Pill Buttons */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+.pill {
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 0.5em 1.2em;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  margin: 0.2em 0;
+  font-size: 1em;
+}
+
+.pill.selected {
+  background: #4c78af;
+  color: #fff;
+  border-color: #4c78af;
+}
+
+

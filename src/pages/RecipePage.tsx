@@ -4,8 +4,11 @@ import { useSearchResultsStore } from "../store/searchResultsStore";
 import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
-import IconInfo from "../components/ui/IconInfo";
+import IconInfo from "../components/ui/RecipeIconInfo";
 import { useNavigateBack } from "../hooks/useNavigateBack";
+import "./RecipePage.css"
+
+
 import { Icons } from "../components/ui/icons";
 
 

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
 import type { Recipe } from "../../types/api";
-import IconInfo from "../ui/IconInfo";
+import IconInfo from "../ui/RecipeIconInfo";
 import { Icons } from "../ui/icons";
+import "./RecipeCard.css";
+
 
 type RecipeCardProps = {
   recipe: Recipe;
