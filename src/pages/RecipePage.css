@@ -4,10 +4,6 @@ article {
   padding: 1rem 1rem 3rem;
 }
 
-
-
-
-/* ===== Title + favorite ===== */
 h1 {
   display: flex;
   align-items: center;
