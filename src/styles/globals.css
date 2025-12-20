@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
   
 }
 
@@ -22,15 +23,17 @@ body {
 
 }
 /* ===== Back button ===== */
-.back-button {
-  background: none;
+button {
+  border: 1px solid rgba(0,0,0,0.06);
+  background: transparent;
+  padding: 0.4rem 0.55rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
   border: none;
   color: #555;
   font-size: 0.9rem;
-  cursor: pointer;
   margin-bottom: 0.75rem;
-}
-
-.back-button:hover {
-  text-decoration: none;
+  gap: 10px;
 }

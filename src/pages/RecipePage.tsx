@@ -130,13 +130,13 @@ function getInstructionSteps(recipe: Recipe) {
         {instructionSteps.length > 0 ? (
           <ul>
             {instructionSteps.map((step, i) => (
-              <li key={i}>
-                <label>
-                  <input type="checkbox" />
-                  {step}
-                </label>
-              </li>
-            ))}
+                  <li key={i}>
+                    <label>
+                      <input type="checkbox" />
+                      <span className="instruction-text">{step}</span>
+                    </label>
+                  </li>
+                ))}
           </ul>
         ) : (
           <p>No instructions available.</p>
