@@ -6,6 +6,9 @@ import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import IconInfo from "../components/ui/IconInfo";
 import { useNavigateBack } from "../hooks/useNavigateBack";
+import "./RecipePage.css"
+
+
 import { Icons } from "../components/ui/icons";
 
 
@@ -122,22 +125,23 @@ function getInstructionSteps(recipe: Recipe) {
       </section>
 
       <section>
+        <div className="instructions-list">
         <h2>Instructions</h2>
-
         {instructionSteps.length > 0 ? (
           <ul>
             {instructionSteps.map((step, i) => (
-              <li key={i}>
-                <label>
-                  <input type="checkbox" />
-                  {step}
-                </label>
-              </li>
-            ))}
+                  <li key={i}>
+                    <label>
+                      <input type="checkbox" />
+                      <span className="instruction-text">{step}</span>
+                    </label>
+                  </li>
+                ))}
           </ul>
         ) : (
           <p>No instructions available.</p>
         )}
+        </div>
       </section>
     </article>
   );

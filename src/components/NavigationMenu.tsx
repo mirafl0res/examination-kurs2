@@ -1,24 +1,25 @@
 import { Link } from "react-router-dom";
 import { Icons } from "./ui/icons";
+import "./NavigationMenu.css";
 
-type SlideOutMenuProps = {
+type NavigationMenuProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-function SlideOutMenu({ isOpen, onClose }: SlideOutMenuProps) {
+function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
   const stop = (e: React.MouseEvent) => e.stopPropagation();
 
   const links = [
     { to: "/", label: "Home" },
     { to: "/settings", label: "Settings" },
-    { to: "/favorites", label: "Favorites" },
+    { to: "/favorites", label: "Favorite Recipes" },
   ];
 
   return (
-        <div className={`menu-overlay ${isOpen ? "open" : ""}`} onClick={close}>
-          <div className="menu-panel" onClick={stop}>
-            <button className="close-menu-btn" onClick={close}><Icons.close/></button>
+    <div className={`menu-overlay ${isOpen ? "open" : ""}`} onClick={onClose}>
+      <div className="menu-panel" onClick={stop}>
+        <button className="close-menu-btn" onClick={onClose}><Icons.close/></button>
 
         <h3>Menu</h3>
 
@@ -32,4 +33,4 @@ function SlideOutMenu({ isOpen, onClose }: SlideOutMenuProps) {
   );
 }
 
-export default SlideOutMenu;
+export default NavigationMenu;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./FavoritesPage.css";
 import { useNavigateBack } from "../hooks/useNavigateBack"
 import { useFavoritesStore } from "../store/favoritesStore";
 import RecipeCard from "../components/recipe/RecipeCard"
@@ -13,13 +14,15 @@ export default function FavoritesPage() {
 
   return (
     <div className="favorites-page">
+      <div className="favorites-header">
         <button onClick={goBack} className="back-button">
         <Icons.back /> Back
         </button>
-      <h1>My favorite recipes </h1>
+      <h1>My favorite recipes</h1>
         <div className="view-toggle">
         <button onClick={() => setView("grid")}>< Icons.grid/></button>
         <button onClick={() => setView("list")}><Icons.list/></button>
+      </div>
       </div>
        
 
