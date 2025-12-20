@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
-import SlideOutMenu from "./components/SlideOutMenu";
+import NavigationMenu from "./components/NavigationMenu";
 import FavoritesPage from "./pages/FavoritesPage";
 import SearchBar from "./components/search/SearchContainer";
 import RecipeDetailPage from "./pages/RecipePage";
@@ -15,7 +15,7 @@ function App() {
   return (
     <>
        <Navbar onMenuOpen={() => setMenuOpen(true)} />
-      <SlideOutMenu
+      <NavigationMenu
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
       />

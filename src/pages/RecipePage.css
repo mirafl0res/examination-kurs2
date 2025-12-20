@@ -1,13 +1,9 @@
-/* ===== Page wrapper ===== */
 article {
   max-width: 820px;
   margin: 0 auto;
   padding: 1rem 1rem 3rem;
 }
 
-
-
-/* ===== Title + favorite ===== */
 h1 {
   display: flex;
   align-items: center;
@@ -16,7 +12,6 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-/* ===== Meta info (time, servings) ===== */
 .recipe-meta {
   display: flex;
   gap: 0.5rem;
@@ -24,7 +19,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-/* ===== Missing ingredients info ===== */
 .missing-info {
   background: #fff6f6;
   border: 1px solid #ffdede;
@@ -38,17 +32,15 @@ h1 {
   padding-left: 1.2rem;
 }
 
-/* ===== Image integration ===== */
 article > img {
   width: 100%;
-  max-height: 260px;           /* <-- begränsar höjden */
+  max-height: 260px;          
   object-fit: cover;
   border-radius: 14px;
   margin: 1.25rem 0 1.75rem;
   background: #f2f2f2;
 }
 
-/* ===== Section styling ===== */
 section {
   margin-bottom: 2rem;
 }
@@ -58,7 +50,6 @@ section h2 {
   margin-bottom: 0.75rem;
 }
 
-/* ===== Ingredients ===== */
 section ul {
   list-style: disc;
   padding-left: 1.2rem;
@@ -69,13 +60,11 @@ section ul li {
   line-height: 1.4;
 }
 
-/* ===== Instructions ===== */
 section label {
   display: flex;
   gap: 0.6rem;
   align-items: flex-start;
   cursor: pointer;
-
 }
 
 .instructions-list ul {
@@ -87,12 +76,16 @@ section label {
   margin-bottom: 0.6rem;
 }
 
-
 section input[type="checkbox"] {
   margin-top: 0.2rem;
 }
 
-/* ===== Desktop tweaks ===== */
+.instructions-list label input[type="checkbox"]:checked + .instruction-text {
+  color: #9CA3AF;
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+
 @media (min-width: 768px) {
   article {
     padding: 2rem 2rem 4rem;
@@ -103,6 +96,6 @@ section input[type="checkbox"] {
   }
 
   article > img {
-    max-height: 320px;   /* lite större på desktop */
+    max-height: 320px;   
   }
 }
