@@ -3,7 +3,6 @@ import RecipeCards from "./recipe/RecipeList";
 
 function RecipeResults() {
   const { recipes, loading, error } = useSearchResultsStore();
-  console.log(recipes)
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error.message}</p>;

@@ -1,17 +1,10 @@
 .recipe-card {
   background: #fff;
-  background: #fff;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.264);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.264);
-
-  /* default to flex layout for list view; grid layout for grid is applied via .recipe-grid:not(.list) */
-  /* default to flex layout for list view; grid layout for grid is applied via .recipe-grid:not(.list) */
   display: flex;
   flex-direction: column;
-
-  height: 260px;
   height: 260px;
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
@@ -82,7 +75,6 @@ transform: translateY(-2px);
   justify-content: space-between; 
   align-items: flex-start;
   gap: 0.5rem;
-  flex: 1;
   flex: 1;
 }
 
