@@ -47,6 +47,13 @@
   margin: 0.25rem 0;
 }
 
+.menu-panel a .menu-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: 0.6rem;
+  color: inherit;
+}
+
 .menu-panel a:hover,
 .menu-panel a:focus {
   font-weight: 500;
