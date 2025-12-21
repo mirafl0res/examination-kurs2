@@ -11,9 +11,9 @@ function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
   const stop = (e: React.MouseEvent) => e.stopPropagation();
 
   const links = [
-    { to: "/", label: "Home" },
-    { to: "/settings", label: "Settings" },
-    { to: "/favorites", label: "Favorite Recipes" },
+    { to: "/", label: "Home", icon: Icons.utensils },
+    { to: "/settings", label: "Settings", icon: Icons.chefHat },
+    { to: "/favorites", label: "Favorite Recipes", icon: Icons.favorite },
   ];
 
   return (
@@ -23,11 +23,15 @@ function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
 
         <h3>Menu</h3>
 
-        {links.map(({ to, label }) => (
-          <Link key={to} to={to} onClick={onClose}>
-            {label}
-          </Link>
-        ))}
+        {links.map(({ to, label, icon }) => {
+          const Icon = icon;
+          return (
+            <Link key={to} to={to} onClick={onClose}>
+              {Icon && <Icon size={16} className="menu-icon" />}
+              {label}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
