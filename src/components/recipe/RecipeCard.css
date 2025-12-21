@@ -1,14 +1,13 @@
 .recipe-card {
-  background: #fff;
+   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.264);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 
-  /* default to flex layout for list view; grid layout for grid is applied via .recipe-grid:not(.list) */
   display: flex;
   flex-direction: column;
 
-  height: 260px;
+  height: 260px;              /* ← LÅSER HÖJDEN */
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
@@ -75,10 +74,9 @@ transform: translateY(-2px);
   padding: 0.8rem 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* keep title and meta separated */
   align-items: flex-start;
   gap: 0.5rem;
-  flex: 1;
+  flex: 1;                
 }
 
 .recipe-title {
@@ -89,13 +87,6 @@ transform: translateY(-2px);
   line-height: 1.2;
   text-decoration: none;
 }
-/* limit title height so it can't push other content out */
-.recipe-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 /* tablet */
 @media (min-width: 600px) {
   .recipe-img-wrapper {
@@ -103,26 +94,6 @@ transform: translateY(-2px);
   }
   
 
-}
-
-/* When cards are shown in the grid (not list) force a grid layout with a fixed image row
-   so the image area remains constant regardless of title height. List view keeps the
-   existing flex row layout. */
-.recipe-grid:not(.list) .recipe-card {
-  display: grid;
-  grid-template-rows: 160px 1fr;
-}
-
-@media (min-width: 600px) {
-  .recipe-grid:not(.list) .recipe-card {
-    grid-template-rows: 180px 1fr;
-  }
-}
-
-@media (min-width: 900px) {
-  .recipe-grid:not(.list) .recipe-card {
-    grid-template-rows: 200px 1fr;
-  }
 }
 
 /*  desktop  */
@@ -153,27 +124,3 @@ transform: translateY(-2px);
   margin-top: auto;      
 }
 
-/* keep badges on single row */
-.recipe-meta {
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-
-.recipe-meta .icon-info {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.recipe-meta .icon-info__text {
-  display: inline-block;
-  max-width: 9.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.missing-ingredients {
-  color: #26244a;
-  font-size: 0.8rem;
-  font-weight: 500;
-}

@@ -19,15 +19,18 @@ h1 {
   flex-wrap: wrap;
 }
 
-.ingredient-info {
-  background: #e4e4e476;
-  border: 1px solid #d6d6d6;
+.missing-info {
+  background: #fff6f6;
+  border: 1px solid #ffdede;
   border-radius: 8px;
   padding: 0.75rem 1rem;
   margin-bottom: 1.25rem;
 }
 
-/* leftover .missing-list and .used-items-list removed - use IngredientStatus for pills */
+.missing-list {
+  margin-top: 0.5rem;
+  padding-left: 1.2rem;
+}
 
 article > img {
   width: 100%;

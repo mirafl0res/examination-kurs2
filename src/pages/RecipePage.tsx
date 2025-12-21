@@ -5,7 +5,6 @@ import { getRecipe } from "../api/recipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import IconInfo from "../components/ui/IconInfo";
-import IngredientStatus from "../components/recipe/IngredientStatus";
 import { useNavigateBack } from "../hooks/useNavigateBack";
 import "./RecipePage.css"
 
@@ -36,7 +35,6 @@ function RecipeDetailPage() {
         // Automatically uses mock data in dev, real API in production
         const data = await getRecipe(Number(id));
         setRecipe(data);
-
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load recipe");
       } finally {
@@ -51,16 +49,15 @@ function RecipeDetailPage() {
   if (error) return <div>Error: {error}</div>;
   if (!recipe) return <div>Recipe not found</div>;
 
+  const missingCount =
+    searchItem?.missedIngredientCount ??
+    ((recipe as unknown) as Record<string, unknown>).missedIngredientCount as
+      | number
+      | undefined;
 
   const missingItems =
     searchItem?.missedIngredients ??
     ((recipe as unknown) as Record<string, unknown>).missedIngredients as
-      | Array<{ id: number; name: string }>
-      | undefined;
-
-  const usedItems =
-    searchItem?.usedIngredients ??
-    ((recipe as unknown) as Record<string, unknown>).usedIngredients as
       | Array<{ id: number; name: string }>
       | undefined;
 
@@ -98,9 +95,16 @@ function getInstructionSteps(recipe: Recipe) {
         ))}
       </div>
 
-      {((missingItems && missingItems.length > 0) || (usedItems && usedItems.length > 0)) && (
-        <div className="ingredient-info">
-          <IngredientStatus used={usedItems} missed={missingItems} />
+      {(typeof missingCount === "number" || (missingItems && missingItems.length > 0)) && (
+        <div className="missing-info">
+          {typeof missingCount === "number" && <p>Missing ingredients: {missingCount}</p>}
+          {missingItems && missingItems.length > 0 && (
+            <ul className="missing-list">
+              {missingItems.map((mi) => ( 
+                <li key={mi.id}>{mi.name}</li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 
