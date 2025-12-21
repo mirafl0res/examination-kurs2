@@ -51,8 +51,7 @@
 
 @media (min-width: 900px) {
   .recipe-grid {
-    /* slightly wider min column so badges and title have room */
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.4rem;
     max-width: 1400px;
     margin-inline: auto;

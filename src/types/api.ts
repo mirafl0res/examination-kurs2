@@ -34,13 +34,6 @@ export type SearchResponse = {
       name: string;
       [key: string]: unknown;
     }>;
-    
-usedIngredients?: Array<{
-      id: number;
-      name: string;
-      [key: string]: unknown;
-    }>;
-    
     [key: string]: unknown;
   }>;
   number: number;

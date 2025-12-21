@@ -15,9 +15,6 @@ type RecipeCardProps = {
 function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
   const { id, title, image, readyInMinutes, servings } = recipe;
 
-  const missingCountFromRecipe = (recipe as unknown as { missedIngredientCount?: number }).missedIngredientCount;
-  const displayMissingCount = missedIngredientCount ?? missingCountFromRecipe;
-
   const meta = [];
 
   if (readyInMinutes) {
@@ -45,9 +42,9 @@ function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
         <div className="recipe-content">
           <h2 className="recipe-title">{title}</h2>
 
-          {displayMissingCount !== undefined && (
+          {missedIngredientCount !== undefined && (
             <p className="missing-ingredients">
-              Missing ingredients: {displayMissingCount}
+              Missing ingredients: {missedIngredientCount}
             </p>
           )}
 
