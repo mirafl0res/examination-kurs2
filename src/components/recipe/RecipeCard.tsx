@@ -42,7 +42,7 @@ function RecipeCard({ recipe, missedIngredientCount }: RecipeCardProps) {
           <img src={image} alt={title} />
         </div>
 
-        <div className="recipe-card-content">
+        <div className="recipe-content">
           <h2 className="recipe-title">{title}</h2>
 
           {displayMissingCount !== undefined && (

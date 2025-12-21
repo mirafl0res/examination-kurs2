@@ -22,6 +22,7 @@ body {
   text-decoration: none;
 
 }
+/* ===== Back button ===== */
 button {
   border: 1px solid rgba(0,0,0,0.06);
   background: transparent;
@@ -31,24 +32,8 @@ button {
   display: flex;
   align-items: center;
   border: none;
-  color: #555;  
+  color: #555;
   font-size: 0.9rem;
   margin-bottom: 0.75rem;
   gap: 10px;
-}
-
-.back-button {
-  font-size: 1rem;
-  font-weight: 500;
-}
-.back-button:hover {
-  background-color: #f0f0f0;
-}
-
-/* Recipe page specific: place the back button at the top-left of the article */
-.recipe-page-back {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  z-index: 5;
 }
