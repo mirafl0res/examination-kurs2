@@ -1,0 +1,45 @@
+.ingredient-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.ingredient-status__row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ingredient-status__label .icon-info__text {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.ingredient-status__pills {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ingredient-pill {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  background: #f6f7f9;
+  color: #123;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.ingredient-status__row.used .ingredient-pill {
+  background: #e9f7ee;
+  border-color: rgba(17,101,48,0.12);
+  color: #0b3b20;
+}
+
+.ingredient-status__row.missed .ingredient-pill {
+  background: #fff6f6;
+  border-color: rgba(176,42,55,0.12);
+  color: #7a1b23;
+}
