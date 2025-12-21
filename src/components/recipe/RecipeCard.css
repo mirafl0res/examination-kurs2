@@ -71,11 +71,11 @@ transform: translateY(-2px);
   }
 }
 
-.recipe-card-content {
+.recipe-content {
   padding: 0.8rem 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between; /* keep title and meta separated */
   align-items: flex-start;
   gap: 0.5rem;
   flex: 1;
@@ -89,9 +89,10 @@ transform: translateY(-2px);
   line-height: 1.2;
   text-decoration: none;
 }
+/* limit title height so it can't push other content out */
 .recipe-title {
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -100,7 +101,13 @@ transform: translateY(-2px);
   .recipe-img-wrapper {
     height: 180px;
   }
+  
+
 }
+
+/* When cards are shown in the grid (not list) force a grid layout with a fixed image row
+   so the image area remains constant regardless of title height. List view keeps the
+   existing flex row layout. */
 .recipe-grid:not(.list) .recipe-card {
   display: grid;
   grid-template-rows: 160px 1fr;
@@ -118,6 +125,7 @@ transform: translateY(-2px);
   }
 }
 
+/*  desktop  */
 @media (min-width: 900px) {
   .recipe-img-wrapper {
     height: 200px;
@@ -126,21 +134,26 @@ transform: translateY(-2px);
   .recipe-card {
     height: 300px;
   }
+  
+
 }
 
+/* Recipe card link */
 .recipe-card-link {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
+/* Pill row spacing */
 .recipe-meta {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  margin-top: auto; 
+  margin-top: auto;      
 }
 
+/* keep badges on single row */
 .recipe-meta {
   flex-wrap: nowrap;
   white-space: nowrap;
