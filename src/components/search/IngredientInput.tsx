@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { PillGroup, SearchForm } from ".";
 import { useIngredientsStore } from "../../store/ingredientsStore";
-
+import { Icons } from "../ui/icons";
+import { Icon } from "../ui/icon";
 interface IngredientInputProps {
   onSearch: (ingredientsString: string) => void;
 }
@@ -24,12 +25,9 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
     setValue("");
   };
 
-  const handleRemoveIngredient = (ingredient: string) => {
-    removeIngredient(ingredient);
-  };
-
   const handleClearIngredients = () => {
     clearIngredients();
+    setValue("");
   };
 
   const handleSearch = () => {
@@ -46,18 +44,21 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
         onChange={setValue}
         value={value}
         placeholder={placeholder}
-        buttonText="Add"
+        buttonText={<Icon icon={Icons.add} />}
       />
 
       <PillGroup
         options={ingredients}
         selected={[]}
-        onToggle={handleRemoveIngredient}
+        onToggle={(ingredient) => removeIngredient(ingredient)}
         onClear={handleClearIngredients}
       />
-      <button disabled={!ingredients} className="pill" onClick={handleSearch}>
-        Search
-      </button>
+
+      {ingredients.length > 0 && (
+        <button className="pill" onClick={handleSearch}>
+          Search
+        </button>
+      )}
     </>
   );
 }
