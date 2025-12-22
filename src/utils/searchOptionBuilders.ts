@@ -3,10 +3,14 @@ import type { Filters, SearchOptions, SearchMode } from "../types";
 import type { RecipeSortOption } from "../constants";
 
 export const formatFilters = (filters: Filters) => ({
-  ...(filters.diets.length && { diet: filters.diets.join(",") }),
+  ...(filters.diet.length && { diet: filters.diet.join(",") }),
   ...(filters.intolerances.length && {
-    intolerances: filters.intolerances.join(","),
-  }),
+    intolerances: filters.intolerances.join(",")}),
+  ...(filters.cuisine && { cuisine: filters.cuisine }),
+  ...(filters.type && { type: filters.type }),
+  ...(filters.maxReadyTime != null && { maxReadyTime: filters.maxReadyTime }),
+  ...(filters.sort && { sort: filters.sort }),
+  ...(filters.sortDirection && { sortDirection: filters.sortDirection }),
 });
 
 export const buildDefaultOptions = (

@@ -11,7 +11,7 @@ const initialFilters: Filters = {
   intolerances: [],
   diet: [],
   type: null,
-  cuisine: [],
+  cuisine: null,
   maxReadyTime: null,
   sort: null,
   sortDirection: null,

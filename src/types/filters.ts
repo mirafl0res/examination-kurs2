@@ -10,7 +10,7 @@ export type Filters = {
   intolerances: Intolerance[];
   diet: Diet[];
   type: MealType | null;
-  cuisine: Cuisine[];
+  cuisine: Cuisine | null;
   maxReadyTime: number | null;
   sort: RecipeSortOption | null;
   sortDirection: "asc" | "desc" | null;
