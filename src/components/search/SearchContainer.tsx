@@ -13,17 +13,16 @@ import {
 } from ".";
 import IconInfo from "../ui/IconInfo";
 import { Icons } from "../ui/icons";
+import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filters, setFilters] = useState<Filters>({
-    intolerances: [],
-    diet: [],
-    maxReadyTime: null,
-  });
-
   const [searchMode, setSearchMode] = useState<SearchMode>("default");
   const { search } = useSearchResultsStore();
+
+  const filters = useSearchFiltersStore((state) => state.filters);
+  const setFilters = useSearchFiltersStore((state) => state.setFilters);
+
   const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (searchQuery: string): void => {
@@ -77,24 +76,20 @@ function SearchContainer() {
       {renderMockOptions()}
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
       {renderSearchInput()}
-          <button
-            style={{
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-            }}
-            onClick={() => setShowFilters(!showFilters)}
-            title={
-              showFilters ? "Hide advanced filters" : "Show advanced filters"
-            }
-          >
-            <IconInfo
-              icon={showFilters ? Icons.chevronUp : Icons.chevronDown}
-              text={
-                showFilters ? "Hide Advanced Filters" : "Show Advanced Filters"
-              }
-            />
-          </button>
+      <button
+        style={{
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+        }}
+        onClick={() => setShowFilters(!showFilters)}
+        title={showFilters ? "Hide advanced filters" : "Show advanced filters"}
+      >
+        <IconInfo
+          icon={showFilters ? Icons.chevronUp : Icons.chevronDown}
+          text={showFilters ? "Hide Advanced Filters" : "Show Advanced Filters"}
+        />
+      </button>
       {showFilters && <AdvancedFilters onChange={handleFiltersChange} />}
     </>
   );
