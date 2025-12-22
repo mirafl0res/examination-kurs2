@@ -1,4 +1,4 @@
-import { mockRecipes } from "../../data/mockRecipes";
+import { mockRecipes } from "../../../data/mockRecipes";
 
 interface MockRecipesQuickListProps {
   onRecipeClick: (title: string) => void;

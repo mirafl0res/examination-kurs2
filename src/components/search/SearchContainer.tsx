@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { useSearchResultsStore } from "../../store/searchResultsStore";
-import { USE_MOCK_DATA } from "../../api/recipes";
 import { searchModeBuilders } from "../../utils/searchOptionBuilders";
 import type { SearchMode } from "../../types";
 import {
   AdvancedFilters,
   SearchForm,
   SearchModeToggle,
-  MockRecipesQuickList,
-  MockSearchToggle,
+  MockSearchContainer,
   IngredientInput,
+  ToggleFiltersButton,
 } from ".";
-import IconInfo from "../ui/IconInfo";
-import { Icons } from "../ui/icons";
 import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
 function SearchContainer() {
@@ -31,55 +28,26 @@ function SearchContainer() {
     search(searchOptions);
   };
 
-  const handleMockSearchToggle = (checked: boolean) => {
-    localStorage.setItem("useMock", checked ? "true" : "false");
-    window.location.reload();
-  };
-
-  const renderSearchInput = () => {
-    if (searchMode === "default") {
-      return (
-        <SearchForm
-          onChange={setSearchValue}
-          onSearch={handleSearch}
-          value={searchValue}
-        />
-      );
-    }
-    return <IngredientInput onSearch={handleSearch} />;
-  };
-
-  const renderMockOptions = () => {
-    if (import.meta.env.DEV) {
-      return (
-        <>
-          <MockSearchToggle
-            value={USE_MOCK_DATA}
-            onChange={handleMockSearchToggle}
-          />
-          {USE_MOCK_DATA && (
-            <MockRecipesQuickList onRecipeClick={handleSearch} />
-          )}
-        </>
-      );
-    }
-    return null;
-  };
+  const SearchInput =
+    searchMode === "default" ? (
+      <SearchForm
+        onChange={setSearchValue}
+        onSearch={handleSearch}
+        value={searchValue}
+      />
+    ) : (
+      <IngredientInput onSearch={handleSearch} />
+    );
 
   return (
     <>
-      {renderMockOptions()}
+      <MockSearchContainer onSearch={() => handleSearch("")} />
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-      {renderSearchInput()}
-      <button
-        onClick={() => setShowFilters(!showFilters)}
-        title={showFilters ? "Hide advanced filters" : "Show advanced filters"}
-      >
-        <IconInfo
-          icon={showFilters ? Icons.chevronUp : Icons.chevronDown}
-          text={showFilters ? "Hide Advanced Filters" : "Show Advanced Filters"}
-        />
-      </button>
+      {SearchInput}
+      <ToggleFiltersButton
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+      />
       {showFilters && <AdvancedFilters />}
     </>
   );
