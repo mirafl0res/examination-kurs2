@@ -16,6 +16,8 @@ import {
   ChefHat,
   ChevronUp,
   ChevronDown,
+  Check,
+  Ban,
 } from "lucide-react";
 
 export const Icons = {
@@ -34,4 +36,6 @@ export const Icons = {
   chefHat: ChefHat,
   chevronUp: ChevronUp,
   chevronDown: ChevronDown,
+  check: Check,
+  alert: Ban,
 };

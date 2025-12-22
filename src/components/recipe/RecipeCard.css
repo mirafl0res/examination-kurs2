@@ -1,13 +1,11 @@
 .recipe-card {
-   background: #fff;
+  background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.264);
   display: flex;
   flex-direction: column;
-
-  height: 260px;              /* ← LÅSER HÖJDEN */
+  height: 260px;
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
@@ -70,13 +68,14 @@ transform: translateY(-2px);
   }
 }
 
-.recipe-content {
+.recipe-card-content {
   padding: 0.8rem 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; 
   align-items: flex-start;
   gap: 0.5rem;
-  flex: 1;                
+  flex: 1;
 }
 
 .recipe-title {
@@ -87,16 +86,35 @@ transform: translateY(-2px);
   line-height: 1.2;
   text-decoration: none;
 }
+.recipe-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 /* tablet */
 @media (min-width: 600px) {
   .recipe-img-wrapper {
     height: 180px;
   }
-  
-
+}
+.recipe-grid:not(.list) .recipe-card {
+  display: grid;
+  grid-template-rows: 160px 1fr;
 }
 
-/*  desktop  */
+@media (min-width: 600px) {
+  .recipe-grid:not(.list) .recipe-card {
+    grid-template-rows: 180px 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .recipe-grid:not(.list) .recipe-card {
+    grid-template-rows: 200px 1fr;
+  }
+}
+
 @media (min-width: 900px) {
   .recipe-img-wrapper {
     height: 200px;
@@ -105,22 +123,41 @@ transform: translateY(-2px);
   .recipe-card {
     height: 300px;
   }
-  
-
 }
 
-/* Recipe card link */
 .recipe-card-link {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-/* Pill row spacing */
 .recipe-meta {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  margin-top: auto;      
+  margin-top: auto; 
 }
 
+.recipe-meta {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.recipe-meta .icon-info {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.recipe-meta .icon-info__text {
+  display: inline-block;
+  max-width: 9.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.missing-ingredients {
+  color: #26244a;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
