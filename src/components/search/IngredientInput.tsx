@@ -10,8 +10,14 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
   const [value, setValue] = useState("");
   const placeholder = "Enter ingredients";
 
-  const { ingredients, addIngredient, removeIngredient, clearIngredients } =
-    useIngredientsStore();
+  const ingredients = useIngredientsStore((state) => state.ingredients);
+  const addIngredient = useIngredientsStore((state) => state.addIngredient);
+  const removeIngredient = useIngredientsStore(
+    (state) => state.removeIngredient
+  );
+  const clearIngredients = useIngredientsStore(
+    (state) => state.clearIngredients
+  );
 
   const handleAddIngredient = (ingredient: string) => {
     addIngredient(ingredient);

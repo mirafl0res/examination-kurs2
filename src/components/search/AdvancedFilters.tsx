@@ -1,27 +1,28 @@
-import { useState } from "react";
-import { INTOLERANCES, type Intolerance, DIETS, type Diet } from "../../constants/";
-import type { Filters } from "../../types/";
+import {
+  INTOLERANCES,
+  type Intolerance,
+  DIETS,
+  type Diet,
+} from "../../constants/";
+
 import { PillGroup } from "./PillGroup";
 import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
+import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
-interface AdvancedFiltersProps {
-  onChange: (filters: Filters) => void;
-}
-
-function AdvancedFilters({ onChange }: AdvancedFiltersProps) {
-  const [selectedIntolerances, setSelectedIntolerances] = useState<Intolerance[]>([]);
-  const [selectedDiets, setSelectedDiets] = useState<Diet[]>([]);
+function AdvancedFilters() {
+  const intolerances = useSearchFiltersStore((state) => state.filters.intolerances);
+  const diet = useSearchFiltersStore((state) => state.filters.diet);
+  const setFilter = useSearchFiltersStore((state) => state.setFilter);
+  const clearFilters = useSearchFiltersStore((state) => state.clearFilters);
 
   const handleToggleIntolerance = (value: Intolerance) => {
-    const updatedIntolerances = togglePrimitiveInArray(selectedIntolerances, value);
-    setSelectedIntolerances(updatedIntolerances);
-    onChange({ intolerances: updatedIntolerances, diet: selectedDiets });
+    const updatedIntolerances = togglePrimitiveInArray(intolerances, value);
+    setFilter("intolerances", updatedIntolerances);
   };
 
   const handleToggleDiet = (value: Diet) => {
-    const updatedDiets = togglePrimitiveInArray(selectedDiets, value);
-    setSelectedDiets(updatedDiets);
-    onChange({ intolerances: selectedIntolerances, diet: updatedDiets });
+    const updatedDiets = togglePrimitiveInArray(diet, value);
+    setFilter("diet", updatedDiets);
   };
 
   return (
@@ -29,11 +30,16 @@ function AdvancedFilters({ onChange }: AdvancedFiltersProps) {
       <h4>Intolerances</h4>
       <PillGroup
         options={INTOLERANCES}
-        selected={selectedIntolerances}
+        selected={intolerances}
         onToggle={handleToggleIntolerance}
       />
       <h4>Diets</h4>
-      <PillGroup options={DIETS} selected={selectedDiets} onToggle={handleToggleDiet} />
+      <PillGroup
+        options={DIETS}
+        selected={diet}
+        onToggle={handleToggleDiet}
+        onClear={clearFilters}
+      />
     </>
   );
 }
