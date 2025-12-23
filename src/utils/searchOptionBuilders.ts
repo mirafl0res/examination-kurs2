@@ -4,8 +4,7 @@ import type { RecipeSortOption } from "../constants";
 
 export const formatFilters = (filters: Filters) => ({
   ...(filters.diet.length && { diet: filters.diet.join(",") }),
-  ...(filters.intolerances.length && {
-    intolerances: filters.intolerances.join(",")}),
+  ...(filters.intolerances.length && { intolerances: filters.intolerances.join(",") }),
   ...(filters.cuisine && { cuisine: filters.cuisine }),
   ...(filters.type && { type: filters.type }),
   ...(filters.maxReadyTime != null && { maxReadyTime: filters.maxReadyTime }),
@@ -13,33 +12,36 @@ export const formatFilters = (filters: Filters) => ({
   ...(filters.sortDirection && { sortDirection: filters.sortDirection }),
 });
 
-export const buildDefaultOptions = (
-  query: string,
-  filters: Filters
-): SearchOptions => ({
-  query,
+// Returns the shared base parameters for all search modes
+const baseSearchParams = (filters: Filters) => ({
   addRecipeInformation: true,
   number: DEFAULT_RECIPE_COUNT,
   ...formatFilters(filters),
 });
 
-export const buildIngredientsOptions = (
+export const buildDefaultSearchMode = (
+  query: string,
+  filters: Filters
+): SearchOptions => ({
+  ...baseSearchParams(filters),
+  query,
+});
+
+export const buildIngredientsSearchMode = (
   includeIngredients: string,
   filters: Filters
 ): SearchOptions => ({
+  ...baseSearchParams(filters),
   includeIngredients,
-  addRecipeInformation: true,
-  number: DEFAULT_RECIPE_COUNT,
   fillIngredients: true,
   sort: "max-used-ingredients" as RecipeSortOption,
   ignorePantry: true,
-  ...formatFilters(filters),
 });
 
 export const searchModeBuilders: Record<
   SearchMode,
   (query: string, filters: Filters) => SearchOptions
 > = {
-  default: buildDefaultOptions,
-  ingredients: buildIngredientsOptions,
+  default: buildDefaultSearchMode,
+  ingredients: buildIngredientsSearchMode,
 };
