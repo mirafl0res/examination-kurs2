@@ -51,13 +51,17 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
         options={ingredients}
         selected={[]}
         onToggle={(ingredient) => removeIngredient(ingredient)}
-        onClear={handleClearIngredients}
       />
 
       {ingredients.length > 0 && (
-        <button className="pill" onClick={handleSearch}>
-          Search
-        </button>
+        <div>
+          <button style={{ color: "red" }} onClick={handleClearIngredients}>
+            Clear ingredients
+          </button>
+          <button className="pill" onClick={handleSearch}>
+            Search
+          </button>
+        </div>
       )}
     </>
   );
