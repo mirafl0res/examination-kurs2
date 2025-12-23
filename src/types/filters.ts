@@ -27,6 +27,7 @@ export type SearchFiltersState = {
   favoriteFilters: FavoriteFilter[];
   setFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   setFilters: (filters: Filters) => void;
+  hasActiveFilters: () => boolean;
   toggleFavoriteFilter: (favorite: FavoriteFilter) => void;
   saveFavorite: (name: string) => void;
   loadFavorite: (favorite: Filters) => void;
