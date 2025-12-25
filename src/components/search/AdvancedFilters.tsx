@@ -11,10 +11,9 @@ import {
   type RecipeSortOption,
 } from "../../constants/";
 
-import { PillGroup } from ".";
+import { PillGroup, SingleSelectDropdown } from ".";
 import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
 import { useSearchFiltersStore } from "../../store/searchFiltersStore";
-import { SelectFilter } from ".";
 
 function AdvancedFilters() {
   const intolerances = useSearchFiltersStore(
@@ -62,15 +61,20 @@ function AdvancedFilters() {
         onToggle={handleToggleIntolerance}
       />
       <h4>Diets</h4>
-      <PillGroup options={DIETS} selected={diet} onToggle={handleToggleDiet} />
-      <SelectFilter<Cuisine>
+      <PillGroup
+        options={DIETS}
+        selected={diet}
+        onToggle={handleToggleDiet}
+        onClear={clearFilters}
+      />
+      <SingleSelectDropdown<Cuisine>
         label="Cuisine"
         value={cuisine}
         options={CUISINES}
         onChange={(value) => setFilter("cuisine", value)}
       />
 
-      <SelectFilter<MealType>
+      <SingleSelectDropdown<MealType>
         label="Meal Type"
         value={mealType}
         options={MEAL_TYPES}
@@ -90,13 +94,13 @@ function AdvancedFilters() {
         />
       </label>
 
-      <SelectFilter<RecipeSortOption>
+      <SingleSelectDropdown<RecipeSortOption>
         label="Sort By"
         value={sort}
         options={RECIPE_SORT_OPTIONS}
         onChange={(value) => setFilter("sort", value)}
       />
-      <SelectFilter<"asc" | "desc">
+      <SingleSelectDropdown<"asc" | "desc">
         label="Sort Direction"
         value={sortDirection}
         options={["asc", "desc"]}

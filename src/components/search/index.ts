@@ -6,6 +6,6 @@ export { default as SearchForm } from "./SearchForm";
 export { default as SearchModeToggle } from "./SearchModeToggle";
 export { default as SearchContainer } from "./SearchContainer";
 export { default as IngredientInput } from "./IngredientInput";
-export { default as SelectFilter } from "./SelectFilter";
+export { default as SingleSelectDropdown } from "./SingleSelectDropdown";
 export { default as ToggleFiltersButton } from "./ToggleFiltersButton";
 export { default as MockSearchContainer } from "./MockSearchContainer";
