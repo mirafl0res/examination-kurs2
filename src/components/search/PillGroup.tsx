@@ -1,4 +1,4 @@
-import "./PillGroup.css"
+import "./PillGroup.css";
 
 type PillGroupProps<T extends string> = {
   options: readonly T[];
@@ -11,7 +11,6 @@ export function PillGroup<T extends string>({
   options,
   selected,
   onToggle,
-  onClear,
 }: PillGroupProps<T>) {
   return (
     <>
@@ -27,12 +26,6 @@ export function PillGroup<T extends string>({
           </button>
         ))}
       </div>
-
-      {onClear && options.length > 0 && (
-        <button style={{ color: "red" }} onClick={onClear}>
-          Clear all
-        </button>
-      )}
     </>
   );
 }
