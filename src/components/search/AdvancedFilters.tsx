@@ -1,27 +1,47 @@
-import { useState } from "react";
-import { INTOLERANCES, type Intolerance, DIETS, type Diet } from "../../constants/";
-import type { Filters } from "../../types/";
-import { PillGroup } from "./PillGroup";
+import {
+  INTOLERANCES,
+  type Intolerance,
+  DIETS,
+  type Diet,
+  CUISINES,
+  type Cuisine,
+  MEAL_TYPES,
+  type MealType,
+  RECIPE_SORT_OPTIONS,
+  type RecipeSortOption,
+} from "../../constants/";
+
+import { PillGroup } from ".";
 import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
+import { useSearchFiltersStore } from "../../store/searchFiltersStore";
+import { SelectFilter } from ".";
 
-interface AdvancedFiltersProps {
-  onChange: (filters: Filters) => void;
-}
+function AdvancedFilters() {
+  const intolerances = useSearchFiltersStore(
+    (state) => state.filters.intolerances
+  );
+  const diet = useSearchFiltersStore((state) => state.filters.diet);
+  const cuisine = useSearchFiltersStore((state) => state.filters.cuisine);
+  const mealType = useSearchFiltersStore((state) => state.filters.type);
+  const maxReadyTime = useSearchFiltersStore(
+    (state) => state.filters.maxReadyTime
+  );
+  const sort = useSearchFiltersStore((state) => state.filters.sort);
+  const sortDirection = useSearchFiltersStore(
+    (state) => state.filters.sortDirection
+  );
 
-function AdvancedFilters({ onChange }: AdvancedFiltersProps) {
-  const [selectedIntolerances, setSelectedIntolerances] = useState<Intolerance[]>([]);
-  const [selectedDiets, setSelectedDiets] = useState<Diet[]>([]);
+  const setFilter = useSearchFiltersStore((state) => state.setFilter);
+  const clearFilters = useSearchFiltersStore((state) => state.clearFilters);
 
   const handleToggleIntolerance = (value: Intolerance) => {
-    const updatedIntolerances = togglePrimitiveInArray(selectedIntolerances, value);
-    setSelectedIntolerances(updatedIntolerances);
-    onChange({ intolerances: updatedIntolerances, diets: selectedDiets });
+    const updatedIntolerances = togglePrimitiveInArray(intolerances, value);
+    setFilter("intolerances", updatedIntolerances);
   };
 
   const handleToggleDiet = (value: Diet) => {
-    const updatedDiets = togglePrimitiveInArray(selectedDiets, value);
-    setSelectedDiets(updatedDiets);
-    onChange({ intolerances: selectedIntolerances, diets: updatedDiets });
+    const updatedDiets = togglePrimitiveInArray(diet, value);
+    setFilter("diet", updatedDiets);
   };
 
   return (
@@ -29,11 +49,55 @@ function AdvancedFilters({ onChange }: AdvancedFiltersProps) {
       <h4>Intolerances</h4>
       <PillGroup
         options={INTOLERANCES}
-        selected={selectedIntolerances}
+        selected={intolerances}
         onToggle={handleToggleIntolerance}
       />
       <h4>Diets</h4>
-      <PillGroup options={DIETS} selected={selectedDiets} onToggle={handleToggleDiet} />
+      <PillGroup
+        options={DIETS}
+        selected={diet}
+        onToggle={handleToggleDiet}
+        onClear={clearFilters}
+      />
+      <SelectFilter<Cuisine>
+        label="Cuisine"
+        value={cuisine}
+        options={CUISINES}
+        onChange={(value) => setFilter("cuisine", value)}
+      />
+
+      <SelectFilter<MealType>
+        label="Meal Type"
+        value={mealType}
+        options={MEAL_TYPES}
+        onChange={(value) => setFilter("type", value)}
+      />
+
+      <label>
+        Max Ready Time (minutes)
+        <input
+          type="number"
+          min={0}
+          value={maxReadyTime ?? ""}
+          onChange={(e) => {
+            const val = e.target.value;
+            setFilter("maxReadyTime", val === "" ? null : Number(val));
+          }}
+        />
+      </label>
+
+      <SelectFilter<RecipeSortOption>
+        label="Sort By"
+        value={sort}
+        options={RECIPE_SORT_OPTIONS}
+        onChange={(value) => setFilter("sort", value)}
+      />
+      <SelectFilter<"asc" | "desc">
+        label="Sort Direction"
+        value={sortDirection}
+        options={["asc", "desc"]}
+        onChange={(value) => setFilter("sortDirection", value)}
+      />
     </>
   );
 }

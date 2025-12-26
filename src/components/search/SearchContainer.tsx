@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSearchResultsStore } from "../../store/searchResultsStore";
 import { USE_MOCK_DATA } from "../../api/recipes";
 import { searchModeBuilders } from "../../utils/searchOptionBuilders";
-import type { Filters, SearchMode } from "../../types";
+import type { SearchMode } from "../../types";
 import {
   AdvancedFilters,
   SearchForm,
@@ -13,17 +13,15 @@ import {
 } from ".";
 import IconInfo from "../ui/IconInfo";
 import { Icons } from "../ui/icons";
+import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filters, setFilters] = useState<Filters>({
-    intolerances: [],
-    diets: [],
-    maxReadyTime: null,
-  });
-
   const [searchMode, setSearchMode] = useState<SearchMode>("default");
-  const { search } = useSearchResultsStore();
+  const search = useSearchResultsStore((state) => state.search);
+
+  const filters = useSearchFiltersStore((state) => state.filters);
+
   const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (searchQuery: string): void => {
@@ -31,10 +29,6 @@ function SearchContainer() {
     if (!searchBuilder) return;
     const searchOptions = searchBuilder(searchQuery, filters);
     search(searchOptions);
-  };
-
-  const handleFiltersChange = (newFilters: Filters) => {
-    setFilters(newFilters);
   };
 
   const handleMockSearchToggle = (checked: boolean) => {
@@ -77,25 +71,16 @@ function SearchContainer() {
       {renderMockOptions()}
       <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
       {renderSearchInput()}
-          <button
-            style={{
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-            }}
-            onClick={() => setShowFilters(!showFilters)}
-            title={
-              showFilters ? "Hide advanced filters" : "Show advanced filters"
-            }
-          >
-            <IconInfo
-              icon={showFilters ? Icons.chevronUp : Icons.chevronDown}
-              text={
-                showFilters ? "Hide Advanced Filters" : "Show Advanced Filters"
-              }
-            />
-          </button>
-      {showFilters && <AdvancedFilters onChange={handleFiltersChange} />}
+      <button
+        onClick={() => setShowFilters(!showFilters)}
+        title={showFilters ? "Hide advanced filters" : "Show advanced filters"}
+      >
+        <IconInfo
+          icon={showFilters ? Icons.chevronUp : Icons.chevronDown}
+          text={showFilters ? "Hide Advanced Filters" : "Show Advanced Filters"}
+        />
+      </button>
+      {showFilters && <AdvancedFilters />}
     </>
   );
 }
