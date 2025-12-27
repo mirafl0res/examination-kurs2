@@ -11,7 +11,7 @@ export type Filters = {
   diet: Diet[];
   type: MealType | null;
   cuisine: Cuisine | null;
-  maxReadyTime: string | null;
+  maxReadyTime: number | null;
   sort: RecipeSortOption | null;
   sortDirection: "asc" | "desc" | null;
 };

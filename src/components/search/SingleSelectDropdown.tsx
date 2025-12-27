@@ -1,11 +1,11 @@
-type SingleSelectDropdownProps<T extends string> = {
+type SingleSelectDropdownProps<T extends string | number> = {
   label: string;
   value: T | null;
   options: readonly T[];
   onChange: (value: T | null) => void;
 };
 
-function SingleSelectDropdown<T extends string>({
+function SingleSelectDropdown<T extends string | number>({
   label,
   value,
   options,
@@ -13,8 +13,17 @@ function SingleSelectDropdown<T extends string>({
 }: SingleSelectDropdownProps<T>) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = e.target.value;
-    onChange(selected === "" ? null : (selected as T));
+
+    if (selected === "") {
+      return onChange(null);
+    }
+    if (typeof options[0] === "number") {
+      return onChange(Number(selected) as T);
+    }
+    
+    onChange(selected as T);
   };
+
   const renderOptions = () =>
     options.map((option) => (
       <option key={option} value={option}>
