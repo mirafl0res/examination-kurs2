@@ -30,6 +30,9 @@ function AdvancedFilters() {
   const sortDirection = useSearchFiltersStore(
     (state) => state.filters.sortDirection
   );
+  const hasActiveFilters = useSearchFiltersStore((state) =>
+    state.hasActiveFilters()
+  );
 
   const setFilter = useSearchFiltersStore((state) => state.setFilter);
   const clearFilters = useSearchFiltersStore((state) => state.clearFilters);
@@ -46,6 +49,12 @@ function AdvancedFilters() {
 
   return (
     <>
+      {hasActiveFilters && (
+        <button style={{ color: "red" }} onClick={clearFilters}>
+          Clear filters
+        </button>
+      )}
+
       <h4>Intolerances</h4>
       <PillGroup
         options={INTOLERANCES}
@@ -53,12 +62,7 @@ function AdvancedFilters() {
         onToggle={handleToggleIntolerance}
       />
       <h4>Diets</h4>
-      <PillGroup
-        options={DIETS}
-        selected={diet}
-        onToggle={handleToggleDiet}
-        onClear={clearFilters}
-      />
+      <PillGroup options={DIETS} selected={diet} onToggle={handleToggleDiet} />
       <SelectFilter<Cuisine>
         label="Cuisine"
         value={cuisine}

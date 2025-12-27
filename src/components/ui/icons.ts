@@ -18,6 +18,8 @@ import {
   ChevronDown,
   Check,
   Ban,
+  Plus,
+
 } from "lucide-react";
 
 export const Icons = {
@@ -38,4 +40,6 @@ export const Icons = {
   chevronDown: ChevronDown,
   check: Check,
   alert: Ban,
+  add: Plus,
 };
+

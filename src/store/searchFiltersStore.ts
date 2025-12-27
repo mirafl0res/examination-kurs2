@@ -7,7 +7,7 @@ import {
   type SearchFiltersState,
 } from "../types/filters";
 
-const initialFilters: Filters = {
+export const initialFilters: Filters = {
   intolerances: [],
   diet: [],
   type: null,
@@ -19,7 +19,7 @@ const initialFilters: Filters = {
 
 export const useSearchFiltersStore = create<SearchFiltersState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       filters: initialFilters,
       favoriteFilters: [],
       setFilters: (filters) => set({ filters }),
@@ -28,7 +28,8 @@ export const useSearchFiltersStore = create<SearchFiltersState>()(
           filters: { ...state.filters, [key]: value },
         })),
       clearFilters: () => set({ filters: initialFilters }),
-
+      hasActiveFilters: () =>
+        JSON.stringify(get().filters) !== JSON.stringify(initialFilters),
       toggleFavoriteFilter: (favorite: FavoriteFilter) => {
         set((state) => ({
           favoriteFilters: toggleObjectInArray(state.favoriteFilters, favorite),
