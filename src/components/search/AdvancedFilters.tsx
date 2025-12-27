@@ -9,12 +9,13 @@ import {
   type MealType,
   RECIPE_SORT_OPTIONS,
   type RecipeSortOption,
+  MAX_READY_TIME_OPTIONS,
+  type MaxReadyTimeOption,
 } from "../../constants/";
 
-import { PillGroup } from ".";
+import { PillGroup, SingleSelectDropdown } from ".";
 import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
 import { useSearchFiltersStore } from "../../store/searchFiltersStore";
-import { SelectFilter } from ".";
 
 function AdvancedFilters() {
   const intolerances = useSearchFiltersStore(
@@ -47,61 +48,86 @@ function AdvancedFilters() {
     setFilter("diet", updatedDiets);
   };
 
+  const renderClearButton = () => {
+    return (
+      hasActiveFilters && (
+        <button style={{ color: "red" }} onClick={clearFilters}>
+          Clear Filters
+        </button>
+      )
+    );
+  };
+
+  const renderIntolerances = () => {
+    return (
+      <>
+        <h4>Intolerances</h4>
+        <PillGroup
+          options={INTOLERANCES}
+          selected={intolerances}
+          onToggle={handleToggleIntolerance}
+        />
+      </>
+    );
+  };
+  
+  const renderDiets = () => {
+    return (
+      <>
+        <h4>Diets</h4>
+        <PillGroup
+          options={DIETS}
+          selected={diet}
+          onToggle={handleToggleDiet}
+          onClear={clearFilters}
+        />
+      </>
+    );
+  };
+
+  const renderDropdowns = () => {
+    return (
+      <>
+        <SingleSelectDropdown<Cuisine>
+          label="Cuisine"
+          value={cuisine}
+          options={CUISINES}
+          onChange={(value) => setFilter("cuisine", value)}
+        />
+        <SingleSelectDropdown<MealType>
+          label="Meal Type"
+          value={mealType}
+          options={MEAL_TYPES}
+          onChange={(value) => setFilter("type", value)}
+        />
+        <SingleSelectDropdown<MaxReadyTimeOption>
+          label="Max Ready Time (minutes)"
+          value={maxReadyTime}
+          options={MAX_READY_TIME_OPTIONS}
+          onChange={(value) => setFilter("maxReadyTime", value)}
+        />
+        <SingleSelectDropdown<RecipeSortOption>
+          label="Sort By"
+          value={sort}
+          options={RECIPE_SORT_OPTIONS}
+          onChange={(value) => setFilter("sort", value)}
+        />
+        <SingleSelectDropdown<"asc" | "desc">
+          label="Sort Direction"
+          value={sortDirection}
+          options={["asc", "desc"]}
+          onChange={(value) => setFilter("sortDirection", value)}
+        />
+      </>
+    );
+  };
+
   return (
     <>
-      {hasActiveFilters && (
-        <button style={{ color: "red" }} onClick={clearFilters}>
-          Clear filters
-        </button>
-      )}
-
-      <h4>Intolerances</h4>
-      <PillGroup
-        options={INTOLERANCES}
-        selected={intolerances}
-        onToggle={handleToggleIntolerance}
-      />
-      <h4>Diets</h4>
-      <PillGroup options={DIETS} selected={diet} onToggle={handleToggleDiet} />
-      <SelectFilter<Cuisine>
-        label="Cuisine"
-        value={cuisine}
-        options={CUISINES}
-        onChange={(value) => setFilter("cuisine", value)}
-      />
-
-      <SelectFilter<MealType>
-        label="Meal Type"
-        value={mealType}
-        options={MEAL_TYPES}
-        onChange={(value) => setFilter("type", value)}
-      />
-
-      <label>
-        Max Ready Time (minutes)
-        <input
-          type="number"
-          min={0}
-          value={maxReadyTime ?? ""}
-          onChange={(e) => {
-            const val = e.target.value;
-            setFilter("maxReadyTime", val === "" ? null : Number(val));
-          }}
-        />
-      </label>
-
-      <SelectFilter<RecipeSortOption>
-        label="Sort By"
-        value={sort}
-        options={RECIPE_SORT_OPTIONS}
-        onChange={(value) => setFilter("sort", value)}
-      />
-      <SelectFilter<"asc" | "desc">
-        label="Sort Direction"
-        value={sortDirection}
-        options={["asc", "desc"]}
-        onChange={(value) => setFilter("sortDirection", value)}
-      />
+      {renderClearButton()}
+      {renderIntolerances()}
+      {renderDiets()}
+      {renderDropdowns()}
     </>
   );
 }
