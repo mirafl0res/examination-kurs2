@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { PillGroup, SearchForm } from ".";
+import { SearchForm } from ".";
 import { useIngredientsStore } from "../../store/ingredientsStore";
 import { Icons } from "../ui/icons";
 import { Icon } from "../ui/icon";
+import IconInfo from "../ui/IconInfo";
 interface IngredientInputProps {
   onSearch: (ingredientsString: string) => void;
 }
@@ -37,6 +38,35 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
     setValue("");
   };
 
+  const renderIngredients = () => {
+    return (
+      <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+        {ingredients.map((ingredient) => (
+          <button
+            key={ingredient}
+            type="button"
+            onClick={() => removeIngredient(ingredient)}
+          >
+            <IconInfo text={ingredient} icon={Icons.close} />
+          </button>
+        ))}
+      </div>
+    );
+  };
+
+  const renderButtons = () => (
+    ingredients.length > 0 ? (
+      <div>
+        <button style={{ color: "red" }} onClick={handleClearIngredients}>
+          Clear ingredients
+        </button>
+        <button className="pill" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
+    ) : null
+  );
+
   return (
     <>
       <SearchForm
@@ -47,22 +77,8 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
         buttonText={<Icon icon={Icons.add} />}
       />
 
-      <PillGroup
-        options={ingredients}
-        selected={[]}
-        onToggle={(ingredient) => removeIngredient(ingredient)}
-      />
-
-      {ingredients.length > 0 && (
-        <div>
-          <button style={{ color: "red" }} onClick={handleClearIngredients}>
-            Clear ingredients
-          </button>
-          <button className="pill" onClick={handleSearch}>
-            Search
-          </button>
-        </div>
-      )}
+      {renderIngredients()}
+      {renderButtons()}
     </>
   );
 }
