@@ -16,7 +16,7 @@
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
   margin: 0.2em 0;
-  font-size: 1em;
+  font-size: 0.8rem;
 }
 
 .pill.selected {

@@ -40,7 +40,7 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
 
   const renderIngredients = () => {
     return (
-      <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+      <div className="ingredients-list">
         {ingredients.map((ingredient) => (
           <button
             key={ingredient}
@@ -50,18 +50,21 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
             <IconInfo text={ingredient} icon={Icons.close} />
           </button>
         ))}
+
+        {ingredients.length > 0 && (
+          <button type="button" className="clear-ingredients-btn" onClick={handleClearIngredients}>
+            <IconInfo icon={Icons.close} text="Clear ingredients" />
+          </button>
+        )}
       </div>
     );
   };
 
   const renderButtons = () => (
     ingredients.length > 0 ? (
-      <div>
-        <button style={{ color: "red" }} onClick={handleClearIngredients}>
-          Clear ingredients
-        </button>
-        <button className="pill" onClick={handleSearch}>
-          Search
+      <div className="ingredient-buttons">
+        <button type="button" className="search-ingredients-btn" onClick={handleSearch}>
+          <IconInfo icon={Icons.search} text="Search" />
         </button>
       </div>
     ) : null
@@ -77,8 +80,10 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
         buttonText={<Icon icon={Icons.add} />}
       />
 
-      {renderIngredients()}
-      {renderButtons()}
+      <div className="ingredient-row">
+        {renderIngredients()}
+        {renderButtons()}
+      </div>
     </>
   );
 }

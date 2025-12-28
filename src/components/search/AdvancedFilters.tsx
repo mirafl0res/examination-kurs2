@@ -31,10 +31,10 @@ function AdvancedFilters() {
   const sortDirection = useSearchFiltersStore(
     (state) => state.filters.sortDirection
   );
-  const hasActiveFilters = useSearchFiltersStore((state) =>
+/*   const hasActiveFilters = useSearchFiltersStore((state) =>
     state.hasActiveFilters()
   );
-
+ */
   const setFilter = useSearchFiltersStore((state) => state.setFilter);
   const clearFilters = useSearchFiltersStore((state) => state.clearFilters);
 
@@ -48,15 +48,7 @@ function AdvancedFilters() {
     setFilter("diet", updatedDiets);
   };
 
-  const renderClearButton = () => {
-    return (
-      hasActiveFilters && (
-        <button style={{ color: "red" }} onClick={clearFilters}>
-          Clear Filters
-        </button>
-      )
-    );
-  };
+  
 
   const renderIntolerances = () => {
     return (
@@ -87,7 +79,8 @@ function AdvancedFilters() {
 
   const renderDropdowns = () => {
     return (
-      <>
+      
+      <div className="dropdown-container">
         <SingleSelectDropdown<Cuisine>
           label="Cuisine"
           value={cuisine}
@@ -101,7 +94,7 @@ function AdvancedFilters() {
           onChange={(value) => setFilter("type", value)}
         />
         <SingleSelectDropdown<MaxReadyTimeOption>
-          label="Max Ready Time (minutes)"
+          label="Max Ready Time(min)"
           value={maxReadyTime}
           options={MAX_READY_TIME_OPTIONS}
           onChange={(value) => setFilter("maxReadyTime", value)}
@@ -118,13 +111,12 @@ function AdvancedFilters() {
           options={["asc", "desc"]}
           onChange={(value) => setFilter("sortDirection", value)}
         />
-      </>
+      </div>
     );
   };
 
   return (
     <>
-      {renderClearButton()}
       {renderIntolerances()}
       {renderDiets()}
       {renderDropdowns()}
