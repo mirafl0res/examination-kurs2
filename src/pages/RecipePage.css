@@ -2,7 +2,6 @@ article {
   max-width: 820px;
   margin: 0 auto;
   padding: 1rem 1rem 3rem;
-  position: relative;
 }
 
 h1 {
@@ -27,8 +26,6 @@ h1 {
   padding: 0.75rem 1rem;
   margin-bottom: 1.25rem;
 }
-
-/* leftover .missing-list and .used-items-list removed - use IngredientStatus for pills */
 
 article > img {
   width: 100%;

@@ -15,12 +15,13 @@
   --radius: 10px;
 }
 
+html, body, #root {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 body {
-  font-family: "Montserrat", sans-serif;
   color: var(--color-primary-text);
   background: var(--color-bg);
-  text-decoration: none;
-
 }
 button {
   border: 1px solid rgba(0,0,0,0.06);
@@ -37,18 +38,15 @@ button {
   gap: 10px;
 }
 
+/* Ensure form controls inherit the app font */
+button, input, select, textarea {
+  font-family: inherit;
+}
+
 .back-button {
   font-size: 1rem;
   font-weight: 500;
 }
 .back-button:hover {
   background-color: #f0f0f0;
-}
-
-/* Recipe page specific: place the back button at the top-left of the article */
-.recipe-page-back {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  z-index: 5;
 }

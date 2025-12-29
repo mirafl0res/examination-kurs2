@@ -1,3 +1,5 @@
+import { Icons } from "../ui/icons";
+
 interface SearchFormProps {
   onChange: (value: string) => void;
   onSearch: (query: string) => void;
@@ -35,7 +37,16 @@ function SearchForm({
           onChange={handleChange}
           placeholder={placeholder}
         />
-        <button className="icon-info">{buttonText}</button>
+        <button className="icon-info" aria-label={typeof buttonText === 'string' ? String(buttonText) : undefined}>
+          {typeof buttonText === "string" || typeof buttonText === "number" ? (
+            <>
+              <Icons.search size={16} />
+              <span style={{ marginLeft: 8 }}>{buttonText}</span>
+            </>
+          ) : (
+            buttonText
+          )}
+        </button>
       </form>
     </>
   );

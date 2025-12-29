@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSearchResultsStore } from "../../store/searchResultsStore";
 import { searchModeBuilders } from "../../utils/searchOptionBuilders";
 import type { SearchMode } from "../../types";
+import "./SearchContainer.css";
 import {
   AdvancedFilters,
   SearchForm,
@@ -10,6 +11,8 @@ import {
   IngredientInput,
   ToggleFiltersButton,
 } from ".";
+import { Icons } from "../ui/icons";
+import IconInfo from "../ui/IconInfo";
 import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
 function SearchContainer() {
@@ -19,6 +22,9 @@ function SearchContainer() {
 
   const filters = useSearchFiltersStore((state) => state.filters);
 
+  const hasActiveFilters = useSearchFiltersStore((state) => state.hasActiveFilters());
+  const clearFilters = useSearchFiltersStore((state) => state.clearFilters);
+
   const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (searchQuery: string): void => {
@@ -26,6 +32,8 @@ function SearchContainer() {
     if (!searchBuilder) return;
     const searchOptions = searchBuilder(searchQuery, filters);
     search(searchOptions);
+
+    setShowFilters(false);
   };
 
   const SearchInput =
@@ -42,13 +50,26 @@ function SearchContainer() {
   return (
     <>
       <MockSearchContainer onSearch={() => handleSearch("")} />
-      <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-      {SearchInput}
-      <ToggleFiltersButton
-        showFilters={showFilters}
-        setShowFilters={setShowFilters}
-      />
-      {showFilters && <AdvancedFilters />}
+
+      <div className="search-container">
+        <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
+
+        {SearchInput}
+
+        <div className="search-filters">
+          <ToggleFiltersButton
+            showFilters={showFilters}
+            setShowFilters={setShowFilters}
+          />
+          {hasActiveFilters && (
+            <button className="clear-filters-btn" onClick={clearFilters}>
+              <IconInfo icon={Icons.close} text="Clear Filters" />
+            </button>
+          )}
+        </div>
+
+        {showFilters && <AdvancedFilters />}
+      </div>
     </>
   );
 }
