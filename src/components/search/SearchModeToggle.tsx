@@ -14,10 +14,11 @@ function SearchModeToggle({ onModeChange, activeMode }: SearchModeToggleProps) {
     <>
       <div className="search-toggle">
         <div className="pill-group">
-          <button onClick={() => handleClick("default")} className={`pill${activeMode === "default" ? " selected" : ""}`}>
+          <button id="search-any-btn" onClick={() => handleClick("default")} className={`pill${activeMode === "default" ? " selected" : ""}`}>
             Search Anything
           </button>
           <button
+            id="search-ingredient-btn"
             onClick={() => handleClick("ingredients")}
             className={`pill${activeMode === "ingredients" ? " selected" : ""}`}
           >

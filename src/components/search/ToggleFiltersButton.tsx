@@ -12,6 +12,7 @@ function ToggleFiltersButton({
 }: ToggleFiltersButtonProps) {
   return (
     <button
+      id="filters-btn"
       onClick={() => setShowFilters(!showFilters)}
       title={showFilters ? "Hide advanced filters" : "Show advanced filters"}
     >
