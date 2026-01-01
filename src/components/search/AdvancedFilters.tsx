@@ -94,7 +94,7 @@ function AdvancedFilters() {
           onChange={(value) => setFilter("type", value)}
         />
         <SingleSelectDropdown<MaxReadyTimeOption>
-          label="Max Ready Time(min)"
+          label="Max time"
           value={maxReadyTime}
           options={MAX_READY_TIME_OPTIONS}
           onChange={(value) => setFilter("maxReadyTime", value)}

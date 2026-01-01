@@ -107,6 +107,7 @@ function getInstructionSteps(recipe: Recipe) {
       <img src={recipe.image} alt={recipe.title} />
       
       <section>
+        <div className="ingredients-list">
         <h2>Ingredients</h2>
         <ul>
           {(
@@ -118,6 +119,7 @@ function getInstructionSteps(recipe: Recipe) {
             <li key={ingredient.id}>{ingredient.original}</li>
           ))}
         </ul>
+        </div>
       </section>
 
       <section>

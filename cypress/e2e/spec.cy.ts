@@ -31,7 +31,7 @@ describe('recipe app test', () => {
     cy.get('article').find('h1').should('be.visible')
     cy.get(".favorite-btn").should('be.visible').click()
 
-    cy.get('.burgermenu').should('be.visible').click()
+    cy.get('.nav-menu-btn').should('be.visible').click()
     cy.get("a").contains("Favorite Recipes").click()
 
     cy.url().should("include", "/favorites")

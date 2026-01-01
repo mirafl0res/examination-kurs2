@@ -20,7 +20,7 @@ h1 {
 }
 
 .ingredient-info {
-  background: #e4e4e476;
+  background: #f6f4f476;
   border: 1px solid #d6d6d6;
   border-radius: 8px;
   padding: 0.75rem 1rem;
@@ -37,7 +37,7 @@ article > img {
 }
 
 section {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 section h2 {
@@ -60,6 +60,13 @@ section label {
   gap: 0.6rem;
   align-items: flex-start;
   cursor: pointer;
+}
+
+.instructions-list, .ingredients-list {
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  padding: 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.264);
 }
 
 .instructions-list ul {

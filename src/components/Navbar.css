@@ -4,7 +4,8 @@
   justify-content: space-between; 
   align-items: center;
   padding: 1rem 1.2rem;
-  background: white;
+  background: #5fad41;
+  background: linear-gradient(87deg,#5fad41 40%, #98e479 100%);
   border-bottom: 1px solid #e4e4e4;
   position: sticky;
   top: 0;
@@ -12,8 +13,15 @@
 
 .logo {
   font-size: 1.2rem;
-  font-weight: 700;
-  color: #333;
+  font-weight: 600;
+  color: #fff;
   cursor: pointer;
+  display: inline-flex;
+  vertical-align: middle;
+  gap: 10px;
+}
+
+.nav-menu-btn {
+  color:#fff
 }
 
