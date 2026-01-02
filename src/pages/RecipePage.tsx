@@ -107,7 +107,7 @@ function getInstructionSteps(recipe: Recipe) {
       <img src={recipe.image} alt={recipe.title} />
       
       <section>
-        <div className="ingredients-list">
+        <div className="ingredient-list">
         <h2>Ingredients</h2>
         <ul>
           {(

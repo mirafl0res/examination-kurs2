@@ -12,7 +12,7 @@ function SearchForm({
   onChange,
   onSearch,
   value,
-  placeholder = "Search...",
+  placeholder = "e.g Pasta Carbonara, quick dinner or healthy dessert",
   buttonText = "Search",
 }: SearchFormProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

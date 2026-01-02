@@ -30,6 +30,12 @@
   align-items: center;
 }
 
+.search-cta {
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
 .search-container input[type="text"] {
   flex: 1 1 auto;
   padding: 10px;
@@ -43,6 +49,7 @@
 
 .search-container input[type="text"]::placeholder {
   color: #9aa3ad;
+  font-size: 0.9rem;
 }
 
 .search-filters {
@@ -51,6 +58,26 @@
   align-items: center;
   margin-top: 2px;
   justify-content: flex-start;
+}
+
+.advanced-filters {
+  animation: filters-show 400ms cubic-bezier(.2,.9,.2,1) forwards;
+  transform-origin: top;
+  will-change: opacity, transform, max-height;
+  overflow: hidden;
+}
+
+@keyframes filters-show {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.995);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 1200px;
+  }
 }
 
 .clear-filters-btn .icon-info__icon svg,

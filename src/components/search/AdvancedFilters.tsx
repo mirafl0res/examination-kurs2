@@ -116,11 +116,11 @@ function AdvancedFilters() {
   };
 
   return (
-    <>
+    <div className="advanced-filters">
       {renderIntolerances()}
       {renderDiets()}
       {renderDropdowns()}
-    </>
+    </div>
   );
 }
 
