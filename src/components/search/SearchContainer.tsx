@@ -47,13 +47,28 @@ function SearchContainer() {
       <IngredientInput onSearch={handleSearch} />
     );
 
+    const ctaByMode: Record<SearchMode, React.ReactNode> = {
+      default: 
+          <p className="search-cta" 
+            aria-live="polite">Search by recipe name, cuisine, ingredients, 
+                        or describe what you're craving
+                        </p>,
+      ingredients: 
+          <p className="search-cta" 
+            aria-live="polite">Add ingredients one by one,
+                        then search for matching recipes
+                        </p>,
+};
+
   return (
     <>
       <MockSearchContainer onSearch={() => handleSearch("")} />
 
       <div className="search-container">
         <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-
+         <div className="search-cta">
+{ctaByMode[searchMode]}
+         </div>
         {SearchInput}
 
         <div className="search-filters">

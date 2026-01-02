@@ -4,16 +4,25 @@
   justify-content: space-between; 
   align-items: center;
   padding: 1rem 1.2rem;
-  background: white;
-  border-bottom: 1px solid #e4e4e4;
+  background: #274060;
+  background: linear-gradient(87deg,#274060 40%, #335c81 100%);
+  /* border-bottom: 1px solid #e4e4e4; */
   position: sticky;
   top: 0;
+  z-index: 9;
 }
 
 .logo {
   font-size: 1.2rem;
-  font-weight: 700;
-  color: #333;
+  font-weight: 600;
+  color: #fff;
   cursor: pointer;
+  display: inline-flex;
+  vertical-align: middle;
+  gap: 10px;
+}
+
+.nav-menu-btn {
+  color:#fff
 }
 

@@ -10,7 +10,7 @@ interface IngredientInputProps {
 
 function IngredientInput({ onSearch }: IngredientInputProps) {
   const [value, setValue] = useState("");
-  const placeholder = "Enter ingredients";
+  const placeholder = "e.g, egg, avocado, cheese";
 
   const ingredients = useIngredientsStore((state) => state.ingredients);
   const addIngredient = useIngredientsStore((state) => state.addIngredient);

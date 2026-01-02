@@ -1,51 +1,18 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSearchResultsStore } from "../store/searchResultsStore";
-import { getRecipe } from "../api/recipes";
+import useFetchRecipes from "../hooks/useFetchRecipes";
 import type { Recipe } from "../types";
 import FavoriteButton from "../components/recipe/FavoriteButton";
 import IconInfo from "../components/ui/IconInfo";
 import IngredientStatus from "../components/recipe/IngredientStatus";
 import { useNavigateBack } from "../hooks/useNavigateBack";
 import "./RecipePage.css"
-
-
 import { Icons } from "../components/ui/icons";
 
 
-function RecipeDetailPage() {
+function RecipePage() {
   const goBack = useNavigateBack({ fallbackTo: "/" });
 
-  const { id } = useParams<{ id: string }>();
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { recipe, loading, error } = useFetchRecipes();
 
-
-  const searchResults = useSearchResultsStore((s) => s.recipes);
-  const searchItem = id ? searchResults.find((r) => String(r.id) === String(id)) : undefined;
-
-  useEffect(() => {
-    const fetchRecipeDetails = async () => {
-      if (!id) return;
-
-      setLoading(true);
-      setError(null);
-
-      try {
-        // Automatically uses mock data in dev, real API in production
-        const data = await getRecipe(Number(id));
-        setRecipe(data);
-
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load recipe");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecipeDetails();
-  }, [id]);
 
   if (loading) return <div>Loading recipe...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -53,16 +20,10 @@ function RecipeDetailPage() {
 
 
   const missingItems =
-    searchItem?.missedIngredients ??
-    ((recipe as unknown) as Record<string, unknown>).missedIngredients as
-      | Array<{ id: number; name: string }>
-      | undefined;
+    (recipe as unknown as { missedIngredients?: Array<{ id: number; name: string }>} ).missedIngredients;
 
   const usedItems =
-    searchItem?.usedIngredients ??
-    ((recipe as unknown) as Record<string, unknown>).usedIngredients as
-      | Array<{ id: number; name: string }>
-      | undefined;
+    (recipe as unknown as { usedIngredients?: Array<{ id: number; name: string }>} ).usedIngredients;
 
   const meta = [
     { icon: Icons.time, text: `${recipe.readyInMinutes} min` },
@@ -107,6 +68,7 @@ function getInstructionSteps(recipe: Recipe) {
       <img src={recipe.image} alt={recipe.title} />
       
       <section>
+        <div className="ingredient-list">
         <h2>Ingredients</h2>
         <ul>
           {(
@@ -118,6 +80,7 @@ function getInstructionSteps(recipe: Recipe) {
             <li key={ingredient.id}>{ingredient.original}</li>
           ))}
         </ul>
+        </div>
       </section>
 
       <section>
@@ -143,4 +106,4 @@ function getInstructionSteps(recipe: Recipe) {
   );
 }
 
-export default RecipeDetailPage;
+export default RecipePage;

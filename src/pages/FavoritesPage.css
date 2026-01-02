@@ -1,20 +1,16 @@
 .favorites-header {
   position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+    flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
   padding: 1rem;
 }
 
 .favorites-header h1 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   margin: 0;
   font-size: 1.6rem;
-  pointer-events: none;
 }
 
 .view-toggle {
@@ -39,6 +35,19 @@
 }
 
 @media (min-width: 600px) {
+  .favorites-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .favorites-header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
   .recipe-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.2rem;
@@ -91,10 +100,10 @@
   padding: 0.25rem 0.5rem; 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; 
   align-items: flex-start; 
   height: 100%; 
-  gap: 0.15rem;
+  gap: 0.15rem; 
 }
 
 

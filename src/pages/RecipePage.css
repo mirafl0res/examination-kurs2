@@ -9,18 +9,18 @@ h1 {
   align-items: center;
   gap: 0.75rem;
   font-size: 1.6rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .recipe-meta {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
 .ingredient-info {
-  background: #e4e4e476;
+  background: #f6f4f476;
   border: 1px solid #d6d6d6;
   border-radius: 8px;
   padding: 0.75rem 1rem;
@@ -37,7 +37,7 @@ article > img {
 }
 
 section {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 section h2 {
@@ -60,6 +60,13 @@ section label {
   gap: 0.6rem;
   align-items: flex-start;
   cursor: pointer;
+}
+
+.instructions-list, .ingredient-list {
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 15px rgba(48, 48, 48, 0.264);
 }
 
 .instructions-list ul {

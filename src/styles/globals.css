@@ -9,9 +9,9 @@
 }
 
 :root {
-  --color-bg: #ffffff;
+  --color-bg: #fff;
   --color-primary-text: #333;
-  --color-accent: #ff4d4d;
+  --color-active-btn: #3F84E5;
   --radius: 10px;
 }
 
@@ -38,7 +38,6 @@ button {
   gap: 10px;
 }
 
-/* Ensure form controls inherit the app font */
 button, input, select, textarea {
   font-family: inherit;
 }

@@ -12,11 +12,11 @@ function Navbar({ onMenuOpen }: NavbarProps) {
     <nav className="navbar">
      
       <NavLink to="/"> 
-      <div className="logo">Recipe finder <Icons.utensils/>
+      <div className="logo"><Icons.chefHat/> Recipe finder
       </div> 
       </NavLink>
 
-      <button className="burgermenu" onClick={onMenuOpen}><Icons.menu/></button>
+      <button className="nav-menu-btn" onClick={onMenuOpen}><Icons.menu/></button>
     </nav>
   );
 }
