@@ -17,7 +17,7 @@ describe('recipe app test', () => {
     
    
     cy.get('.dropdown-container').should('be.visible')
-      .contains('label', /Max Ready Time/)
+      .contains('label', /Max time/)
       .find('select')
       .should('be.visible')
       .select('45')
