@@ -2,23 +2,25 @@ import IconInfo from "../ui/IconInfo";
 import { Icons } from "../ui/icons";
 
 type ToggleFiltersButtonProps = {
+  onToggle: () => void;
   showFilters: boolean;
-  setShowFilters: React.Dispatch<React.SetStateAction<boolean>>;
+  sectionName: string;
 };
 
 function ToggleFiltersButton({
   showFilters,
-  setShowFilters,
+  onToggle,
+  sectionName,
 }: ToggleFiltersButtonProps) {
   return (
     <button
       id="filters-btn"
-      onClick={() => setShowFilters(!showFilters)}
-      title={showFilters ? "Hide advanced filters" : "Show advanced filters"}
+      onClick={onToggle}
+      title={showFilters ? `Hide ${sectionName}` : `Show ${sectionName}`}
     >
       <IconInfo
         icon={showFilters ? Icons.chevronUp : Icons.chevronDown}
-        text={showFilters ? "Hide Advanced Filters" : "Show Advanced Filters"}
+        text={showFilters ? `Hide ${sectionName}` : `Show ${sectionName}`}
       />
     </button>
   );

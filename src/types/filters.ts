@@ -33,3 +33,5 @@ export type SearchFiltersState = {
   loadFavorite: (favorite: Filters) => void;
   clearFilters: () => void;
 };
+
+export type FilterSectionKey = "intolerances" | "diets" | "dropdowns";

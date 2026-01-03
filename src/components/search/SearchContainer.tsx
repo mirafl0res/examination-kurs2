@@ -18,14 +18,15 @@ import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 function SearchContainer() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [searchMode, setSearchMode] = useState<SearchMode>("default");
-  const search = useSearchResultsStore((state) => state.search);
+  const [showFilters, setShowFilters] = useState(false);
 
+  const search = useSearchResultsStore((state) => state.search);
   const filters = useSearchFiltersStore((state) => state.filters);
 
-  const hasActiveFilters = useSearchFiltersStore((state) => state.hasActiveFilters());
+  const hasActiveFilters = useSearchFiltersStore((state) =>
+    state.hasActiveFilters()
+  );
   const clearFilters = useSearchFiltersStore((state) => state.clearFilters);
-
-  const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (searchQuery: string): void => {
     const searchBuilder = searchModeBuilders[searchMode];
@@ -47,35 +48,39 @@ function SearchContainer() {
       <IngredientInput onSearch={handleSearch} />
     );
 
-    const ctaByMode: Record<SearchMode, React.ReactNode> = {
-      default: 
-          <p className="search-cta" 
-            aria-live="polite">Search by recipe name, cuisine, ingredients, 
-                        or describe what you're craving
-                        </p>,
-      ingredients: 
-          <p className="search-cta" 
-            aria-live="polite">Add ingredients one by one,
-                        then search for matching recipes
-                        </p>,
-};
+  const ctaByMode: Record<SearchMode, React.ReactNode> = {
+    default: (
+      <p className="search-cta" aria-live="polite">
+        Search by recipe name, cuisine, ingredients, or describe what you're
+        craving
+      </p>
+    ),
+    ingredients: (
+      <p className="search-cta" aria-live="polite">
+        Add ingredients one by one, then search for matching recipes
+      </p>
+    ),
+  };
 
   return (
     <>
       <MockSearchContainer onSearch={() => handleSearch("")} />
 
       <div className="search-container">
-        <SearchModeToggle onModeChange={setSearchMode} activeMode={searchMode} />
-         <div className="search-cta">
-{ctaByMode[searchMode]}
-         </div>
+        <SearchModeToggle
+          onModeChange={setSearchMode}
+          activeMode={searchMode}
+        />
+        <div className="search-cta">{ctaByMode[searchMode]}</div>
         {SearchInput}
 
         <div className="search-filters">
           <ToggleFiltersButton
             showFilters={showFilters}
-            setShowFilters={setShowFilters}
+            onToggle={() => setShowFilters(!showFilters)}
+            sectionName="Advanced Filters"
           />
+
           {hasActiveFilters && (
             <button className="clear-filters-btn" onClick={clearFilters}>
               <IconInfo icon={Icons.close} text="Clear Filters" />
