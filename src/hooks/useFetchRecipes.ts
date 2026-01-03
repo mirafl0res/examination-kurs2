@@ -5,10 +5,12 @@ import type { Recipe } from "../types/api";
 
 
 function useFetchRecipes() {
-    const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+
     
       useEffect(() => {
         const fetchRecipeDetails = async () => {

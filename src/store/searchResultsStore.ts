@@ -11,6 +11,7 @@ type RecipeState = {
   recipes: Recipe[];
   loading: boolean;
   error: Error | null;
+  hasSearched: boolean;
   search: (params: SearchOptions) => Promise<void>;
 };
 
@@ -18,10 +19,12 @@ export const useSearchResultsStore = create<RecipeState>((set) => ({
   recipes: [],
   loading: false,
   error: null,
+  hasSearched: false,
   async search(params) {
     const trimmed = params.query?.trim();
     if (!trimmed && !params.includeIngredients) return;
-    set({ loading: true, error: null });
+    // mark that a user-initiated search happened and start loading
+    set({ hasSearched: true, loading: true, error: null });
 
     try {
       const options: SearchOptions = {
