@@ -1,9 +1,9 @@
 .favorite-btn {
-  background: #fff;
+  background: var(--color-bg);
   border: none;
   font-size: 1.4rem;
   cursor: pointer;
-  color: #333;
+  color: var(--color-primary-text);
   transition: color 0.2s ease, transform 0.15s ease;
 }
 

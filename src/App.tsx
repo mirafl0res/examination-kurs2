@@ -6,6 +6,7 @@ import FavoritesPage from "./pages/FavoritesPage";
 import RecipeDetailPage from "./pages/RecipePage";
 import HomePage from "./pages/HomePage";
 import SettingsPage from "./pages/SettingsPage";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
+      <Footer />
     </>
   );
 }
