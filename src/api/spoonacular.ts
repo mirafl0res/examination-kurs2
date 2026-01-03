@@ -30,7 +30,7 @@ const fetchSpoonacular = async <T>(
 
   const response = await fetch(url.toString());
   if (!response.ok) {
-    throw new Error(`Spoonacular API error: ${response.statusText}`);
+    throw new Error(`Spoonacular API error - Daily quota exceeded ${response.statusText}`);
   }
   return await response.json();
 };

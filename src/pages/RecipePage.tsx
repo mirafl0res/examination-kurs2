@@ -4,26 +4,37 @@ import FavoriteButton from "../components/recipe/FavoriteButton";
 import IconInfo from "../components/ui/IconInfo";
 import IngredientStatus from "../components/recipe/IngredientStatus";
 import { useNavigateBack } from "../hooks/useNavigateBack";
+import { useParams } from "react-router-dom";
 import "./RecipePage.css"
 import { Icons } from "../components/ui/icons";
+import { useSearchResultsStore } from "../store/searchResultsStore";
 
 
 function RecipePage() {
   const goBack = useNavigateBack({ fallbackTo: "/" });
+  const { id } = useParams<{ id: string }>();
 
   const { recipe, loading, error } = useFetchRecipes();
 
+  const searchResults = useSearchResultsStore((s) => s.recipes);
+  const searchItem = id ? searchResults.find((r) => String(r.id) === String(id)) : undefined;
 
   if (loading) return <div>Loading recipe...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!recipe) return <div>Recipe not found</div>;
 
 
-  const missingItems =
-    (recipe as unknown as { missedIngredients?: Array<{ id: number; name: string }>} ).missedIngredients;
+    const missingItems =
+    searchItem?.missedIngredients ??
+    ((recipe as unknown) as Record<string, unknown>).missedIngredients as
+      | Array<{ id: number; name: string }>
+      | undefined;
 
-  const usedItems =
-    (recipe as unknown as { usedIngredients?: Array<{ id: number; name: string }>} ).usedIngredients;
+    const usedItems =
+    searchItem?.usedIngredients ??
+    ((recipe as unknown) as Record<string, unknown>).usedIngredients as
+      | Array<{ id: number; name: string }>
+      | undefined;
 
   const meta = [
     { icon: Icons.time, text: `${recipe.readyInMinutes} min` },
