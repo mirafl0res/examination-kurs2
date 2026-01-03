@@ -23,7 +23,6 @@ export const useSearchResultsStore = create<RecipeState>((set) => ({
   async search(params) {
     const trimmed = params.query?.trim();
     if (!trimmed && !params.includeIngredients) return;
-    // mark that a user-initiated search happened and start loading
     set({ hasSearched: true, loading: true, error: null });
 
     try {
