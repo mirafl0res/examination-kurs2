@@ -40,7 +40,7 @@ const ApiKeyInput = () => {
       </p>
 
       <ul className="user-api-list">
-        <li>Register at <strong>spoonacular.com</strong> to get your API key</li>
+        <li>Register at <a href="https://spoonacular.com/registerEmail" target="_blank" rel="noopener noreferrer">spoonacular.com</a> to get your API key</li>
         <li>Paste the key into the field below</li>
         <li>Click <strong>Save</strong> and get cooking</li>
       </ul>

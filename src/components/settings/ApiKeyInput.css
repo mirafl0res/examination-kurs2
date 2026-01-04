@@ -23,10 +23,13 @@
   object-fit: cover;
 }
 
-
 .api-form {
   flex: 1 1 55%;
   min-width: 0; 
+}
+
+.user-api-text {
+margin-bottom: 1.2rem;
 }
 
 label[for="spoonacular-api-key"], .api-label {
@@ -52,7 +55,6 @@ label[for="spoonacular-api-key"], .api-label {
   color: var(--color-primary-text);
   outline: none;
   background: #f5f5f5;
-  /* margin-bottom: 2rem; */
 }
 
 .api-key-input input[type="text"]::placeholder {
@@ -61,18 +63,15 @@ label[for="spoonacular-api-key"], .api-label {
 }
 
 .button-group {
-  display: flex;
-  gap: 0.5rem;
+  display: flex; 
   border: 1px solid rgba(0,0,0,0.06);
-  background: transparent;
   border-radius: 6px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
   border: none;
   color: #555;  
   font-size: 0.9rem;
-  gap: 10px; 
+  gap: 0.75rem; 
+  margin-top: 0.6rem;
 }
 
 .btn-save {
@@ -85,41 +84,64 @@ label[for="spoonacular-api-key"], .api-label {
     padding: 0.6rem;
 }
 
-
-
 .key-input-text {
   color: var(--color-primary-text);
   font-size: 0.8rem;
   font-style: italic;
 }
+.user-api-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+}
 
-/* saved message */
+.user-api-list li {
+  display: block;
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.95rem;
+  color: var(--color-primary-text);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.user-api-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  color: var(--color-accent-primary);
+  font-weight: 700;
+}
+
+.user-api-list a {
+  color: var(--color-primary-text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
 .saved-msg {
-  color: #0a7a3d;
+  color: var(--color-accent-primary);
   margin-top: 0.75rem;
   text-align: left;
   font-weight: 600;
 }
 
-/* Responsive: show image on desktop only */
 @media (min-width: 992px) {
   .api-image {
     display: block;
   }
 
-  /* On desktop show form on the left and image on the right */
   .user-api-page {
     flex-direction: row-reverse;
     align-items: flex-start;
   }
 
-  /* move text down relative to the image without moving the image */
   .api-form {
-    margin-top: 2.5rem; /* adjust this value to move text further down */
-  }
+    margin-top: 2.5rem;
+}
 }
 
-/* Mobile adjustments */
 @media (max-width: 991px) {
   .user-api-page {
     flex-direction: column;
@@ -135,6 +157,7 @@ label[for="spoonacular-api-key"], .api-label {
   .button-group {
     justify-content: flex-end;
     width: 100%;
+    
   }
   .button-group .btn {
     width: auto;
