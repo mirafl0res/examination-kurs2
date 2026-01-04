@@ -190,7 +190,7 @@
 }
 
 .ingredients-list .icon-info svg {
-  stroke: red;
+  stroke: var(--color-accent-secondary);
 }
 
 .clear-ingredients-btn .icon-info {
@@ -201,7 +201,7 @@
 .filters-btn .icon-info {
   background-color: #f5f5f5;
   padding: 8px 12px;
-  color: green;
+  color: var(--color-accent-primary);
   border: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   /* box-shadow: none; */
@@ -222,7 +222,7 @@
 .filters-subsection-btn .icon-info {
   /* width: 100%; */
   font-weight: 500;
-  color: green;
+  color: var(--color-accent-primary);
   justify-content: center;
   box-shadow: none;
   background-color: transparent;
@@ -236,7 +236,7 @@ stroke: #333;
 #search-add-btn {
   display: flex;
   margin: 0 auto;
-  background-color: #26a24a;
+  background-color: var(--color-accent-primary);
   color: #f9fbf9;
   padding: 10px 14px;
   border-radius: 12px;
@@ -244,7 +244,7 @@ stroke: #333;
 
 .clear-ingredients-btn .icon-info {
   /* width: 200px; */
-  background-color: rgba(221, 51, 51, 0.932);
+  background-color: var(--color-accent-secondary);
   /* color: red; */
   color: white;
   /* border: none; */
@@ -255,7 +255,7 @@ stroke: #333;
   background-color: transparent;
   border: none;
   padding: 8px 12px;
-  color: red;
+  color: var(--color-accent-secondary);
 }
 
 /* .clear-filters-btn {

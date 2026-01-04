@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  
 }
 
 :root {
@@ -22,6 +21,7 @@ html, body, #root {
 body {
   color: var(--color-primary-text);
   background: var(--color-bg);
+  min-height: 100vh
 }
 button {
   border: 1px solid rgba(0,0,0,0.06);
@@ -53,8 +53,9 @@ button, input, select, textarea {
 
 .footer {
   background: rgba(249, 251, 249, 0.49)  ;
+  margin-top: auto;
   text-align: center;
   border: 1px solid rgba(139, 141, 139, 0.3);
-  font-size: 1rem;
-  padding: 1.6rem;
+  font-size: 0.8rem;
+  padding: 1.3rem;
 }
