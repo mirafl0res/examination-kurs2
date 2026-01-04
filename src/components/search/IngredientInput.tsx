@@ -89,6 +89,7 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
       />
       <div className="ingredient-row">{renderIngredients()}</div>
       <div>{renderButtons()}</div>
+     {ingredients.length > 0 && <hr />}
     </>
   );
 }

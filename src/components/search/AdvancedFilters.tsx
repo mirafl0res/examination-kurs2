@@ -68,6 +68,7 @@ function AdvancedFilters() {
           showFilters={filterSections.intolerances}
           onToggle={() => handleToggleSection("intolerances")}
           sectionName="Intolerances"
+          className="filters-subsection-btn"
         />
         {filterSections.intolerances && (
           <>
@@ -77,7 +78,6 @@ function AdvancedFilters() {
               selected={intolerances}
               onToggle={handleToggleIntolerance}
             />
-            <hr />
           </>
         )}
       </>
@@ -91,6 +91,7 @@ function AdvancedFilters() {
           showFilters={filterSections.diets}
           onToggle={() => handleToggleSection("diets")}
           sectionName="Diets"
+          className="filters-subsection-btn"
         />
         {filterSections.diets && (
           <>
@@ -101,7 +102,6 @@ function AdvancedFilters() {
               onToggle={handleToggleDiet}
               onClear={clearFilters}
             />
-            <hr />
           </>
         )}
       </>
@@ -115,6 +115,7 @@ function AdvancedFilters() {
           showFilters={filterSections.dropdowns}
           onToggle={() => handleToggleSection("dropdowns")}
           sectionName="Extra Options"
+          className="filters-subsection-btn"
         />
         {filterSections.dropdowns && (
           <div className="dropdown-container">

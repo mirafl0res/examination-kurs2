@@ -67,6 +67,7 @@
 
 .search-filters button .icon-info {
   width: 100%;
+  border: none;
 }
 .advanced-filters {
   animation: filters-show 400ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
@@ -166,6 +167,7 @@
 
 .icon-info {
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .ingredients-list .icon-info svg {
@@ -177,12 +179,30 @@
   padding: 8px 12px;
 }
 
-#filters-btn .icon-info {
+.filters-btn .icon-info {
   background-color: #f5f5f5;
   padding: 8px 12px;
   color: green;
+  border: none;
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); */
+  box-shadow: none;
+  justify-content: start;
 }
 
+.filters-subsection-btn {
+  display: flex;
+  width: 100%;
+  border-radius: 0;
+  border-top: dashed #26a24a 1px;
+}
+
+.filters-subsection-btn .icon-info {
+  /* width: 100%; */
+  justify-content: center;
+  color: #26a24a;
+  box-shadow: none;
+  border: none;
+}
 #search-add-btn {
   display: flex;
   margin: 0 auto;

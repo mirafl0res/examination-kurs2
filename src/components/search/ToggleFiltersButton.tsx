@@ -5,17 +5,20 @@ type ToggleFiltersButtonProps = {
   onToggle: () => void;
   showFilters: boolean;
   sectionName: string;
+  className?: string;
 };
 
 function ToggleFiltersButton({
   showFilters,
   onToggle,
   sectionName,
+  className,
 }: ToggleFiltersButtonProps) {
   return (
     <button
       id="filters-btn"
       onClick={onToggle}
+      className={className}
       title={showFilters ? `Hide ${sectionName}` : `Show ${sectionName}`}
     >
       <IconInfo

@@ -78,6 +78,7 @@ function SearchContainer() {
             showFilters={showFilters}
             onToggle={() => setShowFilters(!showFilters)}
             sectionName="Advanced Filters"
+            className="filters-btn"
           />
 
           {hasActiveFilters && (
