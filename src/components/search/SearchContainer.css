@@ -217,3 +217,9 @@
     font-size: 1.05rem;
   }
 }
+
+hr {
+  height: 2px;
+  background-color: #26a24a;
+  border: none;
+}
