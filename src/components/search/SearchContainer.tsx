@@ -73,22 +73,22 @@ function SearchContainer() {
         <div className="search-cta">{ctaByMode[searchMode]}</div>
         {SearchInput}
 
-        <div className="search-filters">
-          <ToggleFiltersButton
-            showFilters={showFilters}
-            onToggle={() => setShowFilters(!showFilters)}
-            sectionName="Advanced Filters"
-            className="filters-btn"
-          />
-
-          {hasActiveFilters && (
-            <button className="clear-filters-btn" onClick={clearFilters}>
-              <IconInfo icon={Icons.close} text="Clear Filters" />
-            </button>
-          )}
+        <div className="filters-container">
+          <div className="search-filters">
+            <ToggleFiltersButton
+              showFilters={showFilters}
+              onToggle={() => setShowFilters(!showFilters)}
+              sectionName="Advanced Filters"
+              className="filters-btn"
+            />
+            {hasActiveFilters && (
+              <button className="clear-filters-btn" onClick={clearFilters}>
+                <IconInfo icon={Icons.close} text="Clear Filters" />
+              </button>
+            )}
+          </div>
+          {showFilters && <AdvancedFilters />}
         </div>
-
-        {showFilters && <AdvancedFilters />}
       </div>
     </>
   );
