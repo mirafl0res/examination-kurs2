@@ -28,7 +28,7 @@ function SearchForm({
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="search-form" onSubmit={handleSubmit}>
         <label htmlFor="searchField"></label>
         <input
           type="text"
