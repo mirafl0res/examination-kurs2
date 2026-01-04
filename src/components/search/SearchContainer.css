@@ -54,12 +54,21 @@
 
 .search-filters {
   display: flex;
+  flex: 1 1 auto;
   gap: 10px;
-  align-items: center;
+  /* align-items: center;
   margin-top: 2px;
-  justify-content: flex-start;
+  justify-content: flex-start; */
 }
 
+.search-filters button {
+  display: flex;
+  width: 100%;
+}
+
+.search-filters button .icon-info {
+  width: 100%;
+}
 .advanced-filters {
   animation: filters-show 400ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
   transform-origin: top;
@@ -116,27 +125,37 @@
   text-align: left;
 }
 
-.ingredient-row {
+/* .ingredient-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-}
+} */
 
 .ingredients-list {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
-  /* background-color: #f5f5f5;
-  border: 1px solid #e7e7e7; */
   border-radius: 8px;
   flex: 1 1 auto;
+  /* background-color: #f5f5f5; */
+  /* border: 1px solid #e7e7e7; */
 }
 
 .ingredient-buttons {
   display: flex;
-  justify-content: space-evenly;
+  width: 100%;
+}
+
+.ingredient-buttons button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredient-buttons .icon-info {
+  width: 100%;
 }
 
 /* .ingredients-list .icon-info__icon svg {
@@ -144,9 +163,9 @@
 } */
 
 .search-ingredients-btn .icon-info {
-  background-color: green;
-  color: white;
-  width: 200px;
+  background-color: #26a24a;
+  color: #f9fbf9;
+  /* width: 300px; */
   justify-content: center;
   padding: 8px 12px;
   border: none;
@@ -154,7 +173,6 @@
 
 .icon-info {
   justify-content: center;
-  /* padding: 8px 12px; */
 }
 
 .ingredients-list .icon-info svg {
@@ -163,7 +181,7 @@
 
 .clear-ingredients-btn .icon-info {
   border: none;
-  /* padding: 8px 12px; */
+  padding: 8px 12px;
 }
 
 #filters-btn .icon-info {
@@ -174,7 +192,7 @@
 
 .clear-filters-btn .icon-info,
 .clear-ingredients-btn .icon-info {
-  width: 200px;
+  /* width: 200px; */
   background-color: rgba(221, 51, 51, 0.932);
   /* color: red; */
   color: white;

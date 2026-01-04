@@ -52,15 +52,6 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
                 <IconInfo text={ingredient} icon={Icons.close} />
               </button>
             ))}
-            {/* <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
-              <button
-                type="button"
-                className="clear-ingredients-btn"
-                onClick={handleClearIngredients}
-              >
-                <IconInfo icon={Icons.close} text="Clear ingredients" />
-              </button>
-            </div> */}
           </div>
         )}
       </>
