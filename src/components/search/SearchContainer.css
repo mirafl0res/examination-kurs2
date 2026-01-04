@@ -169,6 +169,7 @@
 @media (min-width: 768px) {
   .search-container {
     padding: 22px 26px;
+    width: 900px;
   }
   .search-container input[type="text"] {
     padding: 16px 18px;
