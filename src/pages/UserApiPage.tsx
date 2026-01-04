@@ -1,6 +1,6 @@
 import { Icons } from "../components/ui/icons";
 import { useNavigateBack } from "../hooks/useNavigateBack"
-import ApiKeyInput from "../components/settings/ApiKeyInput";
+import ApiKeyInput from "../components/userApi/ApiKeyInput";
 import "./UserApiPage.css"
 
 

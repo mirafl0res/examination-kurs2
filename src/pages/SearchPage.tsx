@@ -1,6 +1,6 @@
 import SearchBar from "../components/SearchBar"
 import RecipeResults from "../components/RecipeResults"
-import "./HomePage.css"
+import "./SearchPage.css"
 
 function HomePage() {
   return (

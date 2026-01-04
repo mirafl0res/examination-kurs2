@@ -11,8 +11,8 @@ function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
   const stop = (e: React.MouseEvent) => e.stopPropagation();
 
   const links = [
-    { to: "/", label: "Home", icon: Icons.chefHat },
-    { to: "/integrations", label: "Get Started", icon: Icons.utensils },
+    { to: "/userapi", label: "Get Started", icon: Icons.utensils },
+    { to: "/", label: "Search Recipes", icon: Icons.chefHat },
     { to: "/favorites", label: "Favorite Recipes", icon: Icons.favorite },
   ];
 
