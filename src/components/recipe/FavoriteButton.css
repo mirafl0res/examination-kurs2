@@ -14,8 +14,8 @@
 }
 
 .favorite-btn.active .heart-icon {
-  fill: #ff4d4d;
-  stroke: #ff4d4d;
+  fill: var(--color-accent-secondary);
+  stroke: var(--color-accent-secondary);
 }
 
 .favorite-btn:hover .heart-icon {

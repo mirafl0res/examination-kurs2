@@ -4,9 +4,15 @@ import Navbar from "./components/Navbar";
 import NavigationMenu from "./components/NavigationMenu";
 import FavoritesPage from "./pages/FavoritesPage";
 import RecipeDetailPage from "./pages/RecipePage";
-import HomePage from "./pages/HomePage";
-import SettingsPage from "./pages/SettingsPage";
+import SearchPage from "./pages/SearchPage";
+import UserApiPage from "./pages/UserApiPage";
 import Footer from "./components/Footer";
+import { useApiKeyStore } from "./store/apiKeyStore";
+import { setClientApiKey } from "./api/spoonacular";
+
+
+setClientApiKey(useApiKeyStore.getState().apiKey ?? null);
+useApiKeyStore.subscribe((s) => setClientApiKey(s.apiKey ?? null));
 
 function App() {
 
@@ -21,10 +27,10 @@ function App() {
       />
   
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<SearchPage />} />
         <Route path="/recipe/:id" element={<RecipeDetailPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/userapi" element={<UserApiPage />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
       <Footer />
