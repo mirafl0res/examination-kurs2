@@ -85,8 +85,6 @@
   color: var(--color-primary-text);
   line-height: 1.2;
   text-decoration: none;
-}
-.recipe-title {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -100,20 +98,7 @@
   place-items: start center;
   margin-inline: auto;
   margin: 0 auto;
-}
-
-.recipe-card {
-  height: 300px;
-  width: 280px;
-}
-.recipe-img-wrapper {
-  height: 200px;
-}
-
-.recipe-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.264);
 }
 
 .recipe-meta {
