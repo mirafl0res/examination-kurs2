@@ -37,7 +37,7 @@ function SearchForm({
           onChange={handleChange}
           placeholder={placeholder}
         />
-        <button className="icon-info" id ="search-add-btn" aria-label={typeof buttonText === 'string' ? String(buttonText) : undefined}>
+        <button id="search-add-btn" aria-label={typeof buttonText === 'string' ? String(buttonText) : undefined}>
           {typeof buttonText === "string" || typeof buttonText === "number" ? (
             <>
               <Icons.search size={16} />

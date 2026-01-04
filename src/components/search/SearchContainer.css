@@ -27,7 +27,7 @@
 .search-container form {
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .search-cta {
@@ -158,10 +158,6 @@
   width: 100%;
 }
 
-/* .ingredients-list .icon-info__icon svg {
-  stroke: #d33;
-} */
-
 .search-ingredients-btn .icon-info {
   background-color: #26a24a;
   color: #f9fbf9;
@@ -188,6 +184,18 @@
   background-color: #f5f5f5;
   padding: 8px 12px;
   color: green;
+}
+
+#search-add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  background-color: #26a24a;
+  color: #f9fbf9;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
 }
 
 .clear-filters-btn .icon-info,
