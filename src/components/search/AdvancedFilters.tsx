@@ -20,7 +20,9 @@ import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
 import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
 function AdvancedFilters() {
-  const [filterSections, setFilterSections] = useState<Record<FilterSectionKey, boolean>>({
+  const [filterSections, setFilterSections] = useState<
+    Record<FilterSectionKey, boolean>
+  >({
     intolerances: false,
     diets: false,
     dropdowns: false,
@@ -66,6 +68,7 @@ function AdvancedFilters() {
           showFilters={filterSections.intolerances}
           onToggle={() => handleToggleSection("intolerances")}
           sectionName="Intolerances"
+          className="filters-subsection-btn"
         />
         {filterSections.intolerances && (
           <>
@@ -88,6 +91,7 @@ function AdvancedFilters() {
           showFilters={filterSections.diets}
           onToggle={() => handleToggleSection("diets")}
           sectionName="Diets"
+          className="filters-subsection-btn"
         />
         {filterSections.diets && (
           <>
@@ -111,6 +115,7 @@ function AdvancedFilters() {
           showFilters={filterSections.dropdowns}
           onToggle={() => handleToggleSection("dropdowns")}
           sectionName="Extra Options"
+          className="filters-subsection-btn"
         />
         {filterSections.dropdowns && (
           <div className="dropdown-container">
