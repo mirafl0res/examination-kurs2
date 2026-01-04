@@ -12,7 +12,7 @@ function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
 
   const links = [
     { to: "/", label: "Home", icon: Icons.chefHat },
-    { to: "/settings", label: "Settings", icon: Icons.utensils },
+    { to: "/integrations", label: "Get Started", icon: Icons.utensils },
     { to: "/favorites", label: "Favorite Recipes", icon: Icons.favorite },
   ];
 

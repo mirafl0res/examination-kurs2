@@ -1,0 +1,142 @@
+.user-api-page {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.api-image {
+  display: none;
+  flex: 0 0 45%;
+  max-width: 45%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.api-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.api-form {
+  flex: 1 1 55%;
+  min-width: 0; 
+}
+
+label[for="spoonacular-api-key"], .api-label {
+  display: block;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 2.5rem;
+  color: #123022;
+}
+
+.key-input-row {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.api-key-input {
+  flex: 1 1 auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e7e7e7;
+  font-size: 1rem;
+  color: var(--color-primary-text);
+  outline: none;
+  background: #f5f5f5;
+  /* margin-bottom: 2rem; */
+}
+
+.api-key-input input[type="text"]::placeholder {
+  color: #9aa3ad;
+  font-size: 0.9rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  color: #555;  
+  font-size: 0.9rem;
+  gap: 10px; 
+}
+
+.btn-save {
+  background-color: var(--color-accent-primary);
+  color: var(--color-bg);
+}
+.btn-clear {
+    background-color: var(--color-accent-secondary);
+    color: #fff;
+    padding: 0.6rem;
+}
+
+
+
+.key-input-text {
+  color: var(--color-primary-text);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* saved message */
+.saved-msg {
+  color: #0a7a3d;
+  margin-top: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Responsive: show image on desktop only */
+@media (min-width: 992px) {
+  .api-image {
+    display: block;
+  }
+
+  /* On desktop show form on the left and image on the right */
+  .user-api-page {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+  }
+
+  /* move text down relative to the image without moving the image */
+  .api-form {
+    margin-top: 2.5rem; /* adjust this value to move text further down */
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 991px) {
+  .user-api-page {
+    flex-direction: column;
+    padding: 1.2rem;
+  }
+  .api-image {
+    display: none;
+  }
+  .key-input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .button-group {
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .button-group .btn {
+    width: auto;
+  }
+}

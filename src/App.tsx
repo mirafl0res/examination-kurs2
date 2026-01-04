@@ -5,8 +5,19 @@ import NavigationMenu from "./components/NavigationMenu";
 import FavoritesPage from "./pages/FavoritesPage";
 import RecipeDetailPage from "./pages/RecipePage";
 import HomePage from "./pages/HomePage";
-import SettingsPage from "./pages/SettingsPage";
+import UserApiPage from "./pages/UserApiPage";
 import Footer from "./components/Footer";
+
+
+// Initialize API client key from persisted store and keep it synced
+import { useApiKeyStore } from "./store/apiKeyStore";
+import { setClientApiKey } from "./api/spoonacular";
+
+// initialize synchronously from persisted store
+setClientApiKey(useApiKeyStore.getState().apiKey ?? null);
+
+// subscribe to changes and update client
+useApiKeyStore.subscribe((s) => setClientApiKey(s.apiKey ?? null));
 
 function App() {
 
@@ -24,7 +35,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/recipe/:id" element={<RecipeDetailPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/integrations" element={<UserApiPage />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
       <Footer />

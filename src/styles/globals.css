@@ -11,7 +11,8 @@
 :root {
   --color-bg: #F9FBF9;
   --color-primary-text: #333;
-  --color-accent: #27a24a;
+  --color-accent-primary: #27a24a;
+  --color-accent-secondary: #ff4d4d;
 }
 
 html, body, #root {
@@ -46,7 +47,7 @@ button, input, select, textarea {
   font-weight: 500;
 }
 .back-button:hover {
-  background-color: var(--color-accent);
+  background-color: var(--color-accent-primary);
   color: var(--color-bg);
 }
 
