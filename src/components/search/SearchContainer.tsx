@@ -48,18 +48,18 @@ function SearchContainer() {
       <IngredientInput onSearch={handleSearch} />
     );
 
-    const ctaByMode: Record<SearchMode, React.ReactNode> = {
-      default: 
-          <p className="search-cta" 
-            aria-live="polite">Search by recipe name, cuisine 
-                        or describe what you're craving
-                        </p>,
-      ingredients: 
-          <p className="search-cta" 
-            aria-live="polite">Add ingredients one by one,
-                        then search for matching recipes
-                        </p>,
-};
+  const ctaByMode: Record<SearchMode, React.ReactNode> = {
+    default: (
+      <p className="search-cta" aria-live="polite">
+        Search by recipe name, cuisine or describe what you're craving
+      </p>
+    ),
+    ingredients: (
+      <p className="search-cta" aria-live="polite">
+        Add ingredients one by one, then search for matching recipes
+      </p>
+    ),
+  };
 
   return (
     <>

@@ -20,7 +20,9 @@ import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
 import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
 function AdvancedFilters() {
-  const [filterSections, setFilterSections] = useState<Record<FilterSectionKey, boolean>>({
+  const [filterSections, setFilterSections] = useState<
+    Record<FilterSectionKey, boolean>
+  >({
     intolerances: false,
     diets: false,
     dropdowns: false,
@@ -75,6 +77,7 @@ function AdvancedFilters() {
               selected={intolerances}
               onToggle={handleToggleIntolerance}
             />
+            <hr />
           </>
         )}
       </>
@@ -98,6 +101,7 @@ function AdvancedFilters() {
               onToggle={handleToggleDiet}
               onClear={clearFilters}
             />
+            <hr />
           </>
         )}
       </>

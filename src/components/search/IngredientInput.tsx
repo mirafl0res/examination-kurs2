@@ -40,35 +40,52 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
 
   const renderIngredients = () => {
     return (
-      <div className="ingredients-list">
-        {ingredients.map((ingredient) => (
-          <button
-            key={ingredient}
-            type="button"
-            onClick={() => removeIngredient(ingredient)}
-          >
-            <IconInfo text={ingredient} icon={Icons.close} />
-          </button>
-        ))}
-
+      <>
         {ingredients.length > 0 && (
-          <button type="button" className="clear-ingredients-btn" onClick={handleClearIngredients}>
-            <IconInfo icon={Icons.close} text="Clear ingredients" />
-          </button>
+          <div className="ingredients-list">
+            {ingredients.map((ingredient) => (
+              <button
+                key={ingredient}
+                type="button"
+                onClick={() => removeIngredient(ingredient)}
+              >
+                <IconInfo text={ingredient} icon={Icons.close} />
+              </button>
+            ))}
+            {/* <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+              <button
+                type="button"
+                className="clear-ingredients-btn"
+                onClick={handleClearIngredients}
+              >
+                <IconInfo icon={Icons.close} text="Clear ingredients" />
+              </button>
+            </div> */}
+          </div>
         )}
-      </div>
+      </>
     );
   };
 
-  const renderButtons = () => (
+  const renderButtons = () =>
     ingredients.length > 0 ? (
       <div className="ingredient-buttons">
-        <button type="button" className="search-ingredients-btn" onClick={handleSearch}>
+        <button
+          className="clear-ingredients-btn"
+          type="button"
+          onClick={handleClearIngredients}
+        >
+          <IconInfo icon={Icons.close} text="Clear ingredients" />
+        </button>
+        <button
+          type="button"
+          className="search-ingredients-btn"
+          onClick={handleSearch}
+        >
           <IconInfo icon={Icons.search} text="Search" />
         </button>
       </div>
-    ) : null
-  );
+    ) : null;
 
   return (
     <>
@@ -79,11 +96,8 @@ function IngredientInput({ onSearch }: IngredientInputProps) {
         placeholder={placeholder}
         buttonText={<Icon icon={Icons.add} />}
       />
-
-      <div className="ingredient-row">
-        {renderIngredients()}
-        {renderButtons()}
-      </div>
+      <div className="ingredient-row">{renderIngredients()}</div>
+      <div>{renderButtons()}</div>
     </>
   );
 }
