@@ -6,6 +6,7 @@ type ToggleFiltersButtonProps = {
   showFilters: boolean;
   sectionName: string;
   className?: string;
+  id?: string;
 };
 
 function ToggleFiltersButton({
@@ -13,10 +14,11 @@ function ToggleFiltersButton({
   onToggle,
   sectionName,
   className,
+  id,
 }: ToggleFiltersButtonProps) {
   return (
     <button
-      id="filters-btn"
+      id={id}
       onClick={onToggle}
       className={className}
       title={showFilters ? `Hide ${sectionName}` : `Show ${sectionName}`}

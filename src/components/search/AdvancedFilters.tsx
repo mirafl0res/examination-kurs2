@@ -69,6 +69,7 @@ function AdvancedFilters() {
           onToggle={() => handleToggleSection("intolerances")}
           sectionName="Intolerances"
           className="filters-subsection-btn"
+          id="filters-intolerances-btn"
         />
         {filterSections.intolerances && (
           <>
@@ -92,6 +93,7 @@ function AdvancedFilters() {
           onToggle={() => handleToggleSection("diets")}
           sectionName="Diets"
           className="filters-subsection-btn"
+          id="filters-diets-btn"
         />
         {filterSections.diets && (
           <>
@@ -116,6 +118,7 @@ function AdvancedFilters() {
           onToggle={() => handleToggleSection("dropdowns")}
           sectionName="Extra Options"
           className="filters-subsection-btn"
+          id="filters-extras-btn"
         />
         {filterSections.dropdowns && (
           <div className="dropdown-container">

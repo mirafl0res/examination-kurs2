@@ -78,6 +78,7 @@ function SearchContainer() {
             <ToggleFiltersButton
               showFilters={showFilters}
               onToggle={() => setShowFilters(!showFilters)}
+              id="filters-btn"
               sectionName="Advanced Filters"
               className="filters-btn"
             />
