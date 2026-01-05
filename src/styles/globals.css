@@ -8,25 +8,28 @@
 }
 
 :root {
-  --color-bg: #F9FBF9;
+  --color-bg: #f9fbf9;
   --color-primary-text: #333;
   --color-accent-primary: #27a24a;
   --color-accent-secondary: #ff4d4d;
 }
 
-html, body, #root {
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+html,
+body,
+#root {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
   color: var(--color-primary-text);
   background: var(--color-bg);
   position: relative;
-  min-height: 100vh
+  min-height: 100vh;
 }
 
 button {
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   background: transparent;
   padding: 0.4rem 0.55rem;
   border-radius: 6px;
@@ -34,13 +37,16 @@ button {
   display: flex;
   align-items: center;
   border: none;
-  color: #555;  
+  color: #555;
   font-size: 0.9rem;
   margin-bottom: 0.75rem;
   gap: 10px;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
 }
 
@@ -54,7 +60,7 @@ button, input, select, textarea {
 }
 
 .footer {
-  background: rgba(249, 251, 249, 0.49)  ;
+  background: rgba(249, 251, 249, 0.49);
   text-align: center;
   border: 1px solid rgba(139, 141, 139, 0.3);
   font-size: 0.8rem;
