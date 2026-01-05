@@ -90,4 +90,54 @@ describe("Recipe App", () => {
       cy.contains("p", "No favorites yet").should("be.visible");
     });
   });
+
+  describe("API Key Input", () => {
+    beforeEach(() => {
+      cy.visit("http://localhost:5173/userapi");
+    });
+
+    it("should save an API key and show confirmation message", () => {
+      const testApiKey = "test-api-key-12345";
+
+      cy.get("#spoonacular-api-key").should("be.visible");
+      cy.get("#spoonacular-api-key").type(testApiKey);
+
+      cy.get(".btn-save").should("be.visible").click();
+
+      cy.get(".saved-msg").should("be.visible").contains("API key saved");
+
+      // Verify the confirmation message disappears after timeout
+      cy.get(".saved-msg").should("not.exist", { timeout: 2000 });
+    });
+
+    it("should clear the API key when clicking Clear button", () => {
+      const testApiKey = "test-api-key-67890";
+
+      cy.get("#spoonacular-api-key").type(testApiKey);
+      cy.get(".btn-save").click();
+
+      cy.get(".saved-msg").should("be.visible");
+
+      cy.get(".btn-clear").should("be.visible").click();
+
+      cy.get("#spoonacular-api-key").should("have.value", "");
+    });
+
+    it("should persist the API key after saving", () => {
+      const testApiKey = "persistent-key-abc123";
+
+      // Save a key
+      cy.get("#spoonacular-api-key").type(testApiKey);
+      cy.get(".btn-save").click();
+      cy.get(".saved-msg").should("be.visible");
+
+      // Navigate away and back
+      cy.get(".nav-menu-btn").click();
+      cy.contains("a", "Recipe Finder").click();
+      cy.visit("http://localhost:5173/userapi");
+
+      // Verify the key is still there
+      cy.get("#spoonacular-api-key").should("have.value", testApiKey);
+    });
+  });
 });
