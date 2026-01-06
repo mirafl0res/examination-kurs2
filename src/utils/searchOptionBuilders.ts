@@ -31,11 +31,11 @@ export const buildIngredientsSearchMode = (
   includeIngredients: string,
   filters: Filters
 ): SearchOptions => ({
-  ...baseSearchParams(filters),
   includeIngredients,
   fillIngredients: true,
   sort: "max-used-ingredients" as RecipeSortOption,
   ignorePantry: true,
+  ...baseSearchParams(filters),
 });
 
 export const searchModeBuilders: Record<
