@@ -23,8 +23,10 @@ export const buildDefaultSearchMode = (
   query: string,
   filters: Filters
 ): SearchOptions => ({
-  ...baseSearchParams(filters),
   query,
+  sort: "meta-score",
+  sortDirection: "desc",
+  ...baseSearchParams(filters),
 });
 
 export const buildIngredientsSearchMode = (
@@ -33,7 +35,7 @@ export const buildIngredientsSearchMode = (
 ): SearchOptions => ({
   includeIngredients,
   fillIngredients: true,
-  sort: "max-used-ingredients" as RecipeSortOption,
+  sort: "min-missing-ingredients" as RecipeSortOption,
   ignorePantry: true,
   ...baseSearchParams(filters),
 });
