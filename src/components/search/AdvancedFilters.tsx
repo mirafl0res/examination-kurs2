@@ -8,18 +8,18 @@ import {
   type Cuisine,
   MEAL_TYPES,
   type MealType,
-  RECIPE_SORT_OPTIONS,
   type RecipeSortOption,
   MAX_READY_TIME_OPTIONS,
   type MaxReadyTimeOption,
 } from "../../constants/";
-import type { FilterSectionKey } from "../../types";
+import type { FilterSectionKey, SearchMode } from "../../types";
+import { getValidSortOptions } from "../../utils/sortOptionsFilter";
 
 import { PillGroup, SingleSelectDropdown, ToggleFiltersButton } from ".";
 import { togglePrimitiveInArray } from "../../utils/toggleHelpers";
 import { useSearchFiltersStore } from "../../store/searchFiltersStore";
 
-function AdvancedFilters() {
+function AdvancedFilters({ searchMode }: { searchMode: SearchMode }) {
   const [filterSections, setFilterSections] = useState<
     Record<FilterSectionKey, boolean>
   >({
@@ -38,12 +38,8 @@ function AdvancedFilters() {
     (state) => state.filters.maxReadyTime
   );
   const sort = useSearchFiltersStore((state) => state.filters.sort);
-  const sortDirection = useSearchFiltersStore(
-    (state) => state.filters.sortDirection
-  );
   const setFilter = useSearchFiltersStore((state) => state.setFilter);
   const clearFilters = useSearchFiltersStore((state) => state.clearFilters);
-
   const handleToggleSection = (section: FilterSectionKey) => {
     setFilterSections((prev) => ({
       ...prev,
@@ -140,18 +136,20 @@ function AdvancedFilters() {
               options={MAX_READY_TIME_OPTIONS}
               onChange={(value) => setFilter("maxReadyTime", value)}
             />
-            <SingleSelectDropdown<RecipeSortOption>
-              label="Sort By"
-              value={sort}
-              options={RECIPE_SORT_OPTIONS}
-              onChange={(value) => setFilter("sort", value)}
-            />
-            <SingleSelectDropdown<"asc" | "desc">
+            {searchMode === "ingredients" && (
+              <SingleSelectDropdown<RecipeSortOption>
+                label="Sort By"
+                value={sort}
+                options={getValidSortOptions(searchMode)}
+                onChange={(value) => setFilter("sort", value)}
+              />
+            )}
+            {/* <SingleSelectDropdown<"asc" | "desc">
               label="Sort Direction"
               value={sortDirection}
               options={["asc", "desc"]}
               onChange={(value) => setFilter("sortDirection", value)}
-            />
+            /> */}
           </div>
         )}
       </>

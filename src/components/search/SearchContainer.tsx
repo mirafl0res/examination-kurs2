@@ -88,7 +88,7 @@ function SearchContainer() {
               </button>
             )}
           </div>
-          {showFilters && <AdvancedFilters />}
+          {showFilters && <AdvancedFilters searchMode={searchMode}/>}
         </div>
       </div>
     </>

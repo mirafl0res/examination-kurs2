@@ -1,5 +1,4 @@
 export const RECIPE_SORT_OPTIONS = [
-  "", // "Closest Match"
   "meta-score", // "Most Relevant"
   "time",
   "max-used-ingredients",

@@ -133,8 +133,9 @@ describe("Recipe App", () => {
 
       // Navigate away and back
       cy.get(".nav-menu-btn").click();
-      cy.contains("a", "Recipe Finder").click();
-      cy.visit("http://localhost:5173/userapi");
+      cy.contains("a", "Search Recipes").click();
+      cy.get(".nav-menu-btn").click();
+      cy.contains("a", "Get Started").click();
 
       // Verify the key is still there
       cy.get("#spoonacular-api-key").should("have.value", testApiKey);
